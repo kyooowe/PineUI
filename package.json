@@ -1,0 +1,21 @@
+{
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"format": "npx prettier --write \"**/*.{js,jsx,json,ts,tsx,md}\""
+	},
+	"devDependencies": {
+		"eslint": "^7.32.0",
+		"eslint-config-custom": "*",
+		"prettier": "^2.5.1",
+		"turbo": "latest"
+	},
+	"name": "vite-express",
+	"packageManager": "npm@8.11.0",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	]
+}
