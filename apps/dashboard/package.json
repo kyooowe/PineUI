@@ -7,6 +7,7 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
+        "deploy": "vercel deploy dist --team=turborepo --confirm",
         "lint": "npx eslint .",
         "lint --vite": "tsc --noEmit && eslint \"src/**/*.ts*\""
     },
