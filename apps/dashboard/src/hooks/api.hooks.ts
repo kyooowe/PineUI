@@ -39,7 +39,7 @@ const useApi = () => {
         })
     }
 
-    return { get, post, put, remove, checkTokenExpirationMiddleWare }
+    return { get, post, put, remove }
 }
 
 export default useApi

@@ -1,12 +1,11 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Breadcrumbs = () => {
 
     //#region State Helper
     const location = useLocation();
     const pathnames = location.pathname.split('/').filter((x) => x);
-    const navigate = useNavigate()
     //#endregion
 
     return (
