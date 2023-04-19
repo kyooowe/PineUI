@@ -20,9 +20,11 @@
 		"mongoose": "^7.0.0",
 		"nodemailer": "^6.9.1",
 		"socket.io": "^4.6.1",
-		"supertest": "^6.3.3"
+		"supertest": "^6.3.3",
+		"tsup": "^6.7.0"
 	},
 	"scripts": {
+		"build": "tsup server.ts --format cjs",
 		"dev": "nodemon server.ts",
 		"test": "cross-env NODE_ENV=test jest",
 		"lint": "npx eslint ."
