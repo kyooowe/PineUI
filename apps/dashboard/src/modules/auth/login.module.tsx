@@ -63,6 +63,7 @@ const Login = () => {
     }, [])
 
     useEffect(() => {
+
         if (zustandAccount === '') setLoading(false)
         else {
             setTimeout(() => {
@@ -83,8 +84,6 @@ const Login = () => {
 
             // Get result
             const result = await loginMutation.mutateAsync(values)
-
-            console.log(result)
 
             if (result.statusCode !== 200) {
                 setHasError(true)

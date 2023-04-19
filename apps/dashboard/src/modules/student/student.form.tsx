@@ -2,7 +2,7 @@
 import { memo } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import { ICreateStudent, IStudentFormProps } from '../../interface/modules/student/student.interface'
+import { ICreateStudent, IStudentFormProps, IUpdateStudent } from '../../interface/modules/student/student.interface'
 //#endregion
 
 //#region Validation Schema
@@ -13,25 +13,29 @@ const validationSchema = yup.object({
         .required("Student number is required!"),
     studentName: yup
         .string()
-        .matches(/^[A-Za-z]+,\s[A-Za-z]+\s[A-Za-z]+(\s[A-Za-z]+)*\.$/, 'Invalid name format. Use "Surname, First Name Middle Name."')
+        .min(10, 'Please provide a value that is at least 4 characters long.')
         .required("Student name is required!"),
     class: yup
         .string()
-        .min(4, "Please provide a value that is at least 4 characters long.")
-        .required('Class is required!'),
+        .min(3, "Please provide a value that is at least 4 characters long.")
+        .required('Class is required!')
 })
 //#endregion
 
-const StudentForm = memo(({ onSubmit, formRef }: IStudentFormProps) => {
+type FormikType<T> = T extends true ? IUpdateStudent : ICreateStudent;
+
+const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps) => {
 
     //#region Formik
-    const studentFormik = useFormik<ICreateStudent>({
+    const isUpdating = studentData === undefined ? false : true
+    const studentFormik = useFormik<FormikType<typeof isUpdating>>({
         initialValues: {
-            studentName: '',
-            studentNumber: '',
-            class: '',
-            level: 'Grade 6',
-            admissionDate: new Date()
+            ...(isUpdating ? { _id: studentData?._id } : {}),
+            studentName: studentData ? studentData.studentName : '',
+            studentNumber: studentData ? studentData.studentNumber : '',
+            class: studentData ? studentData.class : '',
+            level: studentData ? studentData.level : 'Grade 6',
+            admissionDate: studentData ? new Date(studentData.admissionDate) : new Date
         },
         validationSchema: validationSchema,
         onSubmit: onSubmit
@@ -40,22 +44,23 @@ const StudentForm = memo(({ onSubmit, formRef }: IStudentFormProps) => {
 
     return (
         <div className='mt-10 mx-auto max-w-6xl'>
-            <div className='mt-10 mx-auto max-w-6xl'>
+            <div className='mx-auto mb-10 max-w-6xl'>
                 <form onSubmit={studentFormik.handleSubmit} ref={formRef}>
                     {/* Basic Information */}
                     <p className='text-3xl font-bold text-gray-900 dark:text-white'>
                         Student Information
                     </p>
-                    <div className='mt-5 grid gap-4 sm:grid-cols-3 sm:gap-6 text-sm'>
+                    <div className='mt-6 grid gap-4 sm:grid-cols-3 sm:gap-6 text-sm'>
                         <div className='w-full'>
                             <label className='block mb-2 font-medium text-gray-900 dark:text-white'>
-                                Student Number
+                                {`Student Number (00-2023-0000)`}
                             </label>
                             <input
                                 name='studentNumber'
                                 type='text'
                                 onChange={studentFormik.handleChange}
                                 placeholder='00-2023-00001'
+                                value={studentFormik.values.studentNumber}
                                 className={`block w-full py-2 pl-5 pr-5 rtl:pr-11 rtl:pl-5 text-sm placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-20
                                         ${studentFormik.touched.studentNumber &&
                                         Boolean(studentFormik.errors.studentNumber)
@@ -74,12 +79,15 @@ const StudentForm = memo(({ onSubmit, formRef }: IStudentFormProps) => {
                             }
                         </div>
                         <div className='sm:col-span-2'>
-                            <label className='block mb-2  font-medium text-gray-900 dark:text-white'>{`Student Name (Surname, First Name Middle Name.)`}</label>
+                            <label className='block mb-2  font-medium text-gray-900 dark:text-white'>
+                                {`Student Name (Surname, First Name Middle Name.)`}
+                            </label>
                             <input
                                 name='studentName'
                                 type='text'
                                 onChange={studentFormik.handleChange}
                                 placeholder='Dela Cruz, Juan S.'
+                                value={studentFormik.values.studentName}
                                 className={`block w-full py-2 pl-5 pr-5 rtl:pr-11 rtl:pl-5 text-sm placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-20
                                 ${studentFormik.touched.studentName &&
                                         Boolean(studentFormik.errors.studentName)
@@ -98,12 +106,15 @@ const StudentForm = memo(({ onSubmit, formRef }: IStudentFormProps) => {
                             }
                         </div>
                         <div className='w-full'>
-                            <label className='block mb-2 font-medium text-gray-900 dark:text-white'>{`Class (Section)`}</label>
+                            <label className='block mb-2 font-medium text-gray-900 dark:text-white'>
+                                {`Class (Section)`}
+                            </label>
                             <input
                                 name='class'
                                 type='text'
                                 onChange={studentFormik.handleChange}
                                 placeholder='Indigo'
+                                value={studentFormik.values.class}
                                 className={`block w-full py-2 pl-5 pr-5 rtl:pr-11 rtl:pl-5 text-sm placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-20
                                 ${studentFormik.touched.class &&
                                         Boolean(studentFormik.errors.class)
@@ -149,13 +160,19 @@ const StudentForm = memo(({ onSubmit, formRef }: IStudentFormProps) => {
                             <label className='block mb-2 font-medium text-gray-900 dark:text-white'>
                                 Admission Date
                             </label>
+
                             <input
                                 name='admissionDate'
                                 type='date'
-                                onChange={studentFormik.handleChange}
+                                min={new Date().toISOString().substr(0, 10)}
+                                onChange={(event) => {
+                                    const selectedDate = event.target.value;
+                                    const dateParts = selectedDate.split('-');
+                                    const admissionDate = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]) + 1);
+                                    studentFormik.setFieldValue('admissionDate', admissionDate);
+                                }}
                                 value={studentFormik.values.admissionDate.toISOString().substr(0, 10)}
                                 className='block w-full py-2 pl-5 pr-5 text-gray-700 placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-5 border-gray-400 focus:border-gray-900 focus:ring-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-300'
-                                placeholder='Indigo'
                             />
                         </div>
                     </div>

@@ -15,11 +15,6 @@ const useApi = () => {
     // Decrypt if not undefined then assign as token
     const token = encryptedToken === undefined ? '' : decrypt(encryptedToken)
 
-    // Middleware to check if JWT is expired
-    const checkTokenExpirationMiddleWare = () => {
-        console.log(token)
-    }
-
     const get = async <T>(url: string, anonymous = false) => {
         return await httpRequest.get<void, IResponse<T>>(url, {
             headers: { Authorization: anonymous ? '' : `Bearer ${token}` },

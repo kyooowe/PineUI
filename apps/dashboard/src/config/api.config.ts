@@ -58,7 +58,6 @@ httpRequest.interceptors.request.use((request) => {
                     }
 
                 })
-
         }
     }
 

@@ -23,4 +23,13 @@ interface ICreateStudentRequest {
     admissionDate: Date;
 }
 
-export type { IStudent, ICreateStudentRequest }
+interface IUpdateStudentRequest {
+    _id: string;
+    studentNumber: string;
+    studentName: string;
+    class: string;
+    level: string;
+    admissionDate: Date;
+}
+
+export type { IStudent, ICreateStudentRequest, IUpdateStudentRequest }

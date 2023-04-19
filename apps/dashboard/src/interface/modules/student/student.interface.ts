@@ -2,7 +2,8 @@ import { IBase } from "../base.interface";
 
 // Component
 export interface IStudentFormProps {
-    onSubmit: (values: ICreateStudent) => void;
+    onSubmit: (values: ICreateStudent | IUpdateStudent) => void;
+    studentData?: IStudent;
     formRef: any;
 }
 
@@ -19,6 +20,15 @@ export interface IStudent extends IBase {
 
 // Request
 export interface ICreateStudent {
+    studentNumber: string;
+    studentName: string;
+    class: string;
+    level: string;
+    admissionDate: Date;
+}
+
+export interface IUpdateStudent {
+    _id: string;
     studentNumber: string;
     studentName: string;
     class: string;

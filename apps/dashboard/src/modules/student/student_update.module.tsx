@@ -1,38 +1,49 @@
-import { memo, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { memo, useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import StudentForm from './student.form'
-import { ICreateStudent, IStudent } from '../../interface/modules/student/student.interface'
+import { IUpdateStudent, IStudent } from '../../interface/modules/student/student.interface'
 import useApi from '../../hooks/api.hooks'
 import { useMutation } from '@tanstack/react-query'
 import Toast from '../../components/toast.component'
+import Loader from '../../components/loader.component'
 
-const StudentCreate = memo(() => {
+const StudentUpdate = memo(() => {
 
     //#region State Helper
     const navigate = useNavigate()
-    const { post } = useApi()
+    const { put } = useApi()
     const formRef = useRef<HTMLFormElement>(null)
+    const { state } = useLocation()
     //#endregion
 
     //#region State
     const [hasError, setHasError] = useState<boolean>(false)
     const [errorMessage, setErrorMessage] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(true)
     //#endregion
 
     //#region React Query
-    const createStudentMutation = useMutation({
-        mutationFn: async (student: ICreateStudent) => {
-            return await post<IStudent>('student', student)
+    const updateStudentMutation = useMutation({
+        mutationFn: async (student: IUpdateStudent) => {
+            return await put<IStudent>('student', student)
         }
     })
     //#endregion
 
+    //#region UseEffect
+    useEffect(() => {
+        if(state === null)
+            navigate('/pages/students/list')
+
+        setLoading(false)
+    }, [state])
+    //#endregion
 
     //#region Handler
-    const handleSubmit = async (values: ICreateStudent) => {
+    const handleSubmit = async (values: IUpdateStudent) => {
 
         // Get result
-        const result = await createStudentMutation.mutateAsync(values)
+        const result = await updateStudentMutation.mutateAsync(values)
 
         if (result.statusCode === 200)
             navigate('/pages/students/list')
@@ -61,7 +72,7 @@ const StudentCreate = memo(() => {
                 <div>
                     <div className='flex items-center gap-x-3'>
                         <h2 className='text-lg font-medium text-gray-800 dark:text-white'>
-                            Create Student
+                            Update Student
                         </h2>
                     </div>
 
@@ -98,7 +109,7 @@ const StudentCreate = memo(() => {
 
                     <button
                         type='submit'
-                        disabled={createStudentMutation.isLoading}
+                        disabled={updateStudentMutation.isLoading}
                         onClick={() => formRef.current?.requestSubmit()}
                         className='flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-400 dark:hover:bg-blue-400 dark:bg-blue-600'
                     >
@@ -122,9 +133,15 @@ const StudentCreate = memo(() => {
                 </div>
             </div>
 
-            <StudentForm onSubmit={handleSubmit} formRef={formRef} />
+            {
+                loading ? (
+                    <Loader />
+                ) : (
+                    <StudentForm onSubmit={(values) => handleSubmit(values as IUpdateStudent)} studentData={state.studentData} formRef={formRef} />
+                )
+            }
         </section>
     )
 })
 
-export default StudentCreate
+export default StudentUpdate

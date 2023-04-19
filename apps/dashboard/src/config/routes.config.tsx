@@ -6,6 +6,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import Layout from '../layout/layout'
 import Loader from '../components/loader.component'
 import CenterLoader from '../components/center-loader.component'
+import StudentUpdate from '../modules/student/student_update.module'
 
 // Page
 const ErrorPage = lazy(() => import('../pages/error.page'))
@@ -72,6 +73,14 @@ const router = createBrowserRouter([
                             </Suspense>
                         ),
                     },
+                    {
+                        path: 'update',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <StudentUpdate />
+                            </Suspense>
+                        )
+                    }
                 ],
             },
         ],

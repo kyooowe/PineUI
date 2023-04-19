@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 
 import SideBar from './sidebar'
 import Navbar from './navbar'
-import { useAccountStore } from '../zustand/account.store'
 import Cookies from 'js-cookie'
+import { useAccountStore } from '../zustand/account.store'
 //#endregion
 
 const Layout = memo(() => {
@@ -18,7 +18,7 @@ const Layout = memo(() => {
     //#endregion
 
     //#region Zustand
-    const zustandAccount = useAccountStore((state) => state.account)
+    const zustandStoreAccount = useAccountStore((state) => state.storeAccount)
     //#endregion
 
     //#region UseEffect
@@ -40,13 +40,16 @@ const Layout = memo(() => {
 
     useEffect(() => {
 
-        if(zustandAccount === '') {
-            Cookies.remove('token')
-            Cookies.remove('access_token')
+        // Get token
+        const token = Cookies.get('token')
+        
+        // Flagger
+        if(token === undefined) {
+            zustandStoreAccount(undefined)
             navigate('/')
         }
 
-    }, [zustandAccount])
+    }, [])
     //#endregion
 
     return (

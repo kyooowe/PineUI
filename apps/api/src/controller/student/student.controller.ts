@@ -1,6 +1,6 @@
 //#region Import
 import { StudentModel } from '../../models/student/student.model'
-import { ICreateStudentRequest, IStudent } from '../../interface/student/student.interface'
+import { ICreateStudentRequest, IStudent, IUpdateStudentRequest } from '../../interface/student/student.interface'
 import { Request, Response } from "express";
 import { SingleApiResponse } from "../../helpers/response.helper";
 import { CustomRequest } from '../../interface/custom_request.interface'
@@ -11,15 +11,16 @@ import { CustomRequest } from '../../interface/custom_request.interface'
  * @memberof Helpers
  * @description All validation required before creating or update student
  * @param type (String) - determine the type of validation
- * @param value (String) - value to validate
+ * @param value (String) - value to validate, can act as Student Name and Student Number
+ * @param name (String) - helper value, act as an Student Name
  * @return Boolean - True as Valid to Create or Update, False as Not Valid
  */
-const ValidateStudent = async (type: "SNumber" | "SName", value: string): Promise<boolean | undefined> => {
+const ValidateStudent = async (type: "SNumber" | "SName", value: string, id?: string): Promise<boolean | undefined> => {
 
     if (type === "SName") {
 
         // Fetch student based on requested name
-        const student = await StudentModel.findOne<IStudent>({ studentName: { $regex: value, $options: 'i' } })
+        const student = await StudentModel.findOne<IStudent>({ studentName: { $regex: value, $options: 'i' }, _id: { $ne: id } })
 
         if (student)
             if (value === student.studentName)
@@ -31,7 +32,7 @@ const ValidateStudent = async (type: "SNumber" | "SName", value: string): Promis
     if (type === 'SNumber') {
 
         // Fetch student based on requested student number
-        const student = await StudentModel.findOne<IStudent>({ studentNumber: value })
+        const student = await StudentModel.findOne<IStudent>({ studentNumber: value, _id: { $ne: id } })
 
         if (student)
             return false
@@ -94,6 +95,7 @@ const GetStudents = async (req: Request, res: Response): Promise<Response> => {
 
 /**
  * @name CreateStudent
+ * @memberof Actions
  * @description Function for creating student
  * @param req - Object passed by client
  * @param res - Object to be passed by server
@@ -164,4 +166,78 @@ const CreateStudent = async (req: Request, res: Response): Promise<Response> => 
     }
 }
 
-export { GetStudents, CreateStudent }
+/**
+ * @name UpdateStudent
+ * @memberof Actions
+ * @description Function for updating student
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @returns Res
+ */
+const UpdateStudent = async (req: Request, res: Response): Promise<Response> => {
+
+    // Extracting request
+    const { id: currentUserId } = req as CustomRequest
+    const body = req.body as IUpdateStudentRequest
+
+    try {
+
+        // Validation
+        const isStudentNameValid = await ValidateStudent("SName", body.studentName, body._id)
+        const isStudentNumberValid = await ValidateStudent("SNumber", body.studentNumber, body._id)
+
+        if (!isStudentNameValid)
+            return res.status(200).json(
+                SingleApiResponse({
+                    success: true,
+                    data: null,
+                    statusCode: 409,
+                    message: 'Student Name already exist.'
+                })
+            );
+
+        if (!isStudentNumberValid)
+            return res.status(200).json(
+                SingleApiResponse({
+                    success: true,
+                    data: null,
+                    statusCode: 409,
+                    message: 'Student Number already exist.'
+                })
+            );
+
+        // Trigger find then update
+        const updatedUser = await StudentModel.findOneAndUpdate(
+            { _id: body._id },
+            {
+                studentNumber: body.studentNumber,
+                studentName: body.studentName,
+                class: body.class,
+                level: body.level,
+                admissionDate: body.admissionDate,
+                updatedBy: currentUserId,
+                dateUpdated: Date.now()
+            },
+            { new: true }
+        )
+
+        return res.status(200).json(
+            SingleApiResponse({
+                success: true,
+                data: updatedUser,
+                statusCode: 200
+            })
+        );
+
+    } catch (error: unknown) {
+        return res.status(500).json(
+            SingleApiResponse({
+                success: false,
+                data: null,
+                statusCode: 500
+            })
+        );
+    }
+}
+
+export { GetStudents, CreateStudent, UpdateStudent }

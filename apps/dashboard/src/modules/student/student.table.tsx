@@ -5,12 +5,14 @@ import { useQuery } from '@tanstack/react-query'
 import useApi from '../../hooks/api.hooks'
 import { IStudent } from '../../interface/modules/student/student.interface'
 import Toast from '../../components/toast.component'
+import { useNavigate } from 'react-router-dom'
 //#endregion
 
 const StudentTable = memo(() => {
 
     //#region State Helper
     const { get } = useApi()
+    const navigate = useNavigate()
     //#endregion
 
     //#region State
@@ -294,7 +296,7 @@ const StudentTable = memo(() => {
                                         <button
                                             aria-label='edit'
                                             onClick={() => handleEditButton(student)}
-                                            className='text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none'
+                                            className='text-gray-500 transition-colors duration-200 dark:hover:text-blue-500 dark:text-gray-300 hover:text-blue-500 focus:outline-none'
                                         >
                                             <svg
                                                 xmlns='http://www.w3.org/2000/svg'
@@ -326,14 +328,10 @@ const StudentTable = memo(() => {
 
     //#region Handler
     const handleEditButton = (student: IStudent) => {
-        console.log('edit')
-        console.log(student)
-        setShowToast(true)
+        navigate('/pages/students/update', { state: { studentData: student }})
     }
 
     const handleDeleteButton = (student: IStudent) => {
-        console.log('delete')
-        console.log(student)
         setShowToast(true)
     }
     //#endregion

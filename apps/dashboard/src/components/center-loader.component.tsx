@@ -12,7 +12,7 @@ const CenterLoader = memo(() => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
         >
-            <div className='flex items-center justify-center h-screen'>
+            <div className='flex items-center justify-center h-full'>
                 <div
                     className='animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full'
                     role='status'
