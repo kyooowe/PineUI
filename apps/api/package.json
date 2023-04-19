@@ -25,6 +25,7 @@
 	"scripts": {
 		"dev": "nodemon server.ts",
 		"test": "cross-env NODE_ENV=test jest",
+		"deploy": "vercel deploy dist --team=turborepo --confirm",
 		"lint": "npx eslint ."
 	},
 	"devDependencies": {
