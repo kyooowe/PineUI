@@ -25,7 +25,7 @@
 	"scripts": {
 		"start": "nodemon ./src/index.ts",
 		"dev": "nodemon ./src/index.ts",
-		"build": "etsc --inject:env-proxy.js",
+		"build": "tsc",
 		"test": "cross-env NODE_ENV=test jest",
 		"lint": "npx eslint ."
 	},
