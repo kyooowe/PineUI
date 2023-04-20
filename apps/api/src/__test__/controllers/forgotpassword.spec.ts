@@ -21,8 +21,8 @@ const mockUserValue: IUser = {
 	lastName: "testLastname",
 	email: "test@example.com",
 	password: "testpassword",
-	createdBy: 1,
-	updatedBy: 1,
+	createdBy: "1",
+	updatedBy: "1",
 	dateCreated: new Date(),
 	dateUpdated: new Date()
 };
