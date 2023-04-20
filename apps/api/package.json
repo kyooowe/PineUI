@@ -24,7 +24,7 @@
 	},
 	"scripts": {
 		"dev": "nodemon server.ts",
-		"build": "tsc",
+		"build": "etsc",
 		"test": "cross-env NODE_ENV=test jest",
 		"lint": "npx eslint ."
 	},
@@ -42,6 +42,8 @@
 		"@typescript-eslint/eslint-plugin": "^5.54.0",
 		"@typescript-eslint/parser": "^5.54.0",
 		"babel-jest": "^29.4.3",
+		"esbuild": "^0.17.17",
+		"esbuild-node-tsc": "^2.0.5",
 		"eslint": "^8.35.0",
 		"eslint-config-airbnb-typescript": "^17.0.0",
 		"eslint-config-prettier": "^8.6.0",
