@@ -25,7 +25,7 @@ export const Connect = async () => {
 			`⚡️[dtbase]: MongoDB Connected at ${process.env.MONGO_DB_SCHEMA}`
 		);
 	} catch (err) {
-		console.log("Failed to connect to MongoDB", err);
+		console.log(`Failed to connect to MongoDB - ${process.env.MONDO_DB}${process.env.MONGO_DB_SCHEMA}`, err);
 	}
 };
 //#endregion
