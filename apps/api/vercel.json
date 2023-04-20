@@ -1,15 +1,8 @@
 {
-    "version": 1,
-    "builds": [
+    "rewrites": [
         {
-            "src": "./server.ts",
-            "use": "@now/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "server.ts"
+            "source": "/api/(.*)",
+            "destination": "/api"
         }
     ]
 }

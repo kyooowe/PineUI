@@ -45,7 +45,7 @@ App.use(bodyParser.json());
 //#region Routes Config
 
 // For checking if the api is working
-App.get("/", (req, res) => {
+App.get("/api/hello", (req, res) => {
 	res.status(200).send("Hello");
 });
 
