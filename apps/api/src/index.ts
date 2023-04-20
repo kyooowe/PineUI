@@ -1,7 +1,7 @@
 //#region Import
-import App from "./src/config/express.config";
+import App from "./config/express.config";
 import dotenv from "dotenv";
-import { Connect } from "./src/config/mongoose.config";
+import { Connect } from "./config/mongoose.config";
 //#endregion
 
 //#region Config

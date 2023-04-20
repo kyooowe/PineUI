@@ -23,7 +23,7 @@
 		"supertest": "^6.3.3"
 	},
 	"scripts": {
-		"dev": "nodemon server.ts",
+		"dev": "nodemon ./src/index.ts",
 		"build": "etsc",
 		"test": "cross-env NODE_ENV=test jest",
 		"lint": "npx eslint ."
