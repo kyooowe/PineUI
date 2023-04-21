@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export interface IToast {
+export interface IToastProps {
     type: 'primary' | 'success' | 'warning' | 'danger'
     show: boolean
     setShow: (show: boolean) => void

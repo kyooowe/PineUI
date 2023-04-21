@@ -1,10 +1,10 @@
 //#region Import
 import { useEffect } from 'react'
-import { IToast } from '../interface/components/toast.interface'
+import { IToastProps } from '../interface/components/toast.interface'
 import { motion } from 'framer-motion'
 //#endregion
 
-const Toast = ({ type, show, setShow, icon, message }: IToast) => {
+const Toast = ({ type, show, setShow, icon, message }: IToastProps) => {
     //#region UseEffect
     useEffect(() => {
         if (show) {

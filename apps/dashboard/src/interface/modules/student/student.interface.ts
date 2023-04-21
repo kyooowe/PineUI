@@ -7,6 +7,11 @@ export interface IStudentFormProps {
     formRef: any;
 }
 
+export interface IStudentTableProps {
+    studentCount: number;
+    setStudentCount: (studentCount: number) => void;
+}
+
 // Response
 export interface IStudent extends IBase {
     _id: string;

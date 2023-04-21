@@ -25,6 +25,7 @@ export default {
             transitionProperty: {
                 width: '72',
                 'padding-left': '70',
+                height: ['72', 'screen']
             },
         },
     },

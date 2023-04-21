@@ -13,7 +13,7 @@ const validationSchema = yup.object({
         .required("Student number is required!"),
     studentName: yup
         .string()
-        .min(10, 'Please provide a value that is at least 4 characters long.')
+        .min(4, 'Please provide a value that is at least 4 characters long.')
         .required("Student name is required!"),
     class: yup
         .string()

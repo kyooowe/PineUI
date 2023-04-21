@@ -17,5 +17,8 @@
 	"workspaces": [
 		"apps/*",
 		"packages/*"
-	]
+	],
+	"dependencies": {
+		"react-popper": "^2.3.0"
+	}
 }

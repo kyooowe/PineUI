@@ -12,7 +12,7 @@ const Breadcrumbs = () => {
         <>
             {
                 pathnames.length > 0 && (
-                    <p className='dark:text-white'>
+                    <p className='dark:text-white md:block hidden'>
                         {
                             pathnames.map((name, index) => {
 

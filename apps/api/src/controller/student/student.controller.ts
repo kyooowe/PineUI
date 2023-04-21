@@ -73,12 +73,75 @@ const Fetch = async (single = false, columnName?: keyof IStudent, value?: string
  * @return Array
  */
 const GetStudents = async (req: Request, res: Response): Promise<Response> => {
+
+    // Extracting request
+    const searchType = req.params.searchType as string;
+
     try {
+
+        // Search Students
+        let students: IStudent[] = []
+
+        if (searchType.toLowerCase() === 'active')
+            students = await StudentModel.find<IStudent>({ isActive: true })
+
+        if (searchType.toLowerCase() === 'inactive')
+            students = await StudentModel.find<IStudent>({ isActive: false })
+
+        if (searchType.toLowerCase() === 'archive')
+            students = await StudentModel.find<IStudent>({ isArchive: true })
 
         return res.status(200).json(
             SingleApiResponse({
                 success: true,
-                data: await Fetch(),
+                data: students,
+                statusCode: 200
+            })
+        );
+    } catch (error: unknown) {
+        return res.status(500).json(
+            SingleApiResponse({
+                success: false,
+                data: null,
+                statusCode: 500
+            })
+        );
+    }
+}
+
+/**
+ * @name SearchStudents 
+ * @memberof Actions
+ * @description Search student based on the searchKey passed using params
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @return Array
+ */
+const SearchStudents = async (req: Request, res: Response): Promise<Response> => {
+
+    // Extracting request
+    const searchKey = req.params.searchKey as string;
+    const searchType = req.params.searchType as string;
+
+    try {
+
+        // Search Students
+        let students: IStudent[] = []
+
+        if (searchType === 'active')
+            students = await StudentModel.find<IStudent>(
+                { isActive: true, isArchive: false, studentName: { $regex: searchKey, $options: 'i' } },
+            )
+
+        if (searchType === 'inactive')
+            students = await StudentModel.find<IStudent>(
+                { isActive: true, studentName: { $regex: searchKey, $options: 'i' } }
+            )
+
+        return res.status(200).json(
+            SingleApiResponse({
+                success: true,
+                data: students,
                 statusCode: 200
             })
         );
@@ -240,4 +303,84 @@ const UpdateStudent = async (req: Request, res: Response): Promise<Response> => 
     }
 }
 
-export { GetStudents, CreateStudent, UpdateStudent }
+/**
+ * @name RestoreStudent
+ * @memberof Actions
+ * @description Function for restoring student
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @returns Res
+ */
+const RestoreStudent = async (req: Request, res: Response): Promise<Response> => {
+
+    // Extracting request
+    const { id: currentUserId } = req as CustomRequest
+    const studentId = req.params.studentId as string;
+
+    try {
+
+        await StudentModel.findOneAndUpdate<IStudent>(
+            { _id: studentId },
+            { isActive: true, updatedBy: currentUserId, dateUpdated: Date.now() }
+        )
+
+        return res.status(200).json(
+            SingleApiResponse({
+                success: true,
+                data: null,
+                statusCode: 200
+            })
+        );
+
+    } catch (error: unknown) {
+        return res.status(500).json(
+            SingleApiResponse({
+                success: false,
+                data: null,
+                statusCode: 500
+            })
+        );
+    }
+}
+
+/**
+ * @name DeleteStudent
+ * @memberof Actions
+ * @description Function for deleting student
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @returns Res
+ */
+const DeleteStudent = async (req: Request, res: Response): Promise<Response> => {
+
+    // Extracting request
+    const { id: currentUserId } = req as CustomRequest
+    const studentId = req.params.studentId as string;
+
+    try {
+
+        await StudentModel.findOneAndUpdate<IStudent>(
+            { _id: studentId },
+            { isActive: false, updatedBy: currentUserId, dateUpdated: Date.now() }
+        )
+
+        return res.status(200).json(
+            SingleApiResponse({
+                success: true,
+                data: null,
+                statusCode: 200
+            })
+        );
+
+    } catch (error) {
+        return res.status(500).json(
+            SingleApiResponse({
+                success: false,
+                data: null,
+                statusCode: 500
+            })
+        );
+    }
+}
+
+export { GetStudents, SearchStudents, CreateStudent, UpdateStudent, RestoreStudent, DeleteStudent }
