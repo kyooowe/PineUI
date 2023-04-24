@@ -27,7 +27,6 @@ const StudentCreate = memo(() => {
     })
     //#endregion
 
-
     //#region Handler
     const handleSubmit = async (values: ICreateStudent) => {
 

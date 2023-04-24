@@ -74,6 +74,8 @@ const Layout = memo(() => {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.4 }}
                         >
+
+                            {/* Page */}
                             <Outlet />
                         </motion.div>
                     </main>

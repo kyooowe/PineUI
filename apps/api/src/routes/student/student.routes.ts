@@ -7,7 +7,7 @@ import { AuthMiddleware } from "../../middleware/auth.middleware";
 //#region Action
 const StudentRouter = Router()
 StudentRouter.get('/:searchType', AuthMiddleware, GetStudents)
-StudentRouter.get('/:searchKey', AuthMiddleware, SearchStudents)
+StudentRouter.get('/:searchType/:searchKey', AuthMiddleware, SearchStudents)
 StudentRouter.post('/', AuthMiddleware, CreateStudent)
 StudentRouter.put('/', AuthMiddleware, UpdateStudent)
 StudentRouter.get('/restore/:studentId', AuthMiddleware, RestoreStudent)

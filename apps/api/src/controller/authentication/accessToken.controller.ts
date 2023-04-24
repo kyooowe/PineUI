@@ -9,9 +9,18 @@ import { IAccessToken } from "../../interface/access_token/access_token.interfac
 dotenv.config();
 //#endregion
 
+// Get the secret key in .env
 const secretKey = process.env.TOKEN_KEY as string;
 
-const AccessToken = async (req: Request, res: Response) => {
+/**
+ * @name AccessToken 
+ * @memberof Actions
+ * @description Validation of user access token
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @return Array
+ */
+const AccessToken = async (req: Request, res: Response): Promise<Response> => {
 
     // Extract headers
     const headerAccessToken = req.headers['accesstoken'] as string

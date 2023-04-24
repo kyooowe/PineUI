@@ -5,6 +5,15 @@ import { SingleApiResponse } from "../helpers/response.helper";
 import { CustomRequest } from "../interface/custom_request.interface";
 //#endregion
 
+/**
+ * @name SearchStudents 
+ * @memberof Middeware
+ * @description function for validating user token
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @param next - next function that will run if token is valid
+ * @return Array
+ */
 export const AuthMiddleware = async (
 	req: Request,
 	res: Response,

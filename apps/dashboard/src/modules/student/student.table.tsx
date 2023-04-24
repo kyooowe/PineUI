@@ -38,14 +38,17 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     //#endregion
 
     //#region React Query
+
+    // Query for getting student list based on searchType
     const { data: studentList, refetch } = useQuery({
         queryKey: ['studentList'],
         queryFn: () => get<IStudent[]>(`student/${searchType}`)
     })
 
+    // Query for getting student list based on searchType and searchKey
     const { data: studentSearchResults } = useQuery({
         queryKey: ['studentSearchList', searchKey],
-        queryFn: () => get<IStudent[]>(`student/${debounceSearchKey}`),
+        queryFn: () => get<IStudent[]>(`student/${searchType}/${debounceSearchKey}`),
         enabled: runSearchQuery,
         refetchOnWindowFocus: false,
         onSuccess: () => {
@@ -67,6 +70,10 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     //#endregion
 
     //#region UseEffect
+
+    /**
+     * @description for closing toast, make 3000 for more smooth ui
+     */
     useEffect(() => {
         if (showToast) {
             setTimeout(() => {
@@ -76,6 +83,9 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
         }
     }, [showToast])
 
+    /**
+     * @description run search query if searchKey is not '' else alternate
+     */
     useEffect(() => {
         if (debounceSearchKey !== '')
             setRunSearchQuery(true)
@@ -83,16 +93,25 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
             refetch()
     }, [debounceSearchKey]);
 
+    /**
+     * @description run student fetch query everytime searchType changed
+     */
     useEffect(() => {
         refetch()
     }, [searchType])
 
+    /**
+     * @description showing of toast
+     */
     useEffect(() => {
         if (toastMessage !== '')
             if (!showToast)
                 setShowToast(true)
     }, [toastMessage])
 
+    /**
+     * @description pagination helpers for count and totalPaages
+     */
     useEffect(() => {
 
         let count = 0;
@@ -109,6 +128,10 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     //#endregion
 
     //#region UseMemo
+
+    /**
+     * @description memoized dynamic columns
+     */
     const cols = useMemo(() => {
         return (
             <>
@@ -301,6 +324,9 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
         )
     }, [])
 
+    /**
+     * @description memoized table rows, rows depends on the current query.
+     */
     const rows = useMemo(() => {
 
         let students: IStudent[] = studentList?.data ?? []
@@ -495,7 +521,10 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
                 <div className="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
                     <button
                         aria-label='active'
-                        onClick={() => setSearchType('active')}
+                        onClick={() => {
+                            setSearchType('active')
+                            setSearchKey('')
+                        }}
                         className={`px-5 py-2 text-sm w-full font-medium text-gray-600 transition-colors duration-200  dark:text-gray-300
                          ${searchType.toLowerCase() === 'active' ?
                                 'bg-gray-100 dark:bg-gray-800' :

@@ -11,9 +11,18 @@ const { Mailer } = MailerHelper;
 dotenv.config();
 //#endregion
 
+// Get the secret key in .env
 const secretKey = process.env.TOKEN_KEY as string;
 
-const ForgotPassword = async (req: Request, res: Response) => {
+/**
+ * @name ForgotPassword 
+ * @memberof Actions
+ * @description Function for reseting user password, any email the new password
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @return Array
+ */
+const ForgotPassword = async (req: Request, res: Response): Promise<Response> => {
 	try {
 		// Get email in request body
 		const email = req.body.email;
@@ -65,6 +74,15 @@ const ForgotPassword = async (req: Request, res: Response) => {
 				})
 			);
 		}
+
+		return res.status(200).json(
+			SingleApiResponse({
+				success: true,
+				data: null,
+				statusCode: 400,
+				message: 'Cannot find user.'
+			})
+		);
 	} catch (err) {
 		return res.status(500).json(
 			SingleApiResponse({

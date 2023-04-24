@@ -27,6 +27,11 @@ type FormikType<T> = T extends true ? IUpdateStudent : ICreateStudent;
 const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps) => {
 
     //#region Formik
+
+     /**
+     * @description dynamic interface for formik
+     * if isUpdate = true, the interface will be IUpdateStudent else ICreateStudent
+     */
     const isUpdating = studentData === undefined ? false : true
     const studentFormik = useFormik<FormikType<typeof isUpdating>>({
         initialValues: {

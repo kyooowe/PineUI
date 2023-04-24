@@ -10,11 +10,20 @@ import { IUser } from "../../interface/user/user.interface";
 dotenv.config();
 //#endregion
 
+// Get the secret key in .env
 const secretKey = process.env.TOKEN_KEY as string;
 
-//#region Action
-const CreateUser = async (req: Request, res: Response) => {
+/**
+ * @name CreateUser 
+ * @memberof Actions
+ * @description Function for creating user account
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @return Array
+ */
+const CreateUser = async (req: Request, res: Response): Promise<Response> => {
 	try {
+
 		const isUserEmailExisting = await UserModel.findOne<IUser>({
 			email: req.body.email
 		});
@@ -66,4 +75,3 @@ const CreateUser = async (req: Request, res: Response) => {
 };
 
 export { CreateUser };
-//#endregion

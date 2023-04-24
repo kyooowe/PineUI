@@ -15,11 +15,21 @@ dotenv.config();
 const secretKey = process.env.TOKEN_KEY as string;
 const accessSecretKey = process.env.ACCESS_TOKEN_KEY as string;
 
-//#region Action
-const Login = async (req: Request, res: Response) => {
+/**
+ * @name Login 
+ * @memberof Actions
+ * @description Function for logging in user account
+ * @param req - Object passed by client
+ * @param res - Object to be passed by server
+ * @return Array
+ */
+const Login = async (req: Request, res: Response): Promise<Response> => {
+
+	// Extract request from bbody
+	const email = req.body.email;
+	const password = req.body.password;
+
 	try {
-		const email = req.body.email;
-		const password = req.body.password;
 
 		// Fetch user based on email and password
 		const user = await UserModel.findOne<IUser>({ email: email });
@@ -94,4 +104,3 @@ const Login = async (req: Request, res: Response) => {
 };
 
 export { Login };
-//#endregion

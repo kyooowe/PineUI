@@ -130,12 +130,12 @@ const SearchStudents = async (req: Request, res: Response): Promise<Response> =>
 
         if (searchType === 'active')
             students = await StudentModel.find<IStudent>(
-                { isActive: true, isArchive: false, studentName: { $regex: searchKey, $options: 'i' } },
+                { isActive: true, studentName: { $regex: `.*${searchKey}.*`, $options: 'i' } },
             )
 
         if (searchType === 'inactive')
             students = await StudentModel.find<IStudent>(
-                { isActive: true, studentName: { $regex: searchKey, $options: 'i' } }
+                { isActive: false, studentName: { $regex: searchKey, $options: 'i' } }
             )
 
         return res.status(200).json(

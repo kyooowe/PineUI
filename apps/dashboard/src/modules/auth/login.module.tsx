@@ -30,6 +30,7 @@ const validationSchema = yup.object({
 //#endregion
 
 const Login = () => {
+
     //#region State Helper
     const navigate = useNavigate()
     const { post } = useApi()
@@ -63,7 +64,6 @@ const Login = () => {
     }, [])
 
     useEffect(() => {
-
         if (zustandAccount === '') setLoading(false)
         else {
             setTimeout(() => {

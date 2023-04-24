@@ -28,6 +28,7 @@ const ItemsDisplay: IStatsDisplay[] = [
 //#endregion
 
 const DashboardPage = () => {
+    
     const handleSVG = (name: string) => {
         if (name === 'Students')
             return (
