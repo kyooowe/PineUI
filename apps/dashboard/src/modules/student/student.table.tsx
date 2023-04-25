@@ -536,7 +536,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
             </div>
             {
                 isFetching ? (
-                    <CenterLoader />
+                    <CenterLoader height="h-72" />
                 ) : (
                     <>
                         {
