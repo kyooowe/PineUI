@@ -2,7 +2,7 @@
 import { StudentModel } from '../../models/student/student.model'
 import { ICreateStudentRequest, IStudent, IUpdateStudentRequest } from '../../interface/student/student.interface'
 import { Request, Response } from "express";
-import { SingleApiResponse } from "../../helpers/response.helper";
+import { ApiResponse, SingleApiResponse } from "../../helpers/response.helper";
 import { CustomRequest } from '../../interface/custom_request.interface'
 //#endregion
 
@@ -75,73 +75,51 @@ const Fetch = async (single = false, columnName?: keyof IStudent, value?: string
 const GetStudents = async (req: Request, res: Response): Promise<Response> => {
 
     // Extracting request
-    const searchType = req.params.searchType as string;
-
-    try {
-
-        // Search Students
-        let students: IStudent[] = []
-
-        if (searchType.toLowerCase() === 'active')
-            students = await StudentModel.find<IStudent>({ isActive: true })
-
-        if (searchType.toLowerCase() === 'inactive')
-            students = await StudentModel.find<IStudent>({ isActive: false })
-
-        if (searchType.toLowerCase() === 'archive')
-            students = await StudentModel.find<IStudent>({ isArchive: true })
-
-        return res.status(200).json(
-            SingleApiResponse({
-                success: true,
-                data: students,
-                statusCode: 200
-            })
-        );
-    } catch (error: unknown) {
-        return res.status(500).json(
-            SingleApiResponse({
-                success: false,
-                data: null,
-                statusCode: 500
-            })
-        );
-    }
-}
-
-/**
- * @name SearchStudents 
- * @memberof Actions
- * @description Search student based on the searchKey passed using params
- * @param req - Object passed by client
- * @param res - Object to be passed by server
- * @return Array
- */
-const SearchStudents = async (req: Request, res: Response): Promise<Response> => {
-
-    // Extracting request
     const searchKey = req.params.searchKey as string;
     const searchType = req.params.searchType as string;
+    const pageNumber = Number(req.params.pageNumber as string);
 
     try {
 
-        // Search Students
         let students: IStudent[] = []
+        let totalStudentCount = 0
+        const studentsLimit = 10;
 
-        if (searchType === 'active')
-            students = await StudentModel.find<IStudent>(
-                { isActive: true, studentName: { $regex: `.*${searchKey}.*`, $options: 'i' } },
-            )
+        if (searchKey === '_') {
 
-        if (searchType === 'inactive')
-            students = await StudentModel.find<IStudent>(
-                { isActive: false, studentName: { $regex: searchKey, $options: 'i' } }
-            )
+            // Create isActive object
+            const isActive = searchType.toLowerCase() === 'active' ? true : false;
+
+            // Fetch Students
+            students = await StudentModel.find<IStudent>({ isActive: isActive }).skip(pageNumber === 1 ? 0 : (pageNumber - 1) * 10).limit(studentsLimit);
+
+            // Get the total count (for pagination)
+            totalStudentCount = await StudentModel.countDocuments({ isActive });
+
+        } else {
+
+            // Create isActive object
+            const isActive = searchType.toLowerCase() === 'active' ? true : false;
+
+            // Create expression object
+            const searchQuery = {
+                isActive: isActive,
+                studentName: { $regex: `.*${searchKey}.*`, $options: 'i' },
+            };
+
+            // Fetch Students
+            students = await StudentModel.find<IStudent>(searchQuery).skip(pageNumber === 1 ? 0 : pageNumber * 10).limit(studentsLimit);
+
+            // Get the total count (for pagination)
+            totalStudentCount = await StudentModel.countDocuments(searchQuery);
+        }
+
 
         return res.status(200).json(
-            SingleApiResponse({
+            ApiResponse({
                 success: true,
                 data: students,
+                count: totalStudentCount,
                 statusCode: 200
             })
         );
@@ -383,4 +361,4 @@ const DeleteStudent = async (req: Request, res: Response): Promise<Response> => 
     }
 }
 
-export { GetStudents, SearchStudents, CreateStudent, UpdateStudent, RestoreStudent, DeleteStudent }
+export { GetStudents, CreateStudent, UpdateStudent, RestoreStudent, DeleteStudent }

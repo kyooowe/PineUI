@@ -11,9 +11,9 @@ const StatusCodeChecker = (statusCode: number) => {
 };
 
 // For multiple data response
-const ApiResponse = ({ success, data, statusCode, message }: IResponse) => {
+const ApiResponse = ({ success, data, statusCode, message, count }: IResponse) => {
 	return {
-		count: data === null || data === undefined ? 0 : data.length,
+		count: count,
 		success: success,
 		data: data,
 		statusCode: statusCode,

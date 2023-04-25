@@ -7,6 +7,8 @@ import { IStudent, IStudentTableProps } from '../../interface/modules/student/st
 import Toast from '../../components/toast.component'
 import { useNavigate } from 'react-router-dom'
 import useDebounce from '../../hooks/debounce.hooks'
+import { IResponse } from '../../interface/response.interface'
+import CenterLoader from '../../components/center-loader.component'
 //#endregion
 
 const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps) => {
@@ -24,7 +26,6 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     const [toastType, setToastType] = useState<"primary" | "success" | "danger" | "warning">("primary")
 
     // Fetch Helper 
-    const [runSearchQuery, setRunSearchQuery] = useState<boolean>(false)
     const [isListEmpty, setIsListEmpty] = useState<boolean>(false)
     const [searchType, setSearchType] = useState<string>("active")
 
@@ -40,19 +41,11 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     //#region React Query
 
     // Query for getting student list based on searchType
-    const { data: studentList, refetch } = useQuery({
+    const { data: studentList, refetch, isFetching } = useQuery({
         queryKey: ['studentList'],
-        queryFn: () => get<IStudent[]>(`student/${searchType}`)
-    })
-
-    // Query for getting student list based on searchType and searchKey
-    const { data: studentSearchResults } = useQuery({
-        queryKey: ['studentSearchList', searchKey],
-        queryFn: () => get<IStudent[]>(`student/${searchType}/${debounceSearchKey}`),
-        enabled: runSearchQuery,
-        refetchOnWindowFocus: false,
-        onSuccess: () => {
-            setRunSearchQuery(false)
+        queryFn: () => get<IStudent[]>(`student/${searchType}/${debounceSearchKey === '' ? '_' : debounceSearchKey}/${currentPage}`),
+        onSuccess: (currentStudentList: IResponse<IStudent[]>) => {
+            handleCountAndTotal(currentStudentList.data, currentStudentList.count)
         }
     })
 
@@ -85,20 +78,11 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
 
     /**
      * @description run search query if searchKey is not '' else alternate
-     */
-    useEffect(() => {
-        if (debounceSearchKey !== '')
-            setRunSearchQuery(true)
-        else
-            refetch()
-    }, [debounceSearchKey]);
-
-    /**
-     * @description run student fetch query everytime searchType changed
+     * run student fetch query everytime searchType changed
      */
     useEffect(() => {
         refetch()
-    }, [searchType])
+    }, [debounceSearchKey, searchType, currentPage]);
 
     /**
      * @description showing of toast
@@ -108,23 +92,6 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
             if (!showToast)
                 setShowToast(true)
     }, [toastMessage])
-
-    /**
-     * @description pagination helpers for count and totalPaages
-     */
-    useEffect(() => {
-
-        let count = 0;
-
-        if (debounceSearchKey !== '')
-            count = studentSearchResults === undefined ? 0 : studentSearchResults.data.length
-        else
-            count = studentList === undefined ? 0 : studentList.data.length
-
-        setStudentCount(count)
-        setTotalPages(handleTotalPages(count))
-
-    }, [studentList, studentSearchResults])
     //#endregion
 
     //#region UseMemo
@@ -329,11 +296,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
      */
     const rows = useMemo(() => {
 
-        let students: IStudent[] = studentList?.data ?? []
-
-        if (studentSearchResults?.data) {
-            students = studentSearchResults.data;
-        }
+        const students: IStudent[] = studentList?.data ?? []
 
         // Flagger
         if (students.length === 0)
@@ -462,7 +425,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
             </tbody >
         )
 
-    }, [studentList, studentSearchResults])
+    }, [studentList])
     //#endregion
 
     //#region Handler
@@ -502,6 +465,11 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
         const studentsPerPage = 10;
         return Math.ceil(totalCount / studentsPerPage)
     }
+
+    const handleCountAndTotal = (data: IStudent[], total: number) => {
+        setStudentCount(data.length)
+        setTotalPages(handleTotalPages(total))
+    }
     //#endregion
 
     return (
@@ -536,7 +504,10 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
 
                     <button
                         aria-label='inactive'
-                        onClick={() => setSearchType('inactive')}
+                        onClick={() => {
+                            setSearchType('inactive')
+                            setSearchKey('')
+                        }}
                         className={`px-5 py-2 text-sm w-full font-medium text-gray-600 transition-colors duration-200  dark:text-gray-300
                          ${searchType.toLowerCase() === 'inactive' ?
                                 'bg-gray-100 dark:bg-gray-800' :
@@ -578,35 +549,43 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
                     </div>
                 ) : (
                     <div className='flex flex-col mt-2'>
-                        <div className='overflow-x-auto'>
-                            <div className='inline-block min-w-full py-2 align-middle'>
-                                <div className='overflow-hidden border border-gray-300 rounded-lg dark:border-gray-700'>
-                                    <table className='min-w-full divide-y divide-gray-200 dark:divide-gray-700'>
-                                        {/* Header */}
-                                        <thead className='bg-gray-50 dark:bg-gray-800'>
-                                            <tr>
-                                                {cols}
-                                                <th
-                                                    scope='col'
-                                                    className='relative py-3.5 px-4'
-                                                >
-                                                    <span className='sr-only'>
-                                                        Edit
-                                                    </span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        {/* End Header */}
+                        {
+                            isFetching ? (
+                                <CenterLoader height='h-72' />
+                            ) : (
+                                <>
+                                    <div className='overflow-x-auto'>
+                                        <div className='inline-block min-w-full py-2 align-middle'>
+                                            <div className='overflow-hidden border border-gray-300 rounded-lg dark:border-gray-700'>
+                                                <table className='min-w-full divide-y divide-gray-200 dark:divide-gray-700'>
+                                                    {/* Header */}
+                                                    <thead className='bg-gray-50 dark:bg-gray-800'>
+                                                        <tr>
+                                                            {cols}
+                                                            <th
+                                                                scope='col'
+                                                                className='relative py-3.5 px-4'
+                                                            >
+                                                                <span className='sr-only'>
+                                                                    Edit
+                                                                </span>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    {/* End Header */}
 
-                                        {/* Body */}
-                                        {rows}
-                                        {/* End Body */}
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                                                    {/* Body */}
+                                                    {rows}
+                                                    {/* End Body */}
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePaginationChange} />
+                                    <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePaginationChange} />
+                                </>
+                            )
+                        }
                     </div>
                 )
             }

@@ -1,12 +1,8 @@
-import { useMemo, useState } from "react"
+import { useMemo } from "react"
 import { IPaginationProps } from "../interface/components/pagination.interface"
 
 
 const Pagination = ({ currentPage, totalPages, onPageChange }: IPaginationProps) => {
-
-    //#region State
-    const [pageInput, setPageInput] = useState<number>(currentPage)
-    //#endregion
 
     //#region UseMemo
     const pages = useMemo(() => {
@@ -40,7 +36,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: IPaginationProps)
             <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className={`flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${totalPages === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
                 <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -66,7 +62,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: IPaginationProps)
                         <button
                             key={i}
                             onClick={() => handlePageClick(page)}
-                            className='px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60'
+                            className={`px-2 py-1 text-sm text-blue-500 rounded-md ${currentPage === page ? 'bg-blue-100/60' : ''}`}
                         >
                             {page}
                         </button>
@@ -76,8 +72,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: IPaginationProps)
 
             <button
                 onClick={handleNextPage}
-                disabled={totalPages === 1}
-                className={`flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${totalPages === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={totalPages === currentPage}
+                className={`flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${totalPages === currentPage ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
                 <span>Next</span>
 
