@@ -28,8 +28,17 @@ Access the application in your dashboard at `http://127.0.0.1:5173/` and api `ht
 This project uses the following frameworks and libraries:
 
  - [Turborepo](https://turbo.build/repo)
- - [API Boilerplate](https://github.com/kyooowe/express-boilerplate)
- - [Dashboard Boilerplate](https://github.com/kyooowe/vite-template-tailwind)
+ - [React](https://react.dev/)
+ - [Express JS](https://expressjs.com/)
+ - [Tailwind CSS](https://tailwindcss.com/)
+ - [Typescript](https://www.typescriptlang.org/)
+ - [Zustand](https://github.com/pmndrs/zustand)
+ - [React Query](https://tanstack.com/query/v4/docs/react/adapters/react-query)
+ - [Formik](https://formik.org/)
+ - [Framer Motion](https://www.framer.com/motion/)
+ - [Mongoose](https://mongoosejs.com/)
+ - [CryptoJS](https://cryptojs.gitbook.io/docs/)
+ - [NodeMailer](https://nodemailer.com/about/)
 
 ## Build
 
@@ -38,3 +47,15 @@ To build a production-ready version of your application, run:
 ```
 npm run build
 ```
+
+## Roadmap
+An overview of our development plans and upcoming features.
+
+ - CLI (Create dashboard, services, CRUD pages)
+ - Auth with Google, Github
+ - Component libraries
+ - Home Page
+
+## Author
+
+-   [@kyooowe](https://www.github.com/kyooowe)
