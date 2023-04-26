@@ -67,9 +67,8 @@ const SideBar = memo(({ toggleSideBar }: ISidebar) => {
     return (
         <aside
             className={`flex flex-col h-screen bg-blue-700 shadow-xl px-5 py-8 overflow-y-auto fixed border-r rtl:border-r-0 rtl:border-l 
-                        dark:bg-gray-900 dark:border-gray-700 transition-width transition-slowest ease ${
-                            toggleSideBar ? 'w-72' : 'hidden'
-                        }`}
+                        dark:bg-gray-900 dark:border-gray-700 transition-width transition-slowest ease ${toggleSideBar ? 'w-72' : 'hidden'
+                }`}
         >
             <a href='#' aria-label='logo'>
                 <img
@@ -107,33 +106,34 @@ const SideBar = memo(({ toggleSideBar }: ISidebar) => {
                 </div>
 
                 <nav className='flex-1 space-y-3 mt-8'>
-                    {CSideBarMenu.map((menu: ISidebarMenu, i: number) => (
-                        <Link
-                            to={menu.path}
-                            key={i}
-                            aria-label='navigateToDashboard'
-                            className={`flex items-center px-3 py-3 text-blue-100 transition-colors duration-100 transform rounded-lg dark:text-gray-300 ${
-                                handleActiveLink(menu.childPath)
-                                    ? 'text-blue-100 bg-blue-600 dark:bg-gray-800 dark:text-gray-200'
-                                    : 'hover:text-blue-100 hover:bg-blue-500 dark:hover:bg-gray-800'
-                            }`}
-                        >
-                            <svg
-                                xmlns='http://www.w3.org/2000/svg'
-                                fill='none'
-                                viewBox='0 0 24 24'
-                                strokeWidth='1.5'
-                                stroke='currentColor'
-                                className='w-5 h-5'
+                    {
+                        CSideBarMenu.map((menu: ISidebarMenu, i: number) => (
+                            <Link
+                                to={menu.path}
+                                key={i}
+                                aria-label='navigateToDashboard'
+                                className={`flex items-center px-3 py-3 text-blue-100 transition-colors duration-100 transform rounded-lg dark:text-gray-300 ${handleActiveLink(menu.childPath)
+                                        ? 'text-blue-100 bg-blue-600 dark:bg-gray-800 dark:text-gray-200'
+                                        : 'hover:text-blue-100 hover:bg-blue-500 dark:hover:bg-gray-800'
+                                    }`}
                             >
-                                {handleSVG(menu.name)}
-                            </svg>
+                                <svg
+                                    xmlns='http://www.w3.org/2000/svg'
+                                    fill='none'
+                                    viewBox='0 0 24 24'
+                                    strokeWidth='1.5'
+                                    stroke='currentColor'
+                                    className='w-5 h-5'
+                                >
+                                    {handleSVG(menu.name)}
+                                </svg>
 
-                            <span className='mx-2 text-sm font-medium'>
-                                {menu.name}
-                            </span>
-                        </Link>
-                    ))}
+                                <span className='mx-2 text-sm font-medium'>
+                                    {menu.name}
+                                </span>
+                            </Link>
+                        ))
+                    }
                 </nav>
 
                 <div className='mt-6'>
