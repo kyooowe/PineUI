@@ -51,7 +51,7 @@ const data = [
 
 const LineChart = () => {
     return (
-        <div style={{ width: 'auto', height: '500px' }}>
+        <div style={{ width: 'auto', height: '530px' }}>
             <ResponsiveContainer>
                 <AreaChart
                     width={1000}
