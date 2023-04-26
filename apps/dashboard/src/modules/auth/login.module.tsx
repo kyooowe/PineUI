@@ -61,8 +61,8 @@ const Login = () => {
 
     //#region UseEffect
     useEffect(() => {
-        const isDarkMode = document.body.classList.contains('dark')
-        zustandStoreDarkModeConfig(isDarkMode)
+        document.body.classList.add('dark')
+        zustandStoreDarkModeConfig(true)
     }, [])
 
     useEffect(() => {
@@ -128,7 +128,7 @@ const Login = () => {
                     </svg>
                 }
             />
-            <section className='bg-white dark:bg-gray-900'>
+            <section>
 
                 {
                     loading ? (
@@ -139,13 +139,13 @@ const Login = () => {
                                 onSubmit={authFormik.handleSubmit}
                                 className='w-full max-w-md'
                             >
-                                <h1 className='mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white'>
+                                <p className='mt-3 text-2xl font-semibold text-white transform'>
                                     👋🏻 Sign In
-                                </h1>
+                                </p>
 
                                 {
                                     hasError ? (
-                                        <div className='flex mt-4 overflow-hidden border border-gray-300 bg-white rounded-lg shadow-md dark:border-gray-600 dark:bg-gray-800'>
+                                        <div className='flex mt-4 transform overflow-hidden border border-gray-300 bg-white rounded-lg shadow-md dark:border-gray-600 dark:bg-gray-800'>
                                             <div className='flex items-center justify-center w-12 bg-red-500'>
                                                 <svg
                                                     xmlns='http://www.w3.org/2000/svg'
@@ -212,7 +212,7 @@ const Login = () => {
                                             onChange={authFormik.handleChange}
                                         />
                                     </div>
-                                    <div className='mt-1'>
+                                    <div className='mt-1 transform'>
                                         {authFormik.touched.email &&
                                             Boolean(authFormik.errors.email) ? (
                                             <span className='text-red-400 text-sm'>
@@ -257,7 +257,7 @@ const Login = () => {
                                             onChange={authFormik.handleChange}
                                         />
                                     </div>
-                                    <div className='mt-1'>
+                                    <div className='mt-1 transform'>
                                         {authFormik.touched.password &&
                                             Boolean(authFormik.errors.password) ? (
                                             <span className='text-red-400 text-sm'>
@@ -279,7 +279,7 @@ const Login = () => {
                                         Sign in
                                     </button>
 
-                                    <p className='mt-4 text-center text-gray-600 dark:text-gray-400'>
+                                    <p className='mt-4 text-center text-gray-400 transform'>
                                         or Sign In with
                                     </p>
 
