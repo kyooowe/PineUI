@@ -1,9 +1,8 @@
+//#region Import
 import { lazy, useCallback } from 'react'
 import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-
-//#region Import
 const LoginModule = lazy(() => import('../../modules/auth/login.module'))
 //#endregion
 
