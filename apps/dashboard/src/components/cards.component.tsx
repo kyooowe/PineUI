@@ -7,7 +7,7 @@ const Card = memo(({ header, body, isPlain = false }: ICard) => {
             <div className={`px-5 py-5 ${isPlain ? '' : ' border-b dark:border-gray-500'}`}>
                 {header}
             </div>
-            <div className="px-5 py-5">
+            <div className="px-5 py-2">
                 {body}
             </div>
         </div>
