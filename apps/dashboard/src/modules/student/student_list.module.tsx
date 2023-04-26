@@ -96,7 +96,7 @@ const StudentList = memo(() => {
             </div>
 
             <Suspense fallback={<Loader />}>
-                <Table studentCount={studentCount} setStudentCount={setStudentCount} />
+                <Table setStudentCount={setStudentCount} />
             </Suspense>
         </section>
     )

@@ -66,7 +66,7 @@ const Layout = memo(() => {
                         setToggleSideBar={setToggleSideBar}
                     />
 
-                    <main className='flex-1 p-1 bg-white dark:bg-gray-900'>
+                    <main className='flex-1 p-1 bg-white dark:bg-black'>
                         <motion.div
                             key={location.pathname}
                             initial={{ opacity: 0 }}

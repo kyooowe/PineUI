@@ -8,7 +8,6 @@ export interface IStudentFormProps {
 }
 
 export interface IStudentTableProps {
-    studentCount: number;
     setStudentCount: (studentCount: number) => void;
 }
 

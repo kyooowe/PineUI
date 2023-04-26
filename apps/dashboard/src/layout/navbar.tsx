@@ -34,7 +34,7 @@ const Navbar = memo(({ toggleSideBar, setToggleSideBar }: INavbar) => {
     //#endregion
 
     return (
-        <div className='flex items-center justify-between px-4 py-6 md:px-10 bg-white dark:bg-gray-900'>
+        <div className='flex items-center justify-between px-4 py-6 md:px-10 bg-white dark:bg-black'>
             <Breadcrumbs />
             <div className='flex'>
                 <div className='relative items-center block md:hidden'>

@@ -62,7 +62,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: IPaginationProps)
                         <button
                             key={i}
                             onClick={() => handlePageClick(page)}
-                            className={`px-2 py-1 text-sm text-blue-500 rounded-md ${currentPage === page ? 'bg-blue-100/60' : ''}`}
+                            className={`px-2 py-1 text-sm text-blue-500 rounded-md ${currentPage === page ? 'bg-blue-100/60 dark:bg-blue-900 dark:text-blue-200' : ''}`}
                         >
                             {page}
                         </button>

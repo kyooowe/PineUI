@@ -34,7 +34,7 @@ const Toast = ({ type, show, setShow, icon, message }: IToastProps) => {
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             style={{ display: show ? 'block' : 'none' }}
-            className='toast'
+            className='toast ml-2'
         >
             <div
                 id='toast-simple'

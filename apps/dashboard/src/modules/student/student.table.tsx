@@ -11,7 +11,7 @@ import { IResponse } from '../../interface/response.interface'
 import CenterLoader from '../../components/center-loader.component'
 //#endregion
 
-const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps) => {
+const StudentTable = memo(({ setStudentCount }: IStudentTableProps) => {
 
     //#region State Helper
     const { get, remove } = useApi()
@@ -77,8 +77,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     }, [showToast])
 
     /**
-     * @description run search query if searchKey is not '' else alternate
-     * run student fetch query everytime searchType changed
+     * @description run search query if debounceSearchKey, searchType, currentPage has been changed
      */
     useEffect(() => {
         refetch()
@@ -97,7 +96,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     //#region UseMemo
 
     /**
-     * @description memoized dynamic columns
+     * @description memoized columns
      */
     const cols = useMemo(() => {
         return (
@@ -292,7 +291,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     }, [])
 
     /**
-     * @description memoized table rows, rows depends on the current query.
+     * @description memoized table rows
      */
     const rows = useMemo(() => {
 
@@ -350,7 +349,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
                                                 <button
                                                     aria-label='inactive'
                                                     title="Make Inactive"
-                                                    onClick={() => handleDeleteButton(student)}
+                                                    onClick={() => handleActionButton('delete', student)}
                                                     className='text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none'
                                                 >
                                                     <svg
@@ -373,7 +372,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
                                                 <button
                                                     aria-label='edit'
                                                     title="Edit"
-                                                    onClick={() => handleEditButton(student)}
+                                                    onClick={() => handleActionButton('edit', student)}
                                                     className='text-gray-500 transition-colors duration-200 dark:hover:text-blue-500 dark:text-gray-300 hover:text-blue-500 focus:outline-none'
                                                 >
                                                     <svg
@@ -396,7 +395,7 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
                                             <button
                                                 aria-label='restore'
                                                 title='Restore'
-                                                onClick={() => handleRestoreButton(student)}
+                                                onClick={() => handleActionButton('restore', student)}
                                                 className='text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none'
                                             >
                                                 <svg
@@ -429,31 +428,38 @@ const StudentTable = memo(({ studentCount, setStudentCount }: IStudentTableProps
     //#endregion
 
     //#region Handler
-    const handleEditButton = (student: IStudent) => {
-        navigate('/pages/students/update', { state: { studentData: student } })
-    }
 
-    const handleRestoreButton = async (student: IStudent) => {
-        const result = await restoreStudentMutation.mutateAsync(student)
+    const handleActionButton = async (type: string, student: IStudent) => {
 
-        if (result.statusCode !== 200)
-            setToastMessage('Something error occured, please contact administrator!')
-        else {
-            refetch()
-            setToastType("success")
-            setToastMessage(`${student.studentName} successfully restored.`)
-        }
-    }
+        switch (type) {
+            case 'restore': {
+                const result = await restoreStudentMutation.mutateAsync(student)
 
-    const handleDeleteButton = async (student: IStudent) => {
-        const result = await deleteStudentMutation.mutateAsync(student)
+                if (result.statusCode !== 200)
+                    setToastMessage('Something error occured, please contact administrator!')
+                else {
+                    refetch()
+                    setToastType("success")
+                    setToastMessage(`${student.studentName} successfully restored.`)
+                }
+                break;
+            }
+            case 'delete': {
+                const result = await deleteStudentMutation.mutateAsync(student)
 
-        if (result.statusCode !== 200)
-            setToastMessage('Something error occured, please contact administrator!')
-        else {
-            refetch()
-            setToastType("danger")
-            setToastMessage(`${student.studentName} successfully deleted.`)
+                if (result.statusCode !== 200)
+                    setToastMessage('Something error occured, please contact administrator!')
+                else {
+                    refetch()
+                    setToastType("danger")
+                    setToastMessage(`${student.studentName} successfully deleted.`)
+                }
+                break;
+            }
+            default: {
+                navigate('/pages/students/update', { state: { studentData: student } })
+                break;
+            }
         }
     }
 
