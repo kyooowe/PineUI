@@ -24,7 +24,9 @@
         "jwt-decode": "^3.1.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-particles": "^2.9.3",
         "react-router-dom": "^6.10.0",
+        "tsparticles": "^2.9.3",
         "yup": "^1.1.1",
         "zustand": "^4.3.7"
     },

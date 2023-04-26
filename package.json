@@ -19,8 +19,6 @@
 		"packages/*"
 	],
 	"dependencies": {
-		"react-particles": "^2.9.3",
-		"react-popper": "^2.3.0",
-		"tsparticles": "^2.9.3"
+		"react-popper": "^2.3.0"
 	}
 }
