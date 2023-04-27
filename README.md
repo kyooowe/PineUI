@@ -31,6 +31,7 @@ This project uses the following frameworks and libraries:
  - [React](https://react.dev/)
  - [Express JS](https://expressjs.com/)
  - [Tailwind CSS](https://tailwindcss.com/)
+ - [Meraki UI](https://merakiui.com/)
  - [Typescript](https://www.typescriptlang.org/)
  - [Zustand](https://github.com/pmndrs/zustand)
  - [React Query](https://tanstack.com/query/v4/docs/react/adapters/react-query)
@@ -54,7 +55,7 @@ An overview of our development plans and upcoming features.
  - CLI (Create dashboard, services, CRUD pages)
  - Auth with Google, Github
  - Component libraries
- - Home Page
+ - Landing Page
 
 ## Author
 
