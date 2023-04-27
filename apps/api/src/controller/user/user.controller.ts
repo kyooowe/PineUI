@@ -46,7 +46,9 @@ const CreateUser = async (req: Request, res: Response): Promise<Response> => {
 			).toString(),
 			firstName: req.body.firstName,
 			middleName: req.body.middleName,
-			lastName: req.body.lastName
+			lastName: req.body.lastName,
+			updatedBy: '1',
+			createdBy: '1'
 		});
 
 		// Save then Return the latest
@@ -64,6 +66,7 @@ const CreateUser = async (req: Request, res: Response): Promise<Response> => {
 			})
 		);
 	} catch (error: unknown) {
+		console.log(error)
 		return res.status(500).json(
 			SingleApiResponse({
 				success: false,

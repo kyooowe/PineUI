@@ -85,8 +85,8 @@ const Login = () => {
     //#region Formik
     const authFormik = useFormik<ILoginCredentials>({
         initialValues: {
-            email: '',
-            password: '',
+            email: 'admin@email.com',
+            password: '12345',
         },
         validationSchema: validationSchema,
         onSubmit: async (values: ILoginCredentials) => {
@@ -208,6 +208,7 @@ const Login = () => {
                                                     : 'border-gray-400 dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-gray-900 dark:focus:border-gray-500 focus:ring-gray-900 dark:focus:ring-gray-500'
                                                 }
                                         `}
+                                            value={authFormik.values.email}
                                             placeholder='Email address'
                                             onChange={authFormik.handleChange}
                                         />
@@ -253,6 +254,7 @@ const Login = () => {
                                                     : 'border-gray-400 dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-gray-900 dark:focus:border-gray-500 focus:ring-gray-900 dark:focus:ring-gray-500'
                                                 }
                                         `}
+                                            value={authFormik.values.password}
                                             placeholder='Password'
                                             onChange={authFormik.handleChange}
                                         />
