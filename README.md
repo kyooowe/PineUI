@@ -1,4 +1,4 @@
-![Logo](https://mir-s3-cdn-cf.behance.net/project_modules/1400/74731f76965389.5c7945b0cfcc3.gif)
+![Logo](https://media.giphy.com/media/JpV8LLfdgdqi4/giphy.gif)
 
 # Vite and Express Starter
 [![Express JS](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)]()
