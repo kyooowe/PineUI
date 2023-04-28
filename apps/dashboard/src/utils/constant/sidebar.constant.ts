@@ -15,4 +15,9 @@ export const CSideBarMenu: ISidebarMenu[] = [
             '/pages/students/update',
         ],
     },
+    {
+        name: 'Starter',
+        path: '/pages/starter',
+        childPath: ['/pages/starter']
+    }
 ]

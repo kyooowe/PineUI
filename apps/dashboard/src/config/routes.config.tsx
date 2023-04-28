@@ -13,6 +13,7 @@ const ErrorPage = lazy(() => import('../pages/error.page'))
 const LoginPage = lazy(() => import('../pages/auth/auth.page'))
 const DasboardPage = lazy(() => import('../pages/dashboard/dashboard.page'))
 const StudentPage = lazy(() => import('../pages/students/student.page'))
+const StarterPage = lazy(() => import('../pages/starter/starter.page'))
 
 // Student Module
 const StudentModule = lazy(
@@ -83,6 +84,14 @@ const router = createBrowserRouter([
                     }
                 ],
             },
+            {
+                path: 'starter',
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <StarterPage />
+                    </Suspense>
+                )
+            }
         ],
     },
     {

@@ -28,6 +28,11 @@ npm i
 
 Create a `.env` file in the project directory (apps/api and apps/dashoard) with your environment variables. You can copy the contents of the `.env.example` file and replace the values  with your own.
 
+Run the following command in root directory to start the application
+```
+npm run dev
+```
+
 Access the application in your dashboard at `http://127.0.0.1:5173/` and api `http://localhost:3001`
 
 ## Framework / Libraries
