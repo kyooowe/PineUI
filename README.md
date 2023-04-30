@@ -35,6 +35,14 @@ npm run dev
 
 Access the application in your dashboard at `http://127.0.0.1:5173/` and api `http://localhost:3001`
 
+## Build
+
+To build a production-ready version of your application, run:
+
+```
+npm run build
+```
+
 ## Framework / Libraries
 
 This project uses the following frameworks and libraries:
@@ -43,6 +51,7 @@ This project uses the following frameworks and libraries:
  - [React](https://react.dev/)
  - [Express JS](https://expressjs.com/)
  - [Tailwind CSS](https://tailwindcss.com/)
+ - [React Particles](https://github.com/matteobruni/tsparticles)
  - [Meraki UI](https://merakiui.com/)
  - [Typescript](https://www.typescriptlang.org/)
  - [Zustand](https://github.com/pmndrs/zustand)
@@ -53,18 +62,10 @@ This project uses the following frameworks and libraries:
  - [CryptoJS](https://cryptojs.gitbook.io/docs/)
  - [NodeMailer](https://nodemailer.com/about/)
 
-## Build
-
-To build a production-ready version of your application, run:
-
-```
-npm run build
-```
-
 ## Roadmap
 An overview of our development plans and upcoming features.
 
- - CLI (Create dashboard, services, CRUD pages)
+ - CLI (Create dashboard, services, CRUD pages) (Currently working)
  - Auth with Google, Github
  - Component libraries
  - Landing Page
