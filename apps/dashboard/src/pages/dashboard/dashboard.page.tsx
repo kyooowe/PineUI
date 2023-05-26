@@ -8,7 +8,7 @@ const Analytics = lazy(() => import('../../modules/dashboard/dashboard.module'))
 const DashboardPage = () => {
 
     return (
-        <Suspense fallback={<CenterLoader height="h-72" />}>
+        <Suspense fallback={<CenterLoader />}>
             <div className="py-2 px-7">
                 <Analytics />
             </div>

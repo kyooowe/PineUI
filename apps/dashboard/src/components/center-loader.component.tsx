@@ -1,10 +1,9 @@
 //#region Import
 import { memo } from 'react'
 import { motion } from 'framer-motion'
-import { ICenterLoaderProps } from '../interface/components/center-loader.interface'
 //#endregion
 
-const CenterLoader = memo(({ height = "h-screen" }: ICenterLoaderProps) => {
+const CenterLoader = memo(() => {
     return (
         <motion.div
             key='loginPage'
@@ -13,7 +12,7 @@ const CenterLoader = memo(({ height = "h-screen" }: ICenterLoaderProps) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
         >
-            <div className={`flex items-center justify-center ${height}`}>
+            <div className={`flex items-center justify-center h-screen`}>
                 <div
                     className='animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full'
                     role='status'

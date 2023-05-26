@@ -1,7 +1,7 @@
 //#region Import
 import { IStatsDisplay } from '../../interface/stats.interface'
 import LineChart from '../../components/line-chart.component'
-import Card from '../../components/cards.component'
+import Card from '../../components/cards/cards.component'
 import { useMemo } from 'react'
 import { IDashboardStudents } from '../../interface/modules/dashboard/dashboard.interface'
 

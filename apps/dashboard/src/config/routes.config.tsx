@@ -13,13 +13,14 @@ const ErrorPage = lazy(() => import('../pages/error.page'))
 const LoginPage = lazy(() => import('../pages/auth/auth.page'))
 const DasboardPage = lazy(() => import('../pages/dashboard/dashboard.page'))
 const StudentPage = lazy(() => import('../pages/students/student.page'))
+const ComponentsBlockpage = lazy(() => import('../pages/components-block/components-block.page'))
 const StarterPage = lazy(() => import('../pages/starter/starter.page'))
 
 // Student Module
-const StudentModule = lazy(
+const StudentListModule = lazy(
     () => import('../modules/student/student_list.module')
 )
-const StudentCreate = lazy(
+const StudentCreateModule = lazy(
     () => import('../modules/student/student_create.module')
 )
 
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
                         path: 'list',
                         element: (
                             <Suspense fallback={<Loader />}>
-                                <StudentModule />
+                                <StudentListModule />
                             </Suspense>
                         ),
                     },
@@ -70,7 +71,7 @@ const router = createBrowserRouter([
                         path: 'create',
                         element: (
                             <Suspense fallback={<Loader />}>
-                                <StudentCreate />
+                                <StudentCreateModule />
                             </Suspense>
                         ),
                     },
@@ -83,6 +84,15 @@ const router = createBrowserRouter([
                         )
                     }
                 ],
+            },
+            {
+                path: 'components',
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <ComponentsBlockpage />
+                    </Suspense>
+                ),
+                errorElement: <ErrorPage />
             },
             {
                 path: 'starter',

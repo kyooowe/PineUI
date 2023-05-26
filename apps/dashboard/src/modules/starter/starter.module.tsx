@@ -1,5 +1,5 @@
 import { memo, useMemo } from "react";
-import Card from "../../components/cards.component";
+import Card from "../../components/cards/cards.component";
 
 const Main = memo(() => {
 

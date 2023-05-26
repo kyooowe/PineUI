@@ -8,7 +8,7 @@ const Main = lazy(() => import('../../modules/starter/starter.module'))
 const StarterPage = () => {
 
     return (
-        <Suspense fallback={<CenterLoader height="h-72" />}>
+        <Suspense fallback={<CenterLoader />}>
             <div className="py-2 px-7">
                 <Main />
             </div>

@@ -7,13 +7,18 @@ export const CSideBarMenu: ISidebarMenu[] = [
         childPath: ['/pages/dashboard'],
     },
     {
-        name: 'Students',
+        name: 'CRUD',
         path: '/pages/students/list',
         childPath: [
             '/pages/students/list',
             '/pages/students/create',
             '/pages/students/update',
         ],
+    },
+    {
+        name: 'Components',
+        path: '/pages/components',
+        childPath: ['/pages/components']
     },
     {
         name: 'Starter',
