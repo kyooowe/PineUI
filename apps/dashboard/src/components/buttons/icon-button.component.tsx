@@ -72,16 +72,7 @@ const IconedButton = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text, 
             type={type}
             {...rest}
         >
-            <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='w-5 h-5 text-white'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-                strokeWidth='2'
-            >
-                {icon}
-            </svg>
+            {icon}
             <span className='mx-3'>
                 {text}
             </span>

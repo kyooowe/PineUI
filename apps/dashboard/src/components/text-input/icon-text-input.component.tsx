@@ -59,17 +59,8 @@ const IconTextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(({ nam
 
     return (
         <div className={parentTextInputClass}>
-            <span className='absolute'>
-                <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    className='w-6 h-6 mx-3 text-gray-400 dark:text-gray-500'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    stroke={hasError ? 'red' : 'currentColor'}
-                    strokeWidth='2'
-                >
-                    {icon}
-                </svg>
+            <span className='absolute mx-3'>
+                {icon}
             </span>
 
             <input

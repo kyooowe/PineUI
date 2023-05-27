@@ -11,7 +11,6 @@ const ButtonComponentBlock = () => {
 
     const columns: string[] = ['Props', 'Type', 'Description']
 
-    //#region Buttons
     const handleButtonBody = () => {
         return (
             <div className="flex p-2 gap-2">
@@ -32,11 +31,21 @@ const ButtonComponentBlock = () => {
                     type="button"
                     variant="primary"
                     icon={
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                        />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
+                            />
+                        </svg>
+
                     }
                 />
                 <IconedButton
@@ -45,11 +54,21 @@ const ButtonComponentBlock = () => {
                     type="button"
                     variant="secondary"
                     icon={
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                        />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
+                            />
+                        </svg>
+
                     }
                 />
                 <IconedButton
@@ -58,11 +77,21 @@ const ButtonComponentBlock = () => {
                     type="button"
                     variant="danger"
                     icon={
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                        />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
+                            />
+                        </svg>
+
                     }
                 />
                 <IconedButton
@@ -71,11 +100,21 @@ const ButtonComponentBlock = () => {
                     type="button"
                     variant="warning"
                     icon={
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                        />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
+                            />
+                        </svg>
+
                     }
                 />
             </div>
@@ -97,35 +136,29 @@ const ButtonComponentBlock = () => {
 
         if (name === 'plain')
             return [
-                { props: "text", type: "String", desc: "Text to be shown by the Button." },
-                { props: "ariaLabel", type: "String", desc: "Aria-labe of the Button." },
-                { props: "type", type: "Button | Submit", desc: "Type of a Button, its either Button or Submit." },
-                { props: "className?", type: "String", desc: "Dynamic class for the Button." },
-                { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Button color depends on this field." },
-            ]
+                { props: "text", type: "String", desc: "The text to be displayed on the Button." },
+                { props: "ariaLabel", type: "String", desc: "The ARIA label for the Button." },
+                { props: "type", type: "Button | Submit", desc: "Specifies the type of the Button, either 'Button' or 'Submit'." },
+                { props: "className?", type: "String", desc: "A dynamic class for the Button component." },
+                { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Determines the color of the Button based on the selected variant." }
+            ];
 
         if (name === 'iconed')
             return [
-                { props: "text", type: "String", desc: "Text to be shown by the Button." },
-                { props: "ariaLabel", type: "String", desc: "Aria-labe of the Button." },
-                { props: "type", type: "Button | Submit", desc: "Type of a Button, its either Button or Submit." },
-                { props: "className?", type: "String", desc: "Dynamic class for the Button." },
-                { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Button color depends on this field." },
-                { props: "icon", type: "ReactNode", desc: "Icon to be show at the left side of the Button." },
-            ]
+                { props: "text", type: "String", desc: "The text to be displayed on the Button." },
+                { props: "ariaLabel", type: "String", desc: "The ARIA label for the Button." },
+                { props: "type", type: "Button | Submit", desc: "Specifies the type of the Button, either 'Button' or 'Submit'." },
+                { props: "className?", type: "String", desc: "A dynamic class for the Button component." },
+                { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Determines the color of the Button based on the selected variant." },
+                { props: "icon", type: "ReactNode", desc: "The icon to be displayed on the left side of the Button." }
+            ];
     }
-    //#endregion
 
     return (
         <>
             <PreviewCardsHightligher
                 title="Buttons"
-                description={
-                    <>
-                        <p> A versatile and customizable button component, designed to enhance user interactivity and facilitate seamless navigation and action triggering within your application.</p>
-                        <p>Props: Text (Text of the Button), ariaLabel ()</p>
-                    </>
-                }
+                description="A versatile and customizable button component, designed to enhance user interactivity and facilitate seamless navigation and action triggering within your application."
                 body={handleButtonBody()}
                 code={`<Button text="Primary" ariaLabel="btnPrimary" type="button" variant="primary" />`}
                 columns={columns}
@@ -135,12 +168,7 @@ const ButtonComponentBlock = () => {
             <PreviewCardsHightligher
                 title="Iconed Buttons"
                 className="mt-10"
-                description={
-                    <>
-                        <p> A versatile and customizable iconed button component, designed to enhance user interactivity and facilitate seamless navigation and action triggering within your application.</p>
-                        <p>Props: Text (Text of the Button), ariaLabel ()</p>
-                    </>
-                }
+                description="A versatile and customizable button component, designed to enhance user interactivity and facilitate seamless navigation and action triggering within your application."
                 body={handleIconedButtonBody()}
                 code={`<IconedButton text="Primary" ariaLabel="btnPrimary" type="button" variant="primary" icon={Icon Here} />`}
                 columns={columns}
