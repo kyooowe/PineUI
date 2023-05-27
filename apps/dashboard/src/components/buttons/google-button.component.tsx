@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react'
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from 'tailwind-merge'
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
@@ -14,6 +14,7 @@ const GoogleButton = React.forwardRef<HTMLButtonElement, IButtonProps>(({ classN
     // Add the className props to override using twMerge
     const googleButtonClass = twMerge(`flex items-center justify-center px-6 py-2 text-gray-600 transition-colors duration-300 
     transform border rounded-lg dark:border-gray-600 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600`, className)
+
     return (
         <button
             ref={ref}
