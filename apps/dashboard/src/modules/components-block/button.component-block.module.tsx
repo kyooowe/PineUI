@@ -123,11 +123,11 @@ const ButtonComponentBlock = () => {
 
     const handleCustomButtonBody = () => {
         return (
-            <div className="flex p-2 gap-2">
-                <GoogleButton />
-                <FacebookButton />
-                <GithubButton />
-                <TwitterButton />
+            <div className="flex-row p-2 gap-2 md:flex">
+                <GoogleButton className='w-full mt-2 md:mt-0' />
+                <FacebookButton className='w-full mt-2 md:mt-0' />
+                <GithubButton className='w-full mt-2 md:mt-0' />
+                <TwitterButton className='w-full mt-2 md:mt-0' />
             </div>
         )
     }
@@ -158,6 +158,7 @@ const ButtonComponentBlock = () => {
         <>
             <PreviewCardsHightligher
                 title="Buttons"
+                className='mt-5'
                 description="A versatile and customizable button component, designed to enhance user interactivity and facilitate seamless navigation and action triggering within your application."
                 body={handleButtonBody()}
                 code={`<Button text="Primary" ariaLabel="btnPrimary" type="button" variant="primary" />`}

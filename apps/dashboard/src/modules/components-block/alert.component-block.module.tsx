@@ -158,9 +158,9 @@ const AlertComponentBlock = () => {
 
     const handlePopAlertBody = () => {
         return (
-            <div className='flex p-2 gap-2'>
+            <div className='flex-row sm:flex-row md:flex p-2 gap-2'>
                 <PopAlert
-                    className='w-full'
+                    className='w-full mt-2 md:mt-0'
                     variant="primary"
                     title="Demo"
                     text="This is a demo."
@@ -184,8 +184,8 @@ const AlertComponentBlock = () => {
                         </svg>
                     }
                 />
-                 <PopAlert
-                    className='w-full'
+                <PopAlert
+                    className='w-full mt-2 md:mt-0'
                     variant="secondary"
                     title="Demo"
                     text="This is a demo."
@@ -209,8 +209,8 @@ const AlertComponentBlock = () => {
                         </svg>
                     }
                 />
-                 <PopAlert
-                    className='w-full'
+                <PopAlert
+                    className='w-full mt-2 md:mt-0'
                     variant="warning"
                     title="Demo"
                     text="This is a demo."
@@ -234,8 +234,8 @@ const AlertComponentBlock = () => {
                         </svg>
                     }
                 />
-                 <PopAlert
-                    className='w-full'
+                <PopAlert
+                    className='w-full mt-2 md:mt-0'
                     variant="danger"
                     title="Demo"
                     text="This is a demo."
@@ -272,7 +272,7 @@ const AlertComponentBlock = () => {
                 { props: "className?", type: "String", desc: "A dynamic class for the Alert component." },
                 { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Determines the color of the Alert based on the selected variant." },
                 { props: "show", type: "Boolean", desc: "A flag to control the visibility of the Alert." },
-                { props: "setShow", type: "Boolean", desc: "An event flag to toggle the visibility of the Alert." },
+                { props: "setShow", type: "Void", desc: "An event flag to toggle the visibility of the Alert." },
                 { props: "delay?", type: "Number", desc: "Specifies the duration (in milliseconds) before the Alert automatically hides." },
                 { props: "awake?", type: "Boolean", desc: "If enabled, the Alert will always be visible unless the close button is clicked." },
             ];
@@ -284,7 +284,7 @@ const AlertComponentBlock = () => {
                 { props: "className?", type: "String", desc: "A dynamic class for the Alert component." },
                 { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Determines the color of the Alert based on the selected variant." },
                 { props: "show", type: "Boolean", desc: "A flag to control the visibility of the Alert." },
-                { props: "setShow", type: "Boolean", desc: "An event flag to toggle the visibility of the Alert." },
+                { props: "setShow", type: "Void", desc: "An event flag to toggle the visibility of the Alert." },
                 { props: "delay?", type: "Number", desc: "Specifies the duration (in milliseconds) before the Alert automatically hides." },
                 { props: "awake?", type: "Boolean", desc: "If enabled, the Alert will always be visible unless the close button is clicked." },
                 { props: "icon?", type: "ReactNode", desc: "The icon to be displayed on the left side of the Alert." }
@@ -297,7 +297,7 @@ const AlertComponentBlock = () => {
                 { props: "className?", type: "String", desc: "A dynamic class for the Alert component." },
                 { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Determines the color of the Alert based on the selected variant." },
                 { props: "show", type: "Boolean", desc: "A flag to control the visibility of the Alert." },
-                { props: "setShow", type: "Boolean", desc: "An event flag to toggle the visibility of the Alert." },
+                { props: "setShow", type: "Void", desc: "An event flag to toggle the visibility of the Alert." },
                 { props: "delay?", type: "Number", desc: "Specifies the duration (in milliseconds) before the Alert automatically hides." },
                 { props: "awake?", type: "Boolean", desc: "If enabled, the Alert will always be visible unless the close button is clicked." },
                 { props: "icon?", type: "ReactNode", desc: "The icon to be displayed on the left side of the Alert." }
@@ -308,7 +308,7 @@ const AlertComponentBlock = () => {
                 { props: "text", type: "String", desc: "The text to be displayed in the Alert." },
                 { props: "className?", type: "String", desc: "A dynamic class for the Alert component." },
                 { props: "show", type: "Boolean", desc: "A flag to control the visibility of the Alert." },
-                { props: "setShow", type: "Boolean", desc: "An event flag to toggle the visibility of the Alert." },
+                { props: "setShow", type: "Void", desc: "An event flag to toggle the visibility of the Alert." },
                 { props: "delay?", type: "Number", desc: "Specifies the duration (in milliseconds) before the Alert automatically hides." },
                 { props: "awake?", type: "Boolean", desc: "If enabled, the Alert will always be visible unless the close button is clicked." },
                 { props: "image", type: "String", desc: "Image to be display on the left side of the Alert" },
@@ -318,7 +318,6 @@ const AlertComponentBlock = () => {
     return (
         <>
             <PreviewCardsHightligher
-                className='mt-5'
                 title="Alerts"
                 description="A customized alert component used to display important messages or notifications to users, providing crucial information or warnings."
                 body={handleAlertBody()}
@@ -353,6 +352,8 @@ const AlertComponentBlock = () => {
                 columns={columns}
                 rows={handleButtonTableRows("pop")}
             />
+
+            <hr className="mt-10" />
         </>
     )
 }
