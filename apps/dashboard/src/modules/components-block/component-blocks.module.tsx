@@ -30,6 +30,8 @@ const ComponentsBlockList = () => {
                     {/* Avatar */}
                     <p className="mt-2 text-blue-600 font-bold">Avatars</p>
                     <p className="ml-4">Default Avatar</p>
+                    <p className="ml-4">Online Avatar</p>
+                    <p className="ml-4">Profile Avatar</p>
 
                     {/* Button */}
                     <p className="mt-2 text-blue-600 font-bold">Buttons</p>
@@ -41,8 +43,6 @@ const ComponentsBlockList = () => {
                     <p className="mt-2 text-blue-600 font-bold">Text Inputs</p>
                     <p className="ml-4">Default Text Input</p>
                     <p className="ml-4">Iconed Text Input</p>
-
-                    
 
                 </div>
             </div>

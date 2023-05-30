@@ -54,7 +54,7 @@ interface IPopAlertProps {
 }
 
 const PopAlert = React.forwardRef<HTMLDivElement, IPopAlertProps>(({ title, text, variant, className,
-    delay = 1500, awake = false, show = false, setShow, icon }) => {
+    delay = 1500, awake = false, show = false, setShow, icon }, ref) => {
 
     // UseEffect
     useEffect(() => {
@@ -106,7 +106,10 @@ const PopAlert = React.forwardRef<HTMLDivElement, IPopAlertProps>(({ title, text
     const spanPopAlertClass = twMerge(`font-bold ${handleTextColor()}`, "")
 
     return (
-        <div className={popAlertClass}>
+        <div
+            ref={ref}
+            className={popAlertClass}
+        >
             <div className={parentPopAlertClass}>
                 <div className="text-white">
                     {icon}
