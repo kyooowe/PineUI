@@ -1,5 +1,6 @@
 export interface IStatsDisplay {
-    name: string
-    count: number
-    increase: string
+    name: string;
+    count: number;
+    increase: string;
+    isIncreased: boolean;
 }

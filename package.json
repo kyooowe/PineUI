@@ -7,10 +7,14 @@
 		"format": "npx prettier --write \"**/*.{js,jsx,json,ts,tsx,md}\""
 	},
 	"devDependencies": {
+		"autoprefixer": "^10.4.14",
 		"eslint": "^7.32.0",
 		"eslint-config-custom": "*",
+		"postcss": "^8.4.24",
 		"prettier": "^2.5.1",
-		"turbo": "latest"
+		"tailwindcss": "^3.3.2",
+		"turbo": "latest",
+		"vite": "^4.3.9"
 	},
 	"name": "vite-express",
 	"packageManager": "npm@8.11.0",
@@ -19,6 +23,7 @@
 		"packages/*"
 	],
 	"dependencies": {
+		"preline": "^1.8.0",
 		"react-popper": "^2.3.0",
 		"tailwind-merge": "^1.12.0"
 	}

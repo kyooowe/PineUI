@@ -7,12 +7,15 @@ import PopAlert from '../../components/alert/pop-alert.component'
 
 const AlertComponentBlock = () => {
 
-    // Const 
+    //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
+    //#endregion
 
-    // State
+    //#region State
     const [show, setShow] = useState<boolean>(true)
-
+    //#endregion
+    
+    //#region UseEffect
     useEffect(() => {
         if (!show) {
             setTimeout(() => {
@@ -20,7 +23,9 @@ const AlertComponentBlock = () => {
             }, 1000)
         }
     }, [show])
+    //#endregion
 
+    //#region Body
     const handleAlertBody = () => {
         return (
             <div className='flex-row p-2'>
@@ -262,7 +267,9 @@ const AlertComponentBlock = () => {
             </div>
         )
     }
+    //#endregion
 
+    //#region Rows
     const handleButtonTableRows = (name: string) => {
 
         if (name === 'plain')
@@ -314,6 +321,7 @@ const AlertComponentBlock = () => {
                 { props: "image", type: "String", desc: "Image to be display on the left side of the Alert" },
             ];
     }
+    //#endregion
 
     return (
         <>
