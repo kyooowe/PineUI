@@ -11,7 +11,7 @@ interface ITableProps<T> {
 const Table = <T extends object>({ tableClassName, headClassName, bodyClassName, column, rows }: ITableProps<T>) => {
 
     const tableClass = twMerge("table-auto text-sm text-left text-gray-500 dark:text-gray-400", tableClassName)
-    const tHeadClass = twMerge("text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-900 dark:text-gray-400", headClassName)
+    const tHeadClass = twMerge("text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-600 dark:text-gray-400", headClassName)
     const tBodyClass = twMerge("bg-gray-200 dark:bg-gray-800", bodyClassName)
 
     return (

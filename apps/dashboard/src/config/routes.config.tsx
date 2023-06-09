@@ -24,6 +24,11 @@ const StudentCreateModule = lazy(
     () => import('../modules/student/student_create.module')
 )
 
+// Components Block
+const AlertModule = lazy(
+    () => import('../modules/components-block/alert.component-block.module')
+)
+
 //#endregion
 
 // Config
@@ -92,7 +97,17 @@ const router = createBrowserRouter([
                         <ComponentsBlockpage />
                     </Suspense>
                 ),
-                errorElement: <ErrorPage />
+                errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: 'alert',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <AlertModule />
+                            </Suspense>
+                        )
+                    }
+                ]
             },
             {
                 path: 'starter',

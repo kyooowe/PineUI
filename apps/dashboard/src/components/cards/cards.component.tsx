@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ICard {
     /**
@@ -16,13 +17,21 @@ interface ICard {
      * @description: remove the border of the header
      */
     isPlain?: boolean;
+
+    /**
+     * @description: dynamic class of card
+     */
+    className?: string;
 }
 
-const Card = React.forwardRef<HTMLDivElement, ICard>(({ header, body, isPlain, ...rest }: ICard, ref) => {
+const Card = React.forwardRef<HTMLDivElement, ICard>(({ header, body, isPlain, className, ...rest }: ICard, ref) => {
+
+    const cardClass = twMerge('flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] dark:text-gray-400', className)
+
     return (
         <div
             ref={ref}
-            className="w-auto h-full bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300 dark:bg-gray-700 dark:border-gray-500"
+            className={cardClass}
             {...rest}
         >
             {
