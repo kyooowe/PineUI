@@ -1,23 +1,23 @@
 //#region Import
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDarkModeConfigStore } from '../../zustand/config.store'
+import { useDarkModeConfigStore } from '@zustand/config.store'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import {
     IAuthResponse,
     ILoginCredentials,
-} from '../../interface/modules/auth/auth.interface'
+} from '@interface/modules/auth/auth.interface'
 import { useMutation } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
-import useApi from '../../hooks/api.hooks'
-import useCrypto from '../../hooks/crypto.hooks'
-import { useAccountStore } from '../../zustand/account.store'
-import CenterLoader from '../../components/center-loader.component'
-import Toast from '../../components/toast.component'
-import Button from '../../components/buttons/button.component'
-import GoogleButton from '../../components/buttons/google-button.component'
-import IconTextInput from '../../components/text-input/icon-text-input.component'
+import useApi from '@hooks/api.hooks'
+import useCrypto from '@hooks/crypto.hooks'
+import { useAccountStore } from '@zustand/account.store'
+import CenterLoader from '@components/center-loader.component'
+import Toast from '@components/toast.component'
+import Button from '@components/buttons/button.component'
+import GoogleButton from '@components/buttons/google-button.component'
+import IconTextInput from '@components/text-input/icon-text-input.component'
 //#endregion
 
 //#region Validation Schema

@@ -79,16 +79,16 @@ const Alert = React.forwardRef<HTMLDivElement, IAlertProps>(({ body, variant, so
         }
         else {
             if (variant === 'primary')
-                return "text-blue-700 bg-blue-100 border border-blue-300"
+                return "text-blue-700 bg-blue-300 border border-blue-300"
 
             if (variant === 'secondary')
-                return "text-green-700 bg-green-100 border border-green-300"
+                return "text-green-700 bg-green-300 border border-green-300"
 
             if (variant === 'warning')
-                return "text-yellow-700 bg-yellow-100 border border-yellow-300"
+                return "text-yellow-700 bg-yellow-300 border border-yellow-300"
 
             if (variant === 'danger')
-                return "text-red-700 bg-red-100 border border-red-300"
+                return "text-red-700 bg-red-300 border border-red-300"
         }
 
         return ""
@@ -112,18 +112,18 @@ const Alert = React.forwardRef<HTMLDivElement, IAlertProps>(({ body, variant, so
         }
         else {
             if (variant === 'primary')
-                return "text-blue-500 focus:ring-blue-400 hover:bg-blue-200"
+                return "text-blue-600 focus:ring-blue-400 hover:bg-blue-400"
 
             if (variant === 'secondary')
-                return "text-green-500 focus:ring-green-400 hover:bg-green-200"
+                return "text-green-600 focus:ring-green-400 hover:bg-green-400"
 
 
             if (variant === 'warning')
-                return "text-yellow-500 focus:ring-yellow-400 hover:bg-yellow-200"
+                return "text-yellow-600 focus:ring-yellow-400 hover:bg-yellow-400"
 
 
             if (variant === 'danger')
-                return "text-red-500 focus:ring-red-400 hover:bg-red-200"
+                return "text-red-600 focus:ring-red-400 hover:bg-red-400"
         }
 
         return ""

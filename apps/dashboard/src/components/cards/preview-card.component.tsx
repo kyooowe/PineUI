@@ -9,7 +9,6 @@ import Table from '../table/table.component';
 
 interface IPreviewCardsHighligherProps {
     title: string;
-    description: ReactNode;
     code: string;
     body: ReactNode;
     className?: string;
@@ -17,7 +16,7 @@ interface IPreviewCardsHighligherProps {
     rows: any;
 }
 
-const PreviewCardsHightligher = ({ title, description, code, body, className, columns, rows }: IPreviewCardsHighligherProps) => {
+const PreviewCardsHightligher = ({ title, code, body, className, columns, rows }: IPreviewCardsHighligherProps) => {
 
     //#region State Helper
     const cardClassName = twMerge("flex flex-col bg-white border border-gray-300/[.7] shadow rounded-xl dark:bg-gray-900 dark:border-gray-700 dark:shadow-slate-700/[.7]", className)
@@ -193,9 +192,7 @@ const PreviewCardsHightligher = ({ title, description, code, body, className, co
                     showTab === 'code' ? (
                         <div>
                             <p className='text-xl'>Available Props</p>
-                            <div className='text-sm mt-2 mb-2 text-gray-600 dark:text-gray-500'>
-                                {description}
-                            </div>
+                           
                             <Table column={columns} rows={rows} tableClassName='w-full mb-5 mt-2 border-collapse rounded-lg' />
 
                             <p className='text-xl mb-2'>Snippet</p>

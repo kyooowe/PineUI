@@ -1,14 +1,20 @@
+//#region Import
 import React from 'react'
-import Avatar from '../../components/avatar/avatar.component'
-import PreviewCardsHightligher from '../../components/cards/preview-card.component'
-import OnlineAvatar from '../../components/avatar/online-avatar.component'
-import ProfileAvatar from '../../components/avatar/profile-avatar.component'
-import InitialAvatar from '../../components/avatar/initial-avatar.component'
+import Avatar from '@components/avatar/avatar.component'
+import PreviewCardsHightligher from '@components/cards/preview-card.component'
+import OnlineAvatar from '@components/avatar/online-avatar.component'
+import ProfileAvatar from '@components/avatar/profile-avatar.component'
+import InitialAvatar from '@components/avatar/initial-avatar.component'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { useDarkModeConfigStore } from '@zustand/config.store'
+//#endregion
 
 const AvatarComponentBlock = () => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
+    const zustandDarkModeConfig = useDarkModeConfigStore((state) => state.isDarkMode)
     //#endregion
 
     //#region Avatar Body
@@ -193,10 +199,30 @@ const AvatarComponentBlock = () => {
 
     return (
         <div className='grid grid-cols-4 gap-4 text-black dark:text-white'>
-            <div className='col-span-4 md:col-span-3'>
+            <div className='mb-4 col-span-4 md:col-span-3'>
+
+                <div className='flex-row'>
+                    <div>
+                        <span className='text-4xl font-bold'>Avatar</span>
+                    </div>
+                    <div className='mb-5 mt-2'>
+                        <span>A customized avatar component to display user image or initials.</span>
+                    </div>
+                    <SyntaxHighlighter
+                        language="typescript"
+                        style={zustandDarkModeConfig ? darcula : atelierCaveLight}
+                        wrapLongLines={true}
+                        customStyle={{
+                            borderRadius: '10px'
+                        }}
+                    >
+                        {`import Avatar from '@components/avatar/avatar.component' \nimport OnlineAvatar from '@components/avatar/online-avatar.component' \nimport ProfileAvatar from '@components/avatar/profile-avatar.component' \nimport InitialAvatar from '@components/avatar/initial-avatar.component'`}
+                    </SyntaxHighlighter>
+                </div>
+
                 <PreviewCardsHightligher
                     title="Avatars"
-                    description="A customized component to display user image."
+                    className='mt-5'
                     body={handleAvatarBody()}
                     code={`<Avatar src="Image path here" alt="demo alt text" size="xs" />`}
                     columns={columns}
@@ -206,9 +232,8 @@ const AvatarComponentBlock = () => {
                 <PreviewCardsHightligher
                     title="Initial Avatars"
                     className='mt-5'
-                    description="A customized component to display user initials."
                     body={handleInitialAvatarBody()}
-                    code={`<Avatar src="Image path here" alt="demo alt text" size="xs" />`}
+                    code={`<Avatar initial="JD" alt="demo alt text" size="xs" />`}
                     columns={columns}
                     rows={handleAvatarTableRows("initial")}
                 />
@@ -216,7 +241,6 @@ const AvatarComponentBlock = () => {
                 <PreviewCardsHightligher
                     title="Online Avatars"
                     className='mt-5'
-                    description="A customized component to display user image when online."
                     body={handleOnlineAvatarBody()}
                     code={`<OnlineAvatar parentClassName="mt-5" src="Image path here" alt="demo alt text" size="xs" />`}
                     columns={columns}
@@ -226,7 +250,6 @@ const AvatarComponentBlock = () => {
                 <PreviewCardsHightligher
                     title="Profile Avatars"
                     className='mt-5'
-                    description="A customized component to display user profile with basic info."
                     body={handleProfileAvatarBody()}
                     code={`<ProfileAvatar src="Image path here" alt="demo alt text" size="sm" name="John Doe" email="john.doe@email.com" />`}
                     columns={columns}

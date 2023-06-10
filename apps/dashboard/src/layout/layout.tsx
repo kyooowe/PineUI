@@ -3,8 +3,8 @@ import { Suspense, lazy, memo, useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Cookies from 'js-cookie'
-import { useAccountStore } from '../zustand/account.store'
-import CenterLoader from '../components/center-loader.component'
+import { useAccountStore } from '@zustand/account.store'
+import CenterLoader from '@components/center-loader.component'
 
 const Sidebar = lazy(() => import('./sidebar'))
 const Navbar = lazy(() => import('./navbar'))
@@ -52,7 +52,6 @@ const Layout = memo(() => {
                         transition={{ duration: 0.7 }}
                     >
                         <Outlet />
-                        
                     </motion.div>
                 </div>
             </div>

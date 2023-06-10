@@ -2,9 +2,9 @@
 import { memo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { CSideBarMenu } from '../utils/constant/sidebar.constant'
-import { ISelectableChildPath, ISidebarMenu } from '../interface/components/sidebar.interface'
-import ImageCard from '../components/cards/image-card.component'
-import Breadcrumbs from '../components/breadcrumbs.component'
+import { ISelectableChildPath, ISidebarMenu } from '@interface/components/sidebar.interface'
+import ImageCard from '@components/cards/image-card.component'
+import Breadcrumbs from '@components/breadcrumbs.component'
 //#endregion
 
 const SideBar = memo(() => {

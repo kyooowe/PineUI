@@ -1,9 +1,9 @@
 //#region Import
-import { IStatsDisplay } from '../../interface/stats.interface'
-import Card from '../../components/cards/cards.component'
+import { IStatsDisplay } from '@interface/stats.interface'
+import Card from '@components/cards/cards.component'
 import { useMemo } from 'react'
-import { IDashboardStudents } from '../../interface/modules/dashboard/dashboard.interface'
-import StatCard from '../../components/cards/stat-cards.component'
+import { IDashboardStudents } from '@interface/modules/dashboard/dashboard.interface'
+import StatCard from '@components/cards/stat-cards.component'
 
 //#endregion
 

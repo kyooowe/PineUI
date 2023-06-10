@@ -1,6 +1,6 @@
 //#region Import
 import { useState, useEffect } from 'react';
-import { IUseDebounce } from '../interface/hooks/useDebounce.interface';
+import { IUseDebounce } from '@interface/hooks/useDebounce.interface';
 //#endregion
 
 const useDebounce = ({ value, delay }: IUseDebounce) => {

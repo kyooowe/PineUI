@@ -1,11 +1,17 @@
+//#region Import
 import React from 'react'
-import Badge from '../../components/badge/badge.component'
-import PreviewCardsHightligher from '../../components/cards/preview-card.component'
+import Badge from '@components/badge/badge.component'
+import PreviewCardsHightligher from '@components/cards/preview-card.component'
+import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { useDarkModeConfigStore } from '@zustand/config.store'
+import SyntaxHighlighter from 'react-syntax-highlighter';
+//#endregion
 
 const BadgeComponentBlock = () => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
+    const zustandDarkModeConfig = useDarkModeConfigStore((state) => state.isDarkMode)
     //#endregion
 
     //#region Badge Body
@@ -56,10 +62,30 @@ const BadgeComponentBlock = () => {
 
     return (
         <div className='grid grid-cols-4 gap-4 text-black dark:text-white'>
-            <div className='col-span-4 md:col-span-3'>
+            <div className='mb-4 col-span-4 md:col-span-3'>
+
+                <div className='flex-row'>
+                    <div>
+                        <span className='text-4xl font-bold'>Badge</span>
+                    </div>
+                    <div className='mb-5 mt-2'>
+                        <span>A customized badge component for a value or status descriptor for UI elements.</span>
+                    </div>
+                    <SyntaxHighlighter
+                        language="typescript"
+                        style={zustandDarkModeConfig ? darcula : atelierCaveLight}
+                        wrapLongLines={true}
+                        customStyle={{
+                            borderRadius: '10px'
+                        }}
+                    >
+                        import Badge from '@components/badge/badge.component'
+                    </SyntaxHighlighter>
+                </div>
+
                 <PreviewCardsHightligher
                     title="Badge"
-                    description="A customized component for a value or status descriptor for UI elements."
+                    className='mt-5'
                     body={handleBadgeBody()}
                     code={`<Badge text="Demo" color="blue" />`}
                     columns={columns}
@@ -69,7 +95,6 @@ const BadgeComponentBlock = () => {
                 <PreviewCardsHightligher
                     title="Soft Badge"
                     className='mt-5'
-                    description="A customized soft component for a value or status descriptor for UI elements."
                     body={handleSoftBadgeBody()}
                     code={`<Badge text="Demo" color="blue" solid={false} />`}
                     columns={columns}
