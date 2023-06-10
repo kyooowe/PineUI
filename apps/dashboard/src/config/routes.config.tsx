@@ -28,6 +28,12 @@ const StudentCreateModule = lazy(
 const AlertModule = lazy(
     () => import('../modules/components-block/alert.component-block.module')
 )
+const AvatarModule = lazy(
+    () => import('../modules/components-block/avatar.component-block.module')
+)
+const BadgeModule = lazy(
+    () => import('../modules/components-block/badge.component-block.module')
+)
 
 //#endregion
 
@@ -104,6 +110,22 @@ const router = createBrowserRouter([
                         element: (
                             <Suspense fallback={<Loader />}>
                                 <AlertModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'avatar',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <AvatarModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'badge',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <BadgeModule />
                             </Suspense>
                         )
                     }

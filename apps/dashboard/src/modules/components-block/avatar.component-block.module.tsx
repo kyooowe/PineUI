@@ -3,12 +3,15 @@ import Avatar from '../../components/avatar/avatar.component'
 import PreviewCardsHightligher from '../../components/cards/preview-card.component'
 import OnlineAvatar from '../../components/avatar/online-avatar.component'
 import ProfileAvatar from '../../components/avatar/profile-avatar.component'
+import InitialAvatar from '../../components/avatar/initial-avatar.component'
 
 const AvatarComponentBlock = () => {
 
-    // Const 
+    //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
+    //#endregion
 
+    //#region Avatar Body
     const handleAvatarBody = () => {
         return (
             <div className='flex items-center py-2 px-1 gap-x-6'>
@@ -34,6 +37,38 @@ const AvatarComponentBlock = () => {
                 />
                 <Avatar
                     src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&h=634&q=80"
+                    alt="avatar"
+                    size="xl"
+                />
+            </div>
+        )
+    }
+
+    const handleInitialAvatarBody = () => {
+        return (
+            <div className='flex items-center py-2 px-1 gap-x-6'>
+                <InitialAvatar
+                    initial="JD"
+                    alt="avatar"
+                    size="xs"
+                />
+                <InitialAvatar
+                    initial="JD"
+                    alt="avatar"
+                    size="sm"
+                />
+                <InitialAvatar
+                    initial="JD"
+                    alt="avatar"
+                    size="md"
+                />
+                <InitialAvatar
+                    initial="JD"
+                    alt="avatar"
+                    size="lg"
+                />
+                <InitialAvatar
+                    initial="JD"
                     alt="avatar"
                     size="xl"
                 />
@@ -110,14 +145,25 @@ const AvatarComponentBlock = () => {
             </div>
         )
     }
+    //#endregion
 
+    //#region Rows
     const handleAvatarTableRows = (name: string) => {
 
         if (name === 'plain')
             return [
                 { props: "alt", type: "String", desc: "The alternative text for the Avatar." },
-                { props: "className?", type: "String", desc: "A dynamic class for the Avatar component." },
+                { props: "className?", type: "String", desc: "Dynamic class for the Avatar component." },
                 { props: "src", type: "String", desc: "Image path to be shown in Avatar." },
+                { props: "size", type: "xs | sm | md | lg | xl", desc: "Determines the size of the Avatar based on the selected variant." },
+                { props: "hasRing?", type: "Boolean", desc: "Add border ring in Avatar." },
+            ]
+
+        if (name === 'initial')
+            return [
+                { props: "alt", type: "String", desc: "The alternative text for the Avatar." },
+                { props: "className?", type: "String", desc: "Dynamic class for the Avatar component." },
+                { props: "initial", type: "String", desc: "Initials to be shown in Avatar." },
                 { props: "size", type: "xs | sm | md | lg | xl", desc: "Determines the size of the Avatar based on the selected variant." },
                 { props: "hasRing?", type: "Boolean", desc: "Add border ring in Avatar." },
             ]
@@ -126,7 +172,7 @@ const AvatarComponentBlock = () => {
             return [
                 { props: "alt", type: "String", desc: "The alternative text for the Avatar." },
                 { props: "parentClassName?", type: "String", desc: "A dynamic class for the parent div of Avatar component." },
-                { props: "className?", type: "String", desc: "A dynamic class for the Avatar component." },
+                { props: "className?", type: "String", desc: "Dynamic class for the Avatar component." },
                 { props: "src", type: "String", desc: "Image path to be shown in Avatar." },
                 { props: "size", type: "xs | sm | md | lg | xl", desc: "Determines the size of the Avatar based on the selected variant." },
                 { props: "hasRing?", type: "Boolean", desc: "Add border ring in Avatar." },
@@ -135,7 +181,7 @@ const AvatarComponentBlock = () => {
         if (name === 'profile')
             return [
                 { props: "alt", type: "String", desc: "The alternative text for the Avatar." },
-                { props: "className?", type: "String", desc: "A dynamic class for the Avatar component." },
+                { props: "className?", type: "String", desc: "Dynamic class for the Avatar component." },
                 { props: "src", type: "String", desc: "Image path to be shown in Avatar." },
                 { props: "size", type: "sm | md | lg | xl", desc: "Determines the size of the Avatar based on the selected variant." },
                 { props: "name", type: "String", desc: "Name of the user." },
@@ -143,41 +189,62 @@ const AvatarComponentBlock = () => {
             ]
 
     }
+    //#endregion
 
     return (
-        <>
-            <PreviewCardsHightligher
-                title="Avatars"
-                className='mt-5'
-                description="A customized component to display user image."
-                body={handleAvatarBody()}
-                code={`<Avatar src="Image path here" alt="demo alt text" size="xs" />`}
-                columns={columns}
-                rows={handleAvatarTableRows("plain")}
-            />
+        <div className='grid grid-cols-4 gap-4 text-black dark:text-white'>
+            <div className='col-span-4 md:col-span-3'>
+                <PreviewCardsHightligher
+                    title="Avatars"
+                    description="A customized component to display user image."
+                    body={handleAvatarBody()}
+                    code={`<Avatar src="Image path here" alt="demo alt text" size="xs" />`}
+                    columns={columns}
+                    rows={handleAvatarTableRows("plain")}
+                />
 
-            <PreviewCardsHightligher
-                title="Online Avatars"
-                className='mt-5'
-                description="A customized component to display user image when online."
-                body={handleOnlineAvatarBody()}
-                code={`<OnlineAvatar parentClassName="mt-5" src="Image path here" alt="demo alt text" size="xs" />`}
-                columns={columns}
-                rows={handleAvatarTableRows("online")}
-            />
+                <PreviewCardsHightligher
+                    title="Initial Avatars"
+                    className='mt-5'
+                    description="A customized component to display user initials."
+                    body={handleInitialAvatarBody()}
+                    code={`<Avatar src="Image path here" alt="demo alt text" size="xs" />`}
+                    columns={columns}
+                    rows={handleAvatarTableRows("initial")}
+                />
 
-            <PreviewCardsHightligher
-                title="Profile Avatars"
-                className='mt-5'
-                description="A customized component to display user profile with basic info."
-                body={handleProfileAvatarBody()}
-                code={`<ProfileAvatar src="Image path here" alt="demo alt text" size="sm" name="John Doe" email="john.doe@email.com" />`}
-                columns={columns}
-                rows={handleAvatarTableRows("profile")}
-            />
+                <PreviewCardsHightligher
+                    title="Online Avatars"
+                    className='mt-5'
+                    description="A customized component to display user image when online."
+                    body={handleOnlineAvatarBody()}
+                    code={`<OnlineAvatar parentClassName="mt-5" src="Image path here" alt="demo alt text" size="xs" />`}
+                    columns={columns}
+                    rows={handleAvatarTableRows("online")}
+                />
 
-            <hr className="mt-10" />
-        </>
+                <PreviewCardsHightligher
+                    title="Profile Avatars"
+                    className='mt-5'
+                    description="A customized component to display user profile with basic info."
+                    body={handleProfileAvatarBody()}
+                    code={`<ProfileAvatar src="Image path here" alt="demo alt text" size="sm" name="John Doe" email="john.doe@email.com" />`}
+                    columns={columns}
+                    rows={handleAvatarTableRows("profile")}
+                />
+            </div>
+            <div className='ml-5 hidden md:block'>
+                <div className="ml-10 fixed">
+                    <p className="font-bold mb-5">ON THIS PAGE</p>
+
+                    <p className="mt-2 text-blue-600 font-bold">Variants</p>
+                    <p className="ml-4">Default Avatar</p>
+                    <p className="ml-4">Initial Avatar</p>
+                    <p className="ml-4">Online Avatar</p>
+                    <p className="ml-4">Profile Avatar</p>
+                </div>
+            </div>
+        </div>
     )
 }
 

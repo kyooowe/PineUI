@@ -193,9 +193,12 @@ const PreviewCardsHightligher = ({ title, description, code, body, className, co
                     showTab === 'code' ? (
                         <div>
                             <p className='text-xl'>Available Props</p>
+                            <div className='text-sm mt-2 mb-2 text-gray-600 dark:text-gray-500'>
+                                {description}
+                            </div>
                             <Table column={columns} rows={rows} tableClassName='w-full mb-5 mt-2 border-collapse rounded-lg' />
 
-                            <p className='text-xl mb-2'>Snippets</p>
+                            <p className='text-xl mb-2'>Snippet</p>
                             <SyntaxHighlighter
                                 language="typescript"
                                 style={zustandDarkModeConfig ? darcula : docco}

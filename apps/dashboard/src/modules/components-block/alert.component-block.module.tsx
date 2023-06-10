@@ -163,13 +163,11 @@ const AlertComponentBlock = () => {
             </div>
             <div className='ml-5 hidden md:block'>
                 <div className="ml-10 fixed">
-                    <p className="font-bold mb-5">COMPONENT ON THIS PAGE</p>
+                    <p className="font-bold mb-5">ON THIS PAGE</p>
 
-                    {/* Alert */}
                     <p className="mt-2 text-blue-600 font-bold">Variants</p>
                     <p className="ml-4">Default Alert</p>
                     <p className="ml-4">Soft Alert</p>
-
                 </div>
             </div>
         </div>

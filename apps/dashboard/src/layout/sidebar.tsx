@@ -112,7 +112,7 @@ const SideBar = memo(() => {
                                                                 >
                                                                     <Link
                                                                         to={childMenu.path}
-                                                                        className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-blue-100 rounded-md hover:bg-blue-500 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300"
+                                                                        className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-blue-100 rounded-md hover:bg-blue-500 ${iChild === 0 ? '' : 'mt-1'} ${handleActiveLink([childMenu.path]) ? 'bg-blue-600 dark:bg-gray-900 dark:text-white' : 'dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300'}`}
                                                                     >
                                                                         {childMenu.name}
                                                                     </Link>
