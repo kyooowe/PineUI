@@ -1,5 +1,5 @@
 //#region Import
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Alert from '@components/alert/alert.component'
 import PreviewCardsHightligher from '@components/cards/preview-card.component'
 import Button from '@components/buttons/button.component'
@@ -214,8 +214,8 @@ const AlertComponentBlock = () => {
                                 </div>
                                 <div className="mt-4">
                                     <div className="flex space-x-3">
-                                        <Button solid={false} text="Don't allow" ariaLabel='btnDontAllow' type="button" variant='danger' />
-                                        <Button solid={false} text="Allow" ariaLabel='btnAllow' type="button" variant='primary' />
+                                        <Button text="Don't allow" ariaLabel='btnDontAllow' type="button" variant='danger' />
+                                        <Button text="Allow" ariaLabel='btnAllow' type="button" variant='primary' />
                                     </div>
                                 </div>
                             </div>
@@ -301,6 +301,7 @@ const AlertComponentBlock = () => {
                     <p className="mt-2 text-blue-600 font-bold">Variants</p>
                     <p className="ml-4">Default Alert</p>
                     <p className="ml-4">Soft Alert</p>
+                    <p className="ml-4">Custom Body Alert</p>
                 </div>
             </div>
         </div>

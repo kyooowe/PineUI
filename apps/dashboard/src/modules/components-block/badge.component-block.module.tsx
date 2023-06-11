@@ -1,5 +1,4 @@
 //#region Import
-import React from 'react'
 import Badge from '@components/badge/badge.component'
 import PreviewCardsHightligher from '@components/cards/preview-card.component'
 import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs';

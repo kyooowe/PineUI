@@ -19,6 +19,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
      */
     type: "submit" | "button";
 
+
     /**
      * @description: button color will depends on this variants
      * @default: primary
@@ -43,50 +44,67 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text, ariaLabel, type = "button", variant = "primary",
+const BorderedButton = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text, ariaLabel, type = "button", variant = "primary",
     isLoading, isDisabled, className, ...rest }: IButtonProps, ref) => {
 
     //#region Handler
     const handleColor = (): string => {
         if (isDisabled) {
             if (variant === 'primary')
-                return "bg-blue-300"
+                return "text-blue-300 border border-blue-300"
 
             if (variant === 'secondary')
-                return "bg-green-300"
+                return "text-green-300 border border-green-300"
 
 
             if (variant === 'warning')
-                return "bg-yellow-300"
-
+                return "text-yellow-300 border border-yellow-300"
 
             if (variant === 'danger')
-                return "bg-red-300"
+                return "text-red-300 border border-red-300"
         }
         else {
             if (variant === 'primary')
-                return "bg-blue-700 hover:bg-blue-600 focus:ring-blue-500"
+                return "text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white"
 
             if (variant === 'secondary')
-                return "bg-green-700 hover:bg-green-600 focus:ring-green-500"
+                return "text-green-500 border border-green-500 hover:bg-green-500 hover:text-white"
 
 
             if (variant === 'warning')
-                return "bg-yellow-700 hover:bg-yellow-600 focus:ring-yellow-500"
-
+                return "text-yellow-500 border border-yellow-500 hover:bg-yellow-500 hover:text-white"
 
             if (variant === 'danger')
-                return "bg-red-700 hover:bg-red-600 focus:ring-red-500"
+                return "text-red-500 border border-red-500 hover:bg-red-500 hover:text-white"
         }
 
         return ""
     }
+
+    const handleLoaderColor = (): string => {
+        if (variant === 'primary')
+            return "text-blue-300"
+
+        if (variant === 'secondary')
+            return "text-green-300"
+
+
+        if (variant === 'warning')
+            return "text-yellow-300"
+
+        if (variant === 'danger')
+            return "text-red-300"
+
+        return ""
+
+    }
     //#endregion
 
     // Add the className props to override using twMerge
-    const buttonClass = twMerge(`text-white px-6 py-3 text-sm font-medium tracking-wide capitalize 
+    const buttonClass = twMerge(`px-6 py-3 text-sm font-medium tracking-wide capitalize 
     transition-colors duration-300 transform rounded-lg ${handleColor()} 
     focus:outline-none focus:ring focus:ring-opacity-50 ${isDisabled ? 'cursor-not-allowed' : ''}`, className)
+    const loaderTextClass = twMerge(`animate-spin mr-3 inline-block w-4 h-4 border-[3px] border-current border-t-transparent rounded-full ${handleLoaderColor()}`)
 
     return (
         <button
@@ -94,13 +112,13 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text, ariaLa
             className={buttonClass}
             aria-label={ariaLabel}
             type={type}
-            {...rest}
             disabled={isDisabled}
+            {...rest}
         >
             {
                 isLoading ? (
                     <div className='inline-flex'>
-                        <span className="animate-spin mr-3 inline-block w-4 h-4 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading"></span>
+                        <span className={loaderTextClass} role="status" aria-label="loading"></span>
                         {text}
                     </div>
                 ) : (
@@ -111,4 +129,4 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text, ariaLa
     )
 })
 
-export default Button
+export default BorderedButton

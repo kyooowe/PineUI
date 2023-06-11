@@ -34,6 +34,9 @@ const AvatarModule = lazy(
 const BadgeModule = lazy(
     () => import('@modules/components-block/badge.component-block.module')
 )
+const ButtonModule = lazy(
+    () => import('@modules/components-block/button.component-block.module')
+)
 
 //#endregion
 
@@ -126,6 +129,14 @@ const router = createBrowserRouter([
                         element: (
                             <Suspense fallback={<Loader />}>
                                 <BadgeModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'button',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <ButtonModule />
                             </Suspense>
                         )
                     }

@@ -22,7 +22,8 @@ export const CSideBarMenu: ISidebarMenu[] = [
         selectableChildPath: [
             { name: 'Alert', path: '/pages/components/alert' },
             { name: 'Avatar', path: '/pages/components/avatar' },
-            { name: 'Badge', path: '/pages/components/badge' }
+            { name: 'Badge', path: '/pages/components/badge' },
+            { name: 'Button', path: '/pages/components/button' }
 
         ]
     },

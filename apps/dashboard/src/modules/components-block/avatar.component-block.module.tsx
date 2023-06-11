@@ -1,5 +1,4 @@
 //#region Import
-import React from 'react'
 import Avatar from '@components/avatar/avatar.component'
 import PreviewCardsHightligher from '@components/cards/preview-card.component'
 import OnlineAvatar from '@components/avatar/online-avatar.component'
@@ -233,7 +232,7 @@ const AvatarComponentBlock = () => {
                     title="Initial Avatars"
                     className='mt-5'
                     body={handleInitialAvatarBody()}
-                    code={`<Avatar initial="JD" alt="demo alt text" size="xs" />`}
+                    code={`<InitialAvatar initial="JD" alt="demo alt text" size="xs" />`}
                     columns={columns}
                     rows={handleAvatarTableRows("initial")}
                 />
