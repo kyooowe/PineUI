@@ -23,8 +23,8 @@ export const CSideBarMenu: ISidebarMenu[] = [
             { name: 'Alert', path: '/pages/components/alert' },
             { name: 'Avatar', path: '/pages/components/avatar' },
             { name: 'Badge', path: '/pages/components/badge' },
-            { name: 'Button', path: '/pages/components/button' }
-
+            { name: 'Button', path: '/pages/components/button' },
+            { name: 'Text Input', path: '/pages/components/input' },
         ]
     },
     {

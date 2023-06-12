@@ -37,6 +37,9 @@ const BadgeModule = lazy(
 const ButtonModule = lazy(
     () => import('@modules/components-block/button.component-block.module')
 )
+const TextInputModule = lazy(
+    () => import('@modules/components-block/text-input.component-block.module')
+)
 
 //#endregion
 
@@ -137,6 +140,14 @@ const router = createBrowserRouter([
                         element: (
                             <Suspense fallback={<Loader />}>
                                 <ButtonModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'input',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <TextInputModule />
                             </Suspense>
                         )
                     }

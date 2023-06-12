@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
-import TextInput from '../../components/text-input/text-input.component'
-import IconTextInput from '../../components/text-input/icon-text-input.component'
-import PreviewCardsHightligher from '../../components/cards/preview-card.component'
+import TextInput from '@components/text-input/text-input.component'
+import IconTextInput from '@components/text-input/icon-text-input.component'
+import PreviewCardsHightligher from '@components/cards/preview-card.component'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { useDarkModeConfigStore } from '@/zustand/config.store'
 
 const TextInputComponentBlock = () => {
 
-    // Columns
+    //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
+    const zustandDarkModeConfig = useDarkModeConfigStore((state) => state.isDarkMode)
+    const [demoText, setDemoText] = useState<string>("This is demo text.")
+    //#endregion
 
     // State
-    const [demoText, setDemoText] = useState<string>("This is demo text.")
 
-    //#region Input
+    //#region Input Body
     const handleInputBody = () => {
         return (
             <div className="flex-row p-2 gap-2">
@@ -117,29 +122,55 @@ const TextInputComponentBlock = () => {
     //#endregion
 
     return (
-        <>
-            <PreviewCardsHightligher
-                title="Input Text"
-                className="mt-5"
-                description="Custom TextInput is a flexible input component allowing users to enter and edit text with customizable features and behaviors."
-                body={handleInputBody()}
-                code={`// Plain \n<TextInput name="Text" ariaLabel="Text" className="w-full" value="Text Input" /> \n\n// With Errors \n<TextInput name="Text" ariaLabel="Text" className="w-full" value="Text Input" hasError={true} />`}
-                columns={columns}
-                rows={handleTextInputTableRows("Plain")}
-            />
+        <div className='grid grid-cols-4 gap-4 text-black dark:text-white'>
+            <div className='mb-4 col-span-4 md:col-span-3'>
+                <div className='flex-row'>
+                    <div>
+                        <span className='text-4xl font-bold'>Button</span>
+                    </div>
+                    <div className='mb-5 mt-2'>
+                        <span>A custom TextInput is a flexible input component allowing users to enter and edit text with customizable features and behaviors.</span>
+                    </div>
+                    <SyntaxHighlighter
+                        language="typescript"
+                        style={zustandDarkModeConfig ? darcula : atelierCaveLight}
+                        wrapLongLines={true}
+                        customStyle={{
+                            borderRadius: '10px'
+                        }}
+                    >
+                        {`import TextInput from '@components/text-input/text-input.component' \nimport IconTextInput from '@components/text-input/icon-text-input.component'`}
+                    </SyntaxHighlighter>
+                </div>
 
-            <PreviewCardsHightligher
-                title="Iconed Input Text"
-                className="mt-10"
-                description="Custom TextInput is a flexible input component allowing users to enter and edit text with customizable features and behaviors."
-                body={handleIconedInputBody()}
-                code={`// Plain \n<TextInput name="Text" ariaLabel="Text" className="w-full" value="Text Input" icon={Icon Here} /> \n\n// With Errors \n<TextInput name="Text" ariaLabel="Text" className="w-full" value="Text Input" hasError={true} icon={Icon Here} />`}
-                columns={columns}
-                rows={handleTextInputTableRows("Iconed")}
-            />
+                <PreviewCardsHightligher
+                    title="Input Text"
+                    className='mt-5'
+                    body={handleInputBody()}
+                    code={`// Plain \n<TextInput name="Text" ariaLabel="Text" className="w-full" value="Text Input" /> \n\n// With Errors \n<TextInput name="Text" ariaLabel="Text" className="w-full" value="Text Input" hasError={true} />`}
+                    columns={columns}
+                    rows={handleTextInputTableRows("Plain")}
+                />
 
-            <hr className="mt-10" />
-        </>
+                <PreviewCardsHightligher
+                    title="Iconed Input Text"
+                    className="mt-5"
+                    body={handleIconedInputBody()}
+                    code={`// Plain \n<IconTextInput name="Text" ariaLabel="Text" className="w-full" value="Text Input" icon={Icon Here} /> \n\n// With Errors \n<IconTextInput name="Text" ariaLabel="Text" className="w-full" value="Text Input" hasError={true} icon={Icon Here} />`}
+                    columns={columns}
+                    rows={handleTextInputTableRows("Iconed")}
+                />
+            </div>
+            <div className='ml-5 hidden md:block'>
+                <div className="ml-10 fixed">
+                    <p className="font-bold mb-5">ON THIS PAGE</p>
+
+                    <p className="mt-2 text-blue-600 font-bold">Variants</p>
+                    <p className="ml-4">Default Text Input</p>
+                    <p className="ml-4">Iconed Text Input</p>
+                </div>
+            </div>
+        </div>
     )
 }
 
