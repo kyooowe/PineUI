@@ -2,7 +2,7 @@
 import { memo } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import { ICreateStudent, IStudentFormProps, IUpdateStudent } from '../../interface/modules/student/student.interface'
+import { ICreateStudent, IStudentFormProps, IUpdateStudent } from '@interface/modules/student/student.interface'
 //#endregion
 
 //#region Validation Schema

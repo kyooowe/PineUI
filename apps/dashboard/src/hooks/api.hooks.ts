@@ -1,6 +1,6 @@
 //#region Import
 import httpRequest from '../config/api.config'
-import { IResponse } from '../interface/response.interface'
+import { IResponse } from '@interface/response.interface'
 import Cookies from 'js-cookie'
 import useCrypto from './crypto.hooks'
 

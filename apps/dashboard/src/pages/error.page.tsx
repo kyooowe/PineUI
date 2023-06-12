@@ -1,6 +1,6 @@
 const ErrorPage = () => {
     return (
-        <section className='bg-white dark:bg-black'>
+        <section className='bg-white dark:bg-slate-900'>
             <div className='container flex items-center min-h-screen px-6 py-12 mx-auto'>
                 <div>
                     <p className='text-sm font-medium text-blue-500 dark:text-blue-400'>

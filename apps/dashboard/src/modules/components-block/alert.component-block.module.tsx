@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import Alert from '../../components/alert/alert.component'
-import PreviewCardsHightligher from '../../components/cards/preview-card.component'
-import IconedAlert from '../../components/alert/iconed-alert.component'
-import NotificationAlert from '../../components/alert/notification-alert.component'
-import PopAlert from '../../components/alert/pop-alert.component'
+//#region Import
+import { useEffect, useState } from 'react'
+import Alert from '@components/alert/alert.component'
+import PreviewCardsHightligher from '@components/cards/preview-card.component'
+import Button from '@components/buttons/button.component'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { useDarkModeConfigStore } from '@zustand/config.store'
+//#endregion
 
 const AlertComponentBlock = () => {
 
-    // Const 
+    //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
+    const zustandDarkModeConfig = useDarkModeConfigStore((state) => state.isDarkMode)
+    //#endregion
 
-    // State
+    //#region State
     const [show, setShow] = useState<boolean>(true)
+    //#endregion
 
+    //#region UseEffect
     useEffect(() => {
         if (!show) {
             setTimeout(() => {
@@ -20,341 +27,284 @@ const AlertComponentBlock = () => {
             }, 1000)
         }
     }, [show])
+    //#endregion
 
+    //#region Body
     const handleAlertBody = () => {
         return (
-            <div className='flex-row p-2'>
-                <Alert className='w-full' variant='primary' title="Title" text="This is a demo text." show={show} setShow={setShow} awake={true} />
-                <Alert className='w-full' variant='secondary' title="Title" text="This is a demo text." show={show} setShow={setShow} awake={true} />
-                <Alert className='w-full' variant='warning' title="Title" text="This is a demo text." show={show} setShow={setShow} awake={true} />
-                <Alert className='w-full' variant='danger' title="Title" text="This is a demo text." show={show} setShow={setShow} awake={true} />
-            </div>
-        )
-    }
-
-    const handleIconedAlertBody = () => {
-        return (
-            <div className='flex-row p-2'>
-                <IconedAlert
+            <div className='flex-row p-3'>
+                <Alert
                     className='w-full'
                     variant='primary'
-                    title="Title"
-                    text="This is a demo text."
                     show={show}
                     setShow={setShow}
                     awake={true}
-                    icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                            />
-                        </svg>
+                    body={
+                        <span>This is a primary demo.</span>
                     }
                 />
-                <IconedAlert
-                    className='w-full'
+                <Alert
+                    className='w-full mt-3'
                     variant='secondary'
-                    title="Title"
-                    text="This is a demo text."
                     show={show}
                     setShow={setShow}
                     awake={true}
-                    icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                            />
-                        </svg>
-
+                    body={
+                        <span>This is a secondary demo.</span>
                     }
                 />
-                <IconedAlert
+                <Alert
+                    className='w-full mt-3'
+                    variant='warning'
+                    show={show}
+                    setShow={setShow}
+                    awake={true}
+                    body={
+                        <span>This is a warning demo.</span>
+                    }
+                />
+                <Alert
+                    className='w-full mt-3'
+                    variant='danger'
+                    show={show}
+                    setShow={setShow}
+                    awake={true}
+                    body={
+                        <span>This is a danger demo.</span>
+                    }
+                />
+            </div>
+        )
+    }
+
+    const handleSoftAlertBody = () => {
+        return (
+            <div className='flex-row p-2'>
+                <Alert
+                    className='w-full'
+                    variant='primary'
+                    solid={false}
+                    show={show}
+                    setShow={setShow}
+                    awake={true}
+                    body={
+                        <span>This is a primary demo.</span>
+                    }
+                />
+                <Alert
+                    className='w-full mt-3'
+                    variant='secondary'
+                    solid={false}
+                    show={show}
+                    setShow={setShow}
+                    awake={true}
+                    body={
+                        <span>This is a secondary demo.</span>
+                    }
+                />
+                <Alert
+                    className='w-full mt-3'
+                    variant='warning'
+                    solid={false}
+                    show={show}
+                    setShow={setShow}
+                    awake={true}
+                    body={
+                        <span>This is a warning demo.</span>
+                    }
+                />
+                <Alert
+                    className='w-full mt-3'
+                    variant='danger'
+                    solid={false}
+                    show={show}
+                    setShow={setShow}
+                    awake={true}
+                    body={
+                        <span>This is a danger demo.</span>
+                    }
+                />
+            </div>
+        )
+    }
+
+    const handleCustomAlertBoady = () => {
+        return (
+            <div className='flex-row p-3'>
+                <Alert
                     className='w-full'
                     variant='warning'
-                    title="Title"
-                    text="This is a demo text."
                     show={show}
                     setShow={setShow}
                     awake={true}
-                    icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                            />
-                        </svg>
-
+                    body={
+                        <div className="flex">
+                            <div className="flex-shrink-0">
+                                <svg className="h-4 w-4 text-yellow-100 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                </svg>
+                            </div>
+                            <div className="ml-4">
+                                <h3 className="text-sm text-yellow-100 font-semibold">
+                                    Cannot connect to the database
+                                </h3>
+                                <div className="mt-1 text-sm text-yellow-100">
+                                    We are unable to save any progress at this time.
+                                </div>
+                            </div>
+                        </div>
                     }
                 />
-                <IconedAlert
-                    className='w-full'
+
+                <Alert
+                    className='w-full mt-3'
                     variant='danger'
-                    title="Title"
-                    text="This is a demo text."
                     show={show}
                     setShow={setShow}
                     awake={true}
-                    icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                            />
-                        </svg>
+                    body={
+                        <div className="flex">
+                            <div className="flex-shrink-0">
+                                <svg className="h-4 w-4 text-red-100 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                                </svg>
+                            </div>
+                            <div className="ml-4">
+                                <h3 className="text-sm text-red-100 font-semibold">
+                                    A problem has been occurred while submitting your data.
+                                </h3>
+                                <div className="mt-2 text-sm text-red-100">
+                                    <ul className="list-disc space-y-1 pl-5">
+                                        <li>
+                                            This username is already in use
+                                        </li>
+                                        <li>
+                                            Email field can't be empty
+                                        </li>
+                                        <li>
+                                            Please enter a valid phone number
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                />
 
+                <Alert
+                    className='w-full mt-3'
+                    variant='primary'
+                    show={show}
+                    setShow={setShow}
+                    awake={true}
+                    solid={false}
+                    body={
+                        <div className="flex">
+                            <div className="flex-shrink-0">
+                                <svg className="h-4 w-4 text-blue-800 mt-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                                </svg>
+                            </div>
+                            <div className="ml-4">
+                                <h3 className="text-blue-800 font-semibold">
+                                    YouTube would like you to send notifications
+                                </h3>
+                                <div className="mt-2 text-sm text-blue-800">
+                                    Notifications may include alerts, sounds and icon badges. These can be configured in Settings.
+                                </div>
+                                <div className="mt-4">
+                                    <div className="flex space-x-3">
+                                        <Button text="Don't allow" ariaLabel='btnDontAllow' type="button" variant='danger' />
+                                        <Button text="Allow" ariaLabel='btnAllow' type="button" variant='primary' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     }
                 />
             </div>
         )
     }
+    //#endregion
 
-    const handleNotificationAlertBody = () => {
-        return (
-            <div className='p-2'>
-                <NotificationAlert
-                    text="This a demo text."
-                    show={show}
-                    setShow={setShow}
-                    awake={true}
-                    image="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200"
-                />
-            </div>
-        )
-    }
-
-    const handlePopAlertBody = () => {
-        return (
-            <div className='flex-row sm:flex-row md:flex p-2 gap-2'>
-                <PopAlert
-                    className='w-full mt-2 md:mt-0'
-                    variant="primary"
-                    title="Demo"
-                    text="This is a demo."
-                    show={show}
-                    setShow={setShow}
-                    awake={true}
-                    icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                            />
-                        </svg>
-                    }
-                />
-                <PopAlert
-                    className='w-full mt-2 md:mt-0'
-                    variant="secondary"
-                    title="Demo"
-                    text="This is a demo."
-                    show={show}
-                    setShow={setShow}
-                    awake={true}
-                    icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                            />
-                        </svg>
-                    }
-                />
-                <PopAlert
-                    className='w-full mt-2 md:mt-0'
-                    variant="warning"
-                    title="Demo"
-                    text="This is a demo."
-                    show={show}
-                    setShow={setShow}
-                    awake={true}
-                    icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                            />
-                        </svg>
-                    }
-                />
-                <PopAlert
-                    className='w-full mt-2 md:mt-0'
-                    variant="danger"
-                    title="Demo"
-                    text="This is a demo."
-                    show={show}
-                    setShow={setShow}
-                    awake={true}
-                    icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                            />
-                        </svg>
-                    }
-                />
-            </div>
-        )
-    }
-
+    //#region Rows
     const handleButtonTableRows = (name: string) => {
 
         if (name === 'plain')
             return [
-                { props: "title", type: "String", desc: "The title to be shown in the Alert." },
-                { props: "text", type: "String", desc: "The text to be displayed in the Alert." },
-                { props: "className?", type: "String", desc: "A dynamic class for the Alert component." },
-                { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Determines the color of the Alert based on the selected variant." },
-                { props: "show", type: "Boolean", desc: "A flag to control the visibility of the Alert." },
-                { props: "setShow", type: "Void", desc: "An event flag to toggle the visibility of the Alert." },
+                { props: "body", type: "ReactNode", desc: "Body of the Alert." },
+                { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Alert color will depend on these variants." },
+                { props: "solid?", type: "Boolean", desc: "Alert UI will depend on this flag." },
+                { props: "className?", type: "String", desc: "Dynamic class of the Alert." },
+                { props: "show", type: "Boolean", desc: "Flag to determine when to show the Alert." },
+                { props: "setShow", type: "Void", desc: "Event function to control the visibility of the Alert." },
                 { props: "delay?", type: "Number", desc: "Specifies the duration (in milliseconds) before the Alert automatically hides." },
                 { props: "awake?", type: "Boolean", desc: "If enabled, the Alert will always be visible unless the close button is clicked." },
-            ];
-
-        if (name === 'iconed')
-            return [
-                { props: "title", type: "String", desc: "The title to be shown in the Alert." },
-                { props: "text", type: "String", desc: "The text to be displayed in the Alert." },
-                { props: "className?", type: "String", desc: "A dynamic class for the Alert component." },
-                { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Determines the color of the Alert based on the selected variant." },
-                { props: "show", type: "Boolean", desc: "A flag to control the visibility of the Alert." },
-                { props: "setShow", type: "Void", desc: "An event flag to toggle the visibility of the Alert." },
-                { props: "delay?", type: "Number", desc: "Specifies the duration (in milliseconds) before the Alert automatically hides." },
-                { props: "awake?", type: "Boolean", desc: "If enabled, the Alert will always be visible unless the close button is clicked." },
-                { props: "icon?", type: "ReactNode", desc: "The icon to be displayed on the left side of the Alert." }
-            ];
-
-        if (name === 'pop')
-            return [
-                { props: "title", type: "String", desc: "The title to be shown in the Alert." },
-                { props: "text", type: "String", desc: "The text to be displayed in the Alert." },
-                { props: "className?", type: "String", desc: "A dynamic class for the Alert component." },
-                { props: "variant", type: "Primary | Secondary | Danger | Warning", desc: "Determines the color of the Alert based on the selected variant." },
-                { props: "show", type: "Boolean", desc: "A flag to control the visibility of the Alert." },
-                { props: "setShow", type: "Void", desc: "An event flag to toggle the visibility of the Alert." },
-                { props: "delay?", type: "Number", desc: "Specifies the duration (in milliseconds) before the Alert automatically hides." },
-                { props: "awake?", type: "Boolean", desc: "If enabled, the Alert will always be visible unless the close button is clicked." },
-                { props: "icon?", type: "ReactNode", desc: "The icon to be displayed on the left side of the Alert." }
-            ];
-
-        if (name === 'notification')
-            return [
-                { props: "text", type: "String", desc: "The text to be displayed in the Alert." },
-                { props: "className?", type: "String", desc: "A dynamic class for the Alert component." },
-                { props: "show", type: "Boolean", desc: "A flag to control the visibility of the Alert." },
-                { props: "setShow", type: "Void", desc: "An event flag to toggle the visibility of the Alert." },
-                { props: "delay?", type: "Number", desc: "Specifies the duration (in milliseconds) before the Alert automatically hides." },
-                { props: "awake?", type: "Boolean", desc: "If enabled, the Alert will always be visible unless the close button is clicked." },
-                { props: "image", type: "String", desc: "Image to be display on the left side of the Alert" },
             ];
     }
+    //#endregion
 
     return (
-        <>
-            <PreviewCardsHightligher
-                title="Alerts"
-                description="A customized alert component used to display important messages or notifications to users, providing crucial information or warnings."
-                body={handleAlertBody()}
-                code={`<Alert variant='primary' title="Title" text="This is a demo text." show={show} setShow={setShow} delay={2000} />`}
-                columns={columns}
-                rows={handleButtonTableRows("plain")}
-            />
-            <PreviewCardsHightligher
-                className='mt-5'
-                title="Iconed Alerts"
-                description="A customized iconed alert component used to display important messages or notifications to users, providing crucial information or warnings."
-                body={handleIconedAlertBody()}
-                code={`<Alert variant='primary' title="Title" text="This is a demo text." show={show} setShow={setShow} delay={2000} icon={Icon Here} />`}
-                columns={columns}
-                rows={handleButtonTableRows("iconed")}
-            />
-            <PreviewCardsHightligher
-                className='mt-5'
-                title="Notification Alert"
-                description="A customized notification alert component used to display notitication message with image."
-                body={handleNotificationAlertBody()}
-                code={`<NotificationAlert text="This a demo text." show={show} setShow={setShow} delay={1500} image="Image link here" />`}
-                columns={columns}
-                rows={handleButtonTableRows("notification")}
-            />
-            <PreviewCardsHightligher
-                className='mt-5'
-                title="Pop Alert"
-                description="A customized iconed alert component used to display important messages or notifications to users, providing crucial information or warnings."
-                body={handlePopAlertBody()}
-                code={`<NotificationAlert text="This a demo text." show={show} setShow={setShow} delay={1500} image="Image link here" />`}
-                columns={columns}
-                rows={handleButtonTableRows("pop")}
-            />
+        <div className='grid grid-cols-4 gap-4 text-black dark:text-white'>
+            <div className='mb-4 col-span-4 md:col-span-3'>
 
-            <hr className="mt-10" />
-        </>
+                <div className='flex-row'>
+                    <div>
+                        <span className='text-4xl font-bold'>Alert</span>
+                    </div>
+                    <div className='mb-5 mt-2'>
+                        <span>A customized alert component used to display important messages or notifications to users, providing crucial information or warnings.</span>
+                    </div>
+                    <SyntaxHighlighter
+                        language="typescript"
+                        style={zustandDarkModeConfig ? darcula : atelierCaveLight}
+                        wrapLongLines={true}
+                        customStyle={{
+                            borderRadius: '10px'
+                        }}
+                    >
+                        import Alert from '@components/alert/alert.component'
+                    </SyntaxHighlighter>
+                </div>
+
+                <PreviewCardsHightligher
+                    title="Solid Alerts"
+                    className='mt-5'
+                    body={handleAlertBody()}
+                    code={`<Alert variant='warning' show={show} setShow={setShow} awake={true} body={body here} />`}
+                    columns={columns}
+                    rows={handleButtonTableRows("plain")}
+                />
+
+                <PreviewCardsHightligher
+                    title="Soft Alerts"
+                    className='mt-5'
+                    body={handleSoftAlertBody()}
+                    code={`<Alert solid={false} variant='warning' show={show} setShow={setShow} awake={true} body={body here} />`}
+                    columns={columns}
+                    rows={handleButtonTableRows("plain")}
+                />
+
+                <PreviewCardsHightligher
+                    title="Custom Body Alerts"
+                    className='mt-5'
+                    body={handleCustomAlertBoady()}
+                    code={`<Alert \n solid={false} \n variant='warning' \n show={show} \n setShow={setShow} \n awake={true} \n body={<h1>This is free dom element</h1>} \n/>`}
+                    columns={columns}
+                    rows={handleButtonTableRows("plain")}
+                />
+            </div>
+            <div className='ml-5 hidden md:block'>
+                <div className="ml-10 fixed">
+                    <p className="font-bold mb-5">ON THIS PAGE</p>
+
+                    <p className="mt-2 text-blue-600 font-bold">Variants</p>
+                    <p className="ml-4">Default Alert</p>
+                    <p className="ml-4">Soft Alert</p>
+                    <p className="ml-4">Custom Body Alert</p>
+                </div>
+            </div>
+        </div>
     )
 }
 

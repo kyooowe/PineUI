@@ -3,25 +3,42 @@ import { Suspense, lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
 // Components
-import Layout from '../layout/layout'
-import Loader from '../components/loader.component'
-import CenterLoader from '../components/center-loader.component'
-import StudentUpdate from '../modules/student/student_update.module'
+import Layout from '@layout/layout'
+import Loader from '@components/loader.component'
+import CenterLoader from '@components/center-loader.component'
+import StudentUpdate from '@modules/student/student_update.module'
 
 // Page
-const ErrorPage = lazy(() => import('../pages/error.page'))
-const LoginPage = lazy(() => import('../pages/auth/auth.page'))
-const DasboardPage = lazy(() => import('../pages/dashboard/dashboard.page'))
-const StudentPage = lazy(() => import('../pages/students/student.page'))
-const ComponentsBlockpage = lazy(() => import('../pages/components-block/components-block.page'))
-const StarterPage = lazy(() => import('../pages/starter/starter.page'))
+const ErrorPage = lazy(() => import('@pages/error.page'))
+const LoginPage = lazy(() => import('@pages/auth/auth.page'))
+const DasboardPage = lazy(() => import('@pages/dashboard/dashboard.page'))
+const StudentPage = lazy(() => import('@pages/students/student.page'))
+const ComponentsBlockpage = lazy(() => import('@pages/components-block/components-block.page'))
+const StarterPage = lazy(() => import('@pages/starter/starter.page'))
 
 // Student Module
 const StudentListModule = lazy(
-    () => import('../modules/student/student_list.module')
+    () => import('@modules/student/student_list.module')
 )
 const StudentCreateModule = lazy(
-    () => import('../modules/student/student_create.module')
+    () => import('@modules/student/student_create.module')
+)
+
+// Components Block
+const AlertModule = lazy(
+    () => import('@modules/components-block/alert.component-block.module')
+)
+const AvatarModule = lazy(
+    () => import('@modules/components-block/avatar.component-block.module')
+)
+const BadgeModule = lazy(
+    () => import('@modules/components-block/badge.component-block.module')
+)
+const ButtonModule = lazy(
+    () => import('@modules/components-block/button.component-block.module')
+)
+const TextInputModule = lazy(
+    () => import('@modules/components-block/text-input.component-block.module')
 )
 
 //#endregion
@@ -92,7 +109,49 @@ const router = createBrowserRouter([
                         <ComponentsBlockpage />
                     </Suspense>
                 ),
-                errorElement: <ErrorPage />
+                errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: 'alert',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <AlertModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'avatar',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <AvatarModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'badge',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <BadgeModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'button',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <ButtonModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'input',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <TextInputModule />
+                            </Suspense>
+                        )
+                    }
+                ]
             },
             {
                 path: 'starter',

@@ -1,14 +1,14 @@
 //#region Import
 import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react'
-import Pagination from '../../components/pagination.component'
+import Pagination from '@components/pagination.component'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import useApi from '../../hooks/api.hooks'
-import { IStudent, IStudentTableProps } from '../../interface/modules/student/student.interface'
-import Toast from '../../components/toast.component'
+import useApi from '@hooks/api.hooks'
+import { IStudent, IStudentTableProps } from '@interface/modules/student/student.interface'
+import Toast from '@components/toast.component'
 import { useNavigate } from 'react-router-dom'
-import useDebounce from '../../hooks/debounce.hooks'
-import { IResponse } from '../../interface/response.interface'
-import CenterLoader from '../../components/center-loader.component'
+import useDebounce from '@hooks/debounce.hooks'
+import { IResponse } from '@interface/response.interface'
+import CenterLoader from '@components/center-loader.component'
 //#endregion
 
 const StudentTable = memo(({ setStudentCount }: IStudentTableProps) => {
@@ -542,7 +542,7 @@ const StudentTable = memo(({ setStudentCount }: IStudentTableProps) => {
             </div>
             {
                 isFetching ? (
-                    <CenterLoader height="h-72" />
+                    <CenterLoader />
                 ) : (
                     <>
                         {

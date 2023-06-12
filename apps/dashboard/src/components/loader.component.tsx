@@ -12,7 +12,7 @@ const Loader = memo(() => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
         >
-            <div className='py-2 px-4 mt-5'>
+            <div className='py-2 px-7 mt-5'>
                 <div className='rounded-lg'>
                     <div className='animate-pulse flex space-x-4'>
                         <div className='flex-1 space-y-6 py-1'>

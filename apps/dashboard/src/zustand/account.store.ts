@@ -1,9 +1,9 @@
 //#region Import
 import { create } from 'zustand'
-import { IAccountStore } from '../interface/modules/account/account.interface'
+import { IAccountStore } from '@/interface/modules/auth/auth.interface'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import useCrypto from '../hooks/crypto.hooks'
-import { IUser } from '../interface/modules/user/user.interface'
+import useCrypto from '@hooks/crypto.hooks'
+import { IUser } from '@interface/modules/user/user.interface'
 
 const { encrypt } = useCrypto()
 //#endregion

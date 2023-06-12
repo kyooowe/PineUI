@@ -1,16 +1,10 @@
-//#region Import
-import ComponentsBlockList from '../../modules/components-block/component-blocks.module'
-//#endregion
+import { Outlet } from "react-router-dom"
 
 const ComponentsBlock = () => {
     return (
-        // <div className="py-2 px-7">
-        //     <ComponentsBlockList />
-        // </div>
-
         <div className='py-2 px-7'>
             <div className='w-full min-w-[310px]'>
-                <ComponentsBlockList />
+                <Outlet />
             </div>
         </div>
     )

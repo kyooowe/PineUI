@@ -4,51 +4,52 @@ import { twMerge } from 'tailwind-merge';
 interface IAlertProps {
 
     /**
-    * @description: title of the alert
-    */
-    title: string;
-
-    /**
-     * @description: text of the alert
+     * Body of the alert.
      */
-    text: string;
+    body: React.ReactNode;
 
     /**
-     * @description: alert color will depends on this variants
-     * @default: primary
+     * Alert color will depend on these variants.
+     * @default "primary"
      */
     variant: "primary" | "secondary" | "warning" | "danger";
 
     /**
-     * @description: dynamic class
+     * Alert UI will depend on this flag.
+     * @default true
+     */
+    solid?: boolean;
+
+    /**
+     * Dynamic class
      */
     className?: string;
 
     /**
-     * @description: flagger of the alert when to show
-     * @default: false
+     * Flag to determine when to show the alert.
+     * @default false
      */
     show: boolean;
 
     /**
-     * @description: event function of show
+     * Event function to control the visibility of the alert.
      */
-    setShow: (values: boolean) => void;
+    setShow: (value: boolean) => void;
 
     /**
-     * @description: timer when to hide the alert
-     * @default: 1500
+     * Specifies the duration (in milliseconds) before the Alert automatically hides.
+     * @default 1500
      */
     delay?: number;
 
     /**
-     * @description: flagger of the alert, this will make the alert dont hide unless you click the close
-     * @default: false
+     * If enabled, the Alert will always be visible unless the close button is clicked.
+     * @default false
      */
     awake?: boolean;
 }
 
-const Alert = React.forwardRef<HTMLDivElement, IAlertProps>(({ title, text, variant, className,
+const Alert = React.forwardRef<HTMLDivElement, IAlertProps>(({ body, variant, solid = true, className,
     delay = 1500, awake = false, show = false, setShow }: IAlertProps, ref) => {
 
     // UseEffect
@@ -61,55 +62,85 @@ const Alert = React.forwardRef<HTMLDivElement, IAlertProps>(({ title, text, vari
 
     //#region Handler
     const handleColor = (): string => {
-        if (variant === 'primary')
-            return "bg-blue-700 border border-blue-500"
+        if (solid) {
+            if (variant === 'primary')
+                return "text-white bg-blue-700 border border-blue-700"
 
-        if (variant === 'secondary')
-            return "bg-green-700 border border-green-500"
-
-
-        if (variant === 'warning')
-            return "bg-yellow-700 border border-yellow-500"
+            if (variant === 'secondary')
+                return "text-white bg-green-700 border border-green-700"
 
 
-        if (variant === 'danger')
-            return "bg-red-700 border border-red-500"
+            if (variant === 'warning')
+                return "text-white bg-yellow-700 border border-yellow-700"
+
+
+            if (variant === 'danger')
+                return "text-white bg-red-700 border border-red-700"
+        }
+        else {
+            if (variant === 'primary')
+                return "text-blue-700 bg-blue-300 border border-blue-300"
+
+            if (variant === 'secondary')
+                return "text-green-700 bg-green-300 border border-green-300"
+
+            if (variant === 'warning')
+                return "text-yellow-700 bg-yellow-300 border border-yellow-300"
+
+            if (variant === 'danger')
+                return "text-red-700 bg-red-300 border border-red-300"
+        }
 
         return ""
     }
 
     const handleButtonColor = (): string => {
-        if (variant === 'primary')
-            return "bg-blue-700 focus:ring-blue-400 hover:bg-blue-800"
+        if (solid) {
+            if (variant === 'primary')
+                return "bg-blue-700 focus:ring-blue-400 hover:bg-blue-800"
 
-        if (variant === 'secondary')
-            return "bg-green-700 focus:ring-green-400 hover:bg-green-800"
-
-
-        if (variant === 'warning')
-            return "bg-yellow-700 focus:ring-yellow-400 hover:bg-yellow-800"
+            if (variant === 'secondary')
+                return "bg-green-700 focus:ring-green-400 hover:bg-green-800"
 
 
-        if (variant === 'danger')
-            return "bg-red-700 focus:ring-red-400 hover:bg-red-800"
+            if (variant === 'warning')
+                return "bg-yellow-700 focus:ring-yellow-400 hover:bg-yellow-800"
+
+
+            if (variant === 'danger')
+                return "bg-red-700 focus:ring-red-400 hover:bg-red-800"
+        }
+        else {
+            if (variant === 'primary')
+                return "text-blue-600 focus:ring-blue-400 hover:bg-blue-400"
+
+            if (variant === 'secondary')
+                return "text-green-600 focus:ring-green-400 hover:bg-green-400"
+
+
+            if (variant === 'warning')
+                return "text-yellow-600 focus:ring-yellow-400 hover:bg-yellow-400"
+
+
+            if (variant === 'danger')
+                return "text-red-600 focus:ring-red-400 hover:bg-red-400"
+        }
 
         return ""
     }
     //#endregion
 
     // State Helper
-    const alertClass = twMerge(`p-4 mb-4 text-white rounded-lg ${handleColor()} ${show ? "flex" : "hidden"}`, className)
+    const alertClass = twMerge(`text-sm rounded-lg p-4 ${handleColor()} ${show ? "flex" : "hidden"}`, className)
     const alertButtonClass = twMerge(`ml-auto -my-2 text-white rounded-lg focus:ring-2 p-1.5 inline-flex h-8 w-8 ${handleButtonColor()}`, "")
 
     return (
         <div
             ref={ref}
             className={alertClass}
-            role="alert"
+            role='alert'
         >
-            <div className="ml-3 text-sm">
-                <span className='font-bold mr-2'>{title}!</span> {text}
-            </div>
+            {body}
             <button
                 type="button"
                 className={alertButtonClass}

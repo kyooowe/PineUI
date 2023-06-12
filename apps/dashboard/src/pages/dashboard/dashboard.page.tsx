@@ -1,15 +1,15 @@
 //#region Import
 import { Suspense, lazy } from "react"
-import CenterLoader from "../../components/center-loader.component"
+import CenterLoader from "@components/center-loader.component"
 
-const Analytics = lazy(() => import('../../modules/dashboard/dashboard.module'))
+const Analytics = lazy(() => import('@modules/dashboard/dashboard.module'))
 //#endregion
 
 const DashboardPage = () => {
 
     return (
         <Suspense fallback={<CenterLoader />}>
-            <div className="py-2 px-7">
+            <div className="px-4">
                 <Analytics />
             </div>
         </Suspense>

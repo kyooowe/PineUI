@@ -1,11 +1,11 @@
 import { memo, useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import StudentForm from './student.form'
-import { IUpdateStudent, IStudent } from '../../interface/modules/student/student.interface'
-import useApi from '../../hooks/api.hooks'
+import { IUpdateStudent, IStudent } from '@interface/modules/student/student.interface'
+import useApi from '@hooks/api.hooks'
 import { useMutation } from '@tanstack/react-query'
-import Toast from '../../components/toast.component'
-import Loader from '../../components/loader.component'
+import Toast from '@components/toast.component'
+import Loader from '@components/loader.component'
 
 const StudentUpdate = memo(() => {
 

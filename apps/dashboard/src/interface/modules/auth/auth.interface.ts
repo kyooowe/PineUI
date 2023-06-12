@@ -12,3 +12,9 @@ export interface ILoginCredentials {
     email: string
     password: string
 }
+
+// Zustand
+export interface IAccountStore {
+    account: string
+    storeAccount: (data?: IUser) => void;
+}
