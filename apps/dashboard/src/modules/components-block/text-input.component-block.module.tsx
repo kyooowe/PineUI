@@ -1,3 +1,4 @@
+//#region Import
 import React, { useState } from 'react'
 import TextInput from '@components/text-input/text-input.component'
 import IconTextInput from '@components/text-input/icon-text-input.component'
@@ -5,6 +6,7 @@ import PreviewCardsHightligher from '@components/cards/preview-card.component'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { useDarkModeConfigStore } from '@/zustand/config.store'
+//#endregion
 
 const TextInputComponentBlock = () => {
 

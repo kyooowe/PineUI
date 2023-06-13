@@ -3,6 +3,7 @@ import { memo } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { ICreateStudent, IStudentFormProps, IUpdateStudent } from '@interface/modules/student/student.interface'
+import TextInput from '@/components/text-input/text-input.component'
 //#endregion
 
 //#region Validation Schema
@@ -28,10 +29,10 @@ const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps)
 
     //#region Formik
 
-     /**
-     * @description dynamic interface for formik
-     * if isUpdate = true, the interface will be IUpdateStudent else ICreateStudent
-     */
+    /**
+    * @description dynamic interface for formik
+    * if isUpdate = true, the interface will be IUpdateStudent else ICreateStudent
+    */
     const isUpdating = studentData === undefined ? false : true
     const studentFormik = useFormik<FormikType<typeof isUpdating>>({
         initialValues: {
@@ -60,19 +61,14 @@ const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps)
                             <label className='block mb-2 font-medium text-gray-900 dark:text-white'>
                                 {`Student Number (00-2023-0000)`}
                             </label>
-                            <input
+                            <TextInput
                                 name='studentNumber'
+                                ariaLabel='txtStudentNumber'
                                 type='text'
+                                className='block w-full'
                                 onChange={studentFormik.handleChange}
                                 placeholder='00-2023-00001'
                                 value={studentFormik.values.studentNumber}
-                                className={`block w-full py-2 pl-5 pr-5 rtl:pr-11 rtl:pl-5 text-sm placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-20
-                                        ${studentFormik.touched.studentNumber &&
-                                        Boolean(studentFormik.errors.studentNumber)
-                                        ? 'border-red-400 text-red-800 focus:border-red-400 focus:ring-red-300 dark:border-red-400 dark:bg-gray-800 dark:text-red-400 dark:focus:border-red-300'
-                                        : 'border-gray-400 dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-gray-900 dark:focus:border-gray-500 focus:ring-gray-900 dark:focus:ring-gray-500'
-                                    }
-                                        `}
                             />
                             {
                                 studentFormik.touched.studentNumber && Boolean(studentFormik.errors.studentNumber) ?
@@ -87,19 +83,14 @@ const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps)
                             <label className='block mb-2  font-medium text-gray-900 dark:text-white'>
                                 {`Student Name (Surname, First Name Middle Name.)`}
                             </label>
-                            <input
+                            <TextInput
                                 name='studentName'
+                                ariaLabel='txtStudentName'
                                 type='text'
+                                className='block w-full'
                                 onChange={studentFormik.handleChange}
                                 placeholder='Dela Cruz, Juan S.'
                                 value={studentFormik.values.studentName}
-                                className={`block w-full py-2 pl-5 pr-5 rtl:pr-11 rtl:pl-5 text-sm placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-20
-                                ${studentFormik.touched.studentName &&
-                                        Boolean(studentFormik.errors.studentName)
-                                        ? 'border-red-400 text-red-800 focus:border-red-400 focus:ring-red-300 dark:border-red-400 dark:bg-gray-800 dark:text-red-400 dark:focus:border-red-300'
-                                        : 'border-gray-400 dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-gray-900 dark:focus:border-gray-500 focus:ring-gray-900 dark:focus:ring-gray-500'
-                                    }
-                                `}
                             />
                             {
                                 studentFormik.touched.studentName && Boolean(studentFormik.errors.studentName) ?
@@ -114,19 +105,14 @@ const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps)
                             <label className='block mb-2 font-medium text-gray-900 dark:text-white'>
                                 {`Class (Section)`}
                             </label>
-                            <input
+                            <TextInput
                                 name='class'
+                                ariaLabel='txtClass'
                                 type='text'
                                 onChange={studentFormik.handleChange}
                                 placeholder='Indigo'
                                 value={studentFormik.values.class}
-                                className={`block w-full py-2 pl-5 pr-5 rtl:pr-11 rtl:pl-5 text-sm placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-20
-                                ${studentFormik.touched.class &&
-                                        Boolean(studentFormik.errors.class)
-                                        ? 'border-red-400 text-red-800 focus:border-red-400 focus:ring-red-300 dark:border-red-400 dark:bg-gray-800 dark:text-red-400 dark:focus:border-red-300'
-                                        : 'border-gray-400 dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-gray-900 dark:focus:border-gray-500 focus:ring-gray-900 dark:focus:ring-gray-500'
-                                    }
-                                `}
+                                className='block w-full'
                             />
                             {
                                 studentFormik.touched.class && Boolean(studentFormik.errors.class) ?
@@ -166,8 +152,9 @@ const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps)
                                 Admission Date
                             </label>
 
-                            <input
+                            <TextInput
                                 name='admissionDate'
+                                ariaLabel='txtAdmissionDate'
                                 type='date'
                                 min={new Date().toISOString().substr(0, 10)}
                                 onChange={(event) => {
@@ -176,8 +163,9 @@ const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps)
                                     const admissionDate = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]) + 1);
                                     studentFormik.setFieldValue('admissionDate', admissionDate);
                                 }}
+                                placeholder='Indigo'
                                 value={studentFormik.values.admissionDate.toISOString().substr(0, 10)}
-                                className='block w-full py-2 pl-5 pr-5 text-gray-700 placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-5 border-gray-400 focus:border-gray-900 focus:ring-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-300'
+                                className='block w-full'
                             />
                         </div>
                     </div>

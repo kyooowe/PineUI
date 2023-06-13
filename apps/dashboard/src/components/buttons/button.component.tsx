@@ -62,21 +62,22 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text, ariaLa
 
             if (variant === 'danger')
                 return "bg-red-300"
+
         }
         else {
             if (variant === 'primary')
-                return "bg-blue-700 hover:bg-blue-600 focus:ring-blue-500"
+                return "text-white bg-blue-700 hover:bg-blue-600 focus:ring-blue-500"
 
             if (variant === 'secondary')
-                return "bg-green-700 hover:bg-green-600 focus:ring-green-500"
+                return "text-white bg-green-700 hover:bg-green-600 focus:ring-green-500"
 
 
             if (variant === 'warning')
-                return "bg-yellow-700 hover:bg-yellow-600 focus:ring-yellow-500"
+                return "text-white bg-yellow-700 hover:bg-yellow-600 focus:ring-yellow-500"
 
 
             if (variant === 'danger')
-                return "bg-red-700 hover:bg-red-600 focus:ring-red-500"
+                return "text-white bg-red-700 hover:bg-red-600 focus:ring-red-500"
         }
 
         return ""
@@ -84,7 +85,7 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text, ariaLa
     //#endregion
 
     // Add the className props to override using twMerge
-    const buttonClass = twMerge(`text-white px-6 py-3 text-sm font-medium tracking-wide capitalize 
+    const buttonClass = twMerge(`px-6 py-3 text-sm font-medium tracking-wide capitalize 
     transition-colors duration-300 transform rounded-lg ${handleColor()} 
     focus:outline-none focus:ring focus:ring-opacity-50 ${isDisabled ? 'cursor-not-allowed' : ''}`, className)
 

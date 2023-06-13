@@ -250,14 +250,16 @@ const Login = () => {
                                         }
                                     />
                                     <div className='mt-1 transform'>
-                                        {authFormik.touched.password &&
-                                            Boolean(authFormik.errors.password) ? (
-                                            <span className='text-red-400 text-sm'>
-                                                {authFormik.errors.password}
-                                            </span>
-                                        ) : (
-                                            ''
-                                        )}
+                                        {
+                                            authFormik.touched.password &&
+                                                Boolean(authFormik.errors.password) ? (
+                                                <span className='text-red-400 text-sm'>
+                                                    {authFormik.errors.password}
+                                                </span>
+                                            ) : (
+                                                ''
+                                            )
+                                        }
                                     </div>
                                 </div>
 
@@ -267,7 +269,8 @@ const Login = () => {
                                     variant="primary"
                                     type="submit"
                                     className='w-full mt-3'
-                                    disabled={loginMutation.isLoading}
+                                    isDisabled={loginMutation.isLoading}
+                                    isLoading={loginMutation.isLoading}
                                 />
 
                                 <p className='mt-4 text-center text-gray-400 transform'>

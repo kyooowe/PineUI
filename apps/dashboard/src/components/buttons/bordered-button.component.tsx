@@ -24,7 +24,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
      * @description: button color will depends on this variants
      * @default: primary
      */
-    variant: "primary" | "secondary" | "warning" | "danger";
+    variant: "primary" | "secondary" | "warning" | "danger" | "plain";
 
     /**
      * @description: Show loader svg in Button
@@ -62,6 +62,9 @@ const BorderedButton = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text
 
             if (variant === 'danger')
                 return "text-red-300 border border-red-300"
+
+            if (variant === 'plain')
+                return "bg-gray-200 dark:bg-gray-600"
         }
         else {
             if (variant === 'primary')
@@ -76,6 +79,9 @@ const BorderedButton = React.forwardRef<HTMLButtonElement, IButtonProps>(({ text
 
             if (variant === 'danger')
                 return "text-red-500 border border-red-500 hover:bg-red-500 hover:text-white"
+
+            if (variant === 'plain')
+                return "text-gray-700 bg-white border border-gray-200 dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700"
         }
 
         return ""

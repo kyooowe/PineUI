@@ -5,6 +5,7 @@ import { ICreateStudent, IStudent } from '@interface/modules/student/student.int
 import useApi from '@hooks/api.hooks'
 import { useMutation } from '@tanstack/react-query'
 import Toast from '@components/toast.component'
+import IconedButton from '@/components/buttons/icon-button.component'
 
 const StudentCreate = memo(() => {
 
@@ -72,52 +73,54 @@ const StudentCreate = memo(() => {
                 </div>
 
                 <div className='flex items-center mt-4 gap-x-3'>
-                    <button
+                    <IconedButton
                         type='button'
+                        text='Cancel'
+                        ariaLabel='btnCreateStudentCancel'
                         onClick={() => navigate('/pages/students/list')}
-                        className='flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700'
-                    >
-                        <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            strokeWidth={1.5}
-                            stroke='currentColor'
-                            className='w-5 h-5'
-                        >
-                            <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                d='M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3'
-                            />
-                        </svg>
+                        variant='plain'
+                        icon={
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                strokeWidth={1.5}
+                                stroke='currentColor'
+                                className='w-5 h-5'
+                            >
+                                <path
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    d='M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3'
+                                />
+                            </svg>
+                        }
+                    />
 
-                        <span>Cancel</span>
-                    </button>
-
-                    <button
+                    <IconedButton
                         type='submit'
-                        disabled={createStudentMutation.isLoading}
+                        isDisabled={createStudentMutation.isLoading}
                         onClick={() => formRef.current?.requestSubmit()}
-                        className='flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-400 dark:hover:bg-blue-400 dark:bg-blue-600'
-                    >
-                        <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            strokeWidth={1.5}
-                            stroke='currentColor'
-                            className='w-5 h-5'
-                        >
-                            <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                d='M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12'
-                            />
-                        </svg>
-
-                        <span>Submit</span>
-                    </button>
+                        text='Submit'
+                        ariaLabel='btnCreateStudentSubmit'
+                        variant='primary'
+                        icon={
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                strokeWidth={1.5}
+                                stroke='currentColor'
+                                className='w-5 h-5'
+                            >
+                                <path
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    d='M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12'
+                                />
+                            </svg>
+                        }
+                    />
                 </div>
             </div>
 

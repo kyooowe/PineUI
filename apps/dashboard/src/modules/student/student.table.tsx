@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import useDebounce from '@hooks/debounce.hooks'
 import { IResponse } from '@interface/response.interface'
 import CenterLoader from '@components/center-loader.component'
+import IconTextInput from '@/components/text-input/icon-text-input.component'
 //#endregion
 
 const StudentTable = memo(({ setStudentCount }: IStudentTableProps) => {
@@ -524,21 +525,21 @@ const StudentTable = memo(({ setStudentCount }: IStudentTableProps) => {
                     </button>
                 </div>
 
-                <div className="relative flex items-center mt-4 md:mt-0">
-                    <span className="absolute">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
+                <IconTextInput
+                    name='txtSearch'
+                    placeholder='Search'
+                    ariaLabel='txtSearch'
+                    type='text'
+                    value={searchKey}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value)}
+                    className='w-96 block sm:mt-1'
+                    parentClassName='mt-4 md:mt-0'
+                    icon={
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-gray-400 dark:text-gray-600">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                         </svg>
-                    </span>
-
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        value={searchKey}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value)}
-                        className="block w-full md:w-80 py-2 pl-11 pr-5 rtl:pr-11 rtl:pl-5 text-sm placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-20 border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-gray-900 dark:focus:border-gray-500 focus:ring-gray-900 dark:focus:ring-gray-500"
-                    />
-                </div>
+                    }
+                />
             </div>
             {
                 isFetching ? (
@@ -595,7 +596,6 @@ const StudentTable = memo(({ setStudentCount }: IStudentTableProps) => {
                     </>
                 )
             }
-
         </>
     )
 })

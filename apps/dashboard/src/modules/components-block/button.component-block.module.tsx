@@ -46,9 +46,10 @@ const ButtonComponentBlock = () => {
         return (
             <div className='flex p-2 gap-2'>
                 <BorderedButton text="Primary" ariaLabel="btnPrimary" type="button" variant="primary" />
-                <BorderedButton text="Secondary" ariaLabel="btnPrimary" type="button" variant="secondary" />
-                <BorderedButton text="Danger" ariaLabel="btnPrimary" type="button" variant="warning" />
-                <BorderedButton text="Warning" ariaLabel="btnPrimary" type="button" variant="danger" />
+                <BorderedButton text="Secondary" ariaLabel="btnSecondary" type="button" variant="secondary" />
+                <BorderedButton text="Danger" ariaLabel="btnDanger" type="button" variant="warning" />
+                <BorderedButton text="Warning" ariaLabel="btnWarning" type="button" variant="danger" />
+                <BorderedButton text="Plain" ariaLabel="btnPlain" type="button" variant="plain" />
             </div>
         )
     }
@@ -57,9 +58,10 @@ const ButtonComponentBlock = () => {
         return (
             <div className="flex p-2 gap-2">
                 <BorderedButton text="Primary" ariaLabel="btnPrimary" type="button" variant="primary" isDisabled={true} isLoading={true} />
-                <BorderedButton text="Secondary" ariaLabel="btnPrimary" type="button" variant="secondary" isDisabled={true} isLoading={true} />
-                <BorderedButton text="Danger" ariaLabel="btnPrimary" type="button" variant="danger" isDisabled={true} isLoading={true} />
-                <BorderedButton text="Warning" ariaLabel="btnPrimary" type="button" variant="warning" isDisabled={true} isLoading={true} />
+                <BorderedButton text="Secondary" ariaLabel="btnSecondary" type="button" variant="secondary" isDisabled={true} isLoading={true} />
+                <BorderedButton text="Danger" ariaLabel="btnDanger" type="button" variant="danger" isDisabled={true} isLoading={true} />
+                <BorderedButton text="Warning" ariaLabel="btnWarning" type="button" variant="warning" isDisabled={true} isLoading={true} />
+                <BorderedButton text="Plain" ariaLabel="btnPlain" type="button" variant="plain" isDisabled={true} isLoading={true} />
             </div>
         )
     }
@@ -91,8 +93,8 @@ const ButtonComponentBlock = () => {
                     }
                 />
                 <IconedButton
-                    text="Primary"
-                    ariaLabel="btnPrimary"
+                    text="Secondary"
+                    ariaLabel="btnSecondary"
                     type="button"
                     variant="secondary"
                     icon={
@@ -114,8 +116,8 @@ const ButtonComponentBlock = () => {
                     }
                 />
                 <IconedButton
-                    text="Primary"
-                    ariaLabel="btnPrimary"
+                    text="Danger"
+                    ariaLabel="btnDanger"
                     type="button"
                     variant="danger"
                     icon={
@@ -137,10 +139,33 @@ const ButtonComponentBlock = () => {
                     }
                 />
                 <IconedButton
-                    text="Primary"
-                    ariaLabel="btnPrimary"
+                    text="Warning"
+                    ariaLabel="btnWarning"
                     type="button"
                     variant="warning"
+                    icon={
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-5 h-5"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
+                            />
+                        </svg>
+
+                    }
+                />
+                <IconedButton
+                    text="Plain"
+                    ariaLabel="btnPlain"
+                    type="button"
+                    variant="plain"
                     icon={
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
