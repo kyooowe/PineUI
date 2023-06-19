@@ -40,6 +40,9 @@ const ButtonModule = lazy(
 const TextInputModule = lazy(
     () => import('@modules/components-block/text-input.component-block.module')
 )
+const SelectModule = lazy(
+    () => import('@modules/components-block/select.component-block.module')
+)
 
 //#endregion
 
@@ -148,6 +151,14 @@ const router = createBrowserRouter([
                         element: (
                             <Suspense fallback={<Loader />}>
                                 <TextInputModule />
+                            </Suspense>
+                        )
+                    },
+                    {
+                        path: 'select',
+                        element: (
+                            <Suspense fallback={<Loader />}>
+                                <SelectModule />
                             </Suspense>
                         )
                     }

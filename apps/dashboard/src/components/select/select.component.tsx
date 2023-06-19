@@ -11,7 +11,7 @@ interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     /**
     * @description: value of the text input
     */
-    value?: string;
+    value: string;
 
     /**
      * @description: accesible name of the text input

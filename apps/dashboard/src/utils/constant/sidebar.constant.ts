@@ -25,6 +25,7 @@ export const CSideBarMenu: ISidebarMenu[] = [
             { name: 'Badge', path: '/pages/components/badge' },
             { name: 'Button', path: '/pages/components/button' },
             { name: 'Text Input', path: '/pages/components/input' },
+            { name: 'Select', path: '/pages/components/select' },
         ]
     },
     {

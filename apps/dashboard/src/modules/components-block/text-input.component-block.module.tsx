@@ -99,7 +99,9 @@ const TextInputComponentBlock = () => {
             </div>
         )
     }
+    //#endregion
 
+    //#region Rows
     const handleTextInputTableRows = (name: string) => {
         if (name === 'Plain')
             return [
@@ -128,10 +130,10 @@ const TextInputComponentBlock = () => {
             <div className='mb-4 col-span-4 md:col-span-3'>
                 <div className='flex-row'>
                     <div>
-                        <span className='text-4xl font-bold'>Button</span>
+                        <span className='text-4xl font-bold'>Text Input</span>
                     </div>
                     <div className='mb-5 mt-2'>
-                        <span>A custom TextInput is a flexible input component allowing users to enter and edit text with customizable features and behaviors.</span>
+                        <span>A flexible input component allowing users to enter and edit text with customizable features and behaviors.</span>
                     </div>
                     <SyntaxHighlighter
                         language="typescript"
