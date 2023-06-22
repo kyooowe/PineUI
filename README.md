@@ -52,19 +52,17 @@ Experience the impressive features and functionality you'll have at your fingert
 # Framework / Libraries
 This project uses the following frameworks and libraries:
 
- - [🚀 Turborepo](https://turbo.build/repo)
- - [⚛️ React](https://react.dev/)
- - [🌐 Express JS](https://expressjs.com/)
- - [🔍 React Query](https://tanstack.com/query/v4/docs/react/adapters/react-query)
- - [🎨 Tailwind CSS](https://tailwindcss.com/)
- - [✨ React Particles](https://github.com/matteobruni/tsparticles)
- - [📚 Typescript](https://www.typescriptlang.org/)
- - [🐻 Zustand](https://github.com/pmndrs/zustand)
- - [📝 Formik](https://formik.org/)
- - [🎭 Framer Motion](https://www.framer.com/motion/)
- - [🐆 Mongoose](https://mongoosejs.com/)
- - [🔒 CryptoJS](https://cryptojs.gitbook.io/docs/)
- - [📧 NodeMailer](https://nodemailer.com/about/)
+ - [🚀 Turborepo](https://turbo.build/repo) - A build tool for monorepo that is optimized for JavaScript and TypeScript codebases1
+ - [⚛️ React](https://react.dev/) - a free and open-source front-end JavaScript library for building user interfaces based on UI components.
+ - [🌐 Express JS](https://expressjs.com/) - A popular web application framework for Node.js, a JavaScript runtime environment that allows server-side JavaScript execution.
+ - [🔍 React Query](https://tanstack.com/query/v4/docs/react/adapters/react-query) - A JavaScript library for managing and synchronizing server state in React applications.
+ - [🎨 Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework that provides a set of pre-designed utility classes to quickly build user interfaces.
+ - [✨ React Particles](https://github.com/matteobruni/tsparticles) - Easily create highly customizable JavaScript particles effects, confetti explosions and fireworks animations and use them as animated backgrounds for your website.
+ - [📚 Typescript](https://www.typescriptlang.org/) - A strongly-typed superset of JavaScript that adds static typing and other features to the language.
+ - [🐻 Zustand](https://github.com/pmndrs/zustand) - A state management library for React applications.
+ - [📝 Formik](https://formik.org/) - A popular form library for React applications. It simplifies the process of building and managing complex forms by providing an intuitive API and a set of useful features.
+ - [🎭 Framer Motion](https://www.framer.com/motion/) - A popular animation library for React applications. It provides a simple and intuitive API for creating smooth and interactive animations and gestures.
+ - [🐆 Mongoose](https://mongoosejs.com/) - An Object-Data Mapping (ODM) library for Node.js and MongoDB.
 
 # Features
 This innovative project showcases a comprehensive range of powerful and cutting-edge features, seamlessly integrating the following capabilities:
@@ -91,7 +89,14 @@ This innovative project showcases a comprehensive range of powerful and cutting-
 ## Roadmap
 An overview of our development plans and upcoming features.
 
- - [X] Component libraries (Will add more components)
+ - [X] Component libraries (Will add more components and variants)
+   - [X] Alert
+   - [X] Avatar
+   - [X] Badge
+   - [X] Buttons
+   - [X] Cards
+   - [X] Select
+   - [X] Text Input   
  - [X] Landing Page
  - [ ] NextJS Version
  - [ ] CLI (Create dashboard, services, CRUD pages)
