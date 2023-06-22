@@ -37,7 +37,7 @@ npm run dev
 
 Access the application in your dashboard at `http://127.0.0.1:5173/` and api `http://localhost:3001`
 
-## Build
+# Build
 
 To build a production-ready version of your application, run the command in terminal (root folder):
 
