@@ -429,7 +429,6 @@ const StudentTable = memo(({ setStudentCount }: IStudentTableProps) => {
     //#endregion
 
     //#region Handler
-
     const handleActionButton = async (type: string, student: IStudent) => {
 
         switch (type) {
