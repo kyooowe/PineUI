@@ -1,14 +1,14 @@
 //#region Import
 import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react'
-import Pagination from '@components/pagination.component'
+import Pagination from '@/components/pagination/pagination.component'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import useApi from '@hooks/api.hooks'
 import { IStudent, IStudentTableProps } from '@interface/modules/student/student.interface'
-import Toast from '@components/toast.component'
+import Toast from '@/components/toast/toast.component'
 import { useNavigate } from 'react-router-dom'
 import useDebounce from '@hooks/debounce.hooks'
 import { IResponse } from '@interface/response.interface'
-import CenterLoader from '@components/center-loader.component'
+import CenterLoader from '@/components/loader/center-loader.component'
 import IconTextInput from '@/components/text-input/icon-text-input.component'
 //#endregion
 

@@ -1,4 +1,5 @@
 //#region Import
+import { memo } from 'react'
 import Badge from '@components/badge/badge.component'
 import PreviewCardsHightligher from '@components/cards/preview-card.component'
 import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -6,7 +7,7 @@ import { useDarkModeConfigStore } from '@zustand/config.store'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 //#endregion
 
-const BadgeComponentBlock = () => {
+const BadgeComponentBlock = memo(() => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
@@ -111,6 +112,6 @@ const BadgeComponentBlock = () => {
             </div>
         </div>
     )
-}
+})
 
 export default BadgeComponentBlock

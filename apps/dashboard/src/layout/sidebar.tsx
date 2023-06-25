@@ -1,19 +1,24 @@
 //#region Import
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { CSideBarMenu } from '../utils/constant/sidebar.constant'
 import { ISelectableChildPath, ISidebarMenu } from '@interface/components/sidebar.interface'
-import ImageCard from '@components/cards/image-card.component'
-import Breadcrumbs from '@components/breadcrumbs.component'
+import Breadcrumbs from '@/components/breadcrumbs/breadcrumbs.component'
 //#endregion
 
 const SideBar = memo(() => {
 
     //#region State Helper
     const location = useLocation()
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     //#endregion
 
     //#region Handler
+    const handleToggleSideBar = () => {
+        setIsSidebarOpen(!isSidebarOpen)
+    }
+
     const handleSVG = (name: string) => {
         if (name === 'Dashboard')
             return (
@@ -49,7 +54,14 @@ const SideBar = memo(() => {
         <>
             <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 md:px-8 lg:hidden dark:bg-gray-800 dark:border-gray-700">
                 <div className="flex items-center py-4">
-                    <button type="button" className="text-gray-500 hover:text-gray-600" data-hs-overlay="#application-sidebar" aria-controls="application-sidebar" aria-label="Toggle navigation">
+                    <button
+                        type="button"
+                        className="text-gray-500 hover:text-gray-600"
+                        data-hs-overlay="#application-sidebar"
+                        aria-controls="application-sidebar"
+                        aria-label="Toggle navigation"
+                        onClick={handleToggleSideBar}
+                    >
                         <span className="sr-only">Toggle Navigation</span>
                         <svg className="w-5 h-5" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
@@ -62,85 +74,81 @@ const SideBar = memo(() => {
                 </div>
             </div>
 
-            <div id="application-sidebar" className="h-screen text-blue-100 hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 left-0 bottom-0 z-[60] w-72 bg-blue-700 border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
-                <div className="px-6">
-                    <a className="flex-none text-xl font-semibold dark:text-white" href="#" aria-label="Brand">Pine UI</a>
+            <div
+                id="application-sidebar"
+                className="h-screen text-gray-700 hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 left-0 bottom-0 z-[60] w-64 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700"
+            >
+                <div className='px-6 flex flex-row'>
+                    <span className="flex-none bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-violet-600 text-xl font-bold">Pine UI - MERN</span>
+                    <span className='ml-3'>🚀</span>
                 </div>
+                <hr className='mt-3.5 border-1 border-gray-300 dark:border-gray-600' />
 
-                <nav className="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
-                    <ul className="space-y-1.5">
-                        {
+                <nav className="hs-accordion-group p-6 w-full relative" data-hs-accordion-always-open>
+                    {
+                        CSideBarMenu.map((menu: ISidebarMenu, i: number) => (
+                            <ul className="space-y-1.5" role='tablist' key={i}>
+                                {
+                                    menu.selectableChildPath === undefined ? (
+                                        <li role='tab'>
+                                            <Link
+                                                to={menu.path}
+                                                className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-md hover:text-blue-500 ${handleActiveLink(menu.childPath) ? 'text-blue-500 dark:text-blue-600' : 'dark:hover:text-blue-600 dark:text-gray-400'}`}
+                                            >
+                                                <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                    {handleSVG(menu.name)}
+                                                </svg>
+                                                {menu.name}
+                                            </Link>
+                                        </li>
+                                    ) : (
+                                        <li
+                                            className="hs-accordion"
+                                            id="account-accordion"
+                                            role="tab"
+                                        >
+                                            <p className="hs-accordion-toggle cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-500 hs-accordion-active:hover:bg-transparent text-sm text-gray-700 rounded-md hover:text-blue-500 dark:bg-gray-800 dark:hover:text-blue-500 dark:text-slate-400 dark:hs-accordion-active:text-white">
+                                                <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                    {handleSVG(menu.name)}
+                                                </svg>
+                                                {menu.name}
 
-                            CSideBarMenu.map((menu: ISidebarMenu, i: number) => (
-                                <div key={i}>
-                                    {
-                                        menu.selectableChildPath === undefined ? (
-                                            <li>
-                                                <Link
-                                                    to={menu.path}
-                                                    className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-md text-blue-100 hover:bg-blue-500 ${handleActiveLink(menu.childPath) ? 'bg-blue-600 dark:bg-gray-900 dark:text-white' : 'dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300'}`}
-                                                >
-                                                    <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                        {handleSVG(menu.name)}
-                                                    </svg>
-                                                    {menu.name}
-                                                </Link>
-                                            </li>
-                                        ) : (
-                                            <li className="hs-accordion" id="account-accordion">
-                                                <p className="hs-accordion-toggle cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-100 hs-accordion-active:hover:bg-transparent text-sm text-blue-100 rounded-md hover:bg-blue-500 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:hs-accordion-active:text-white">
-                                                    <svg className="w-3.5 h-3.5 text-blue-100" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                        {handleSVG(menu.name)}
-                                                    </svg>
-                                                    {menu.name}
+                                                <svg className="hs-accordion-active:block ml-auto hidden w-3 h-3" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2 11L8.16086 5.31305C8.35239 5.13625 8.64761 5.13625 8.83914 5.31305L15 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path>
+                                                </svg>
 
-                                                    <svg className="hs-accordion-active:block ml-auto hidden w-3 h-3 text-blue-100 group-hover:text-gray-500 dark:text-gray-400" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M2 11L8.16086 5.31305C8.35239 5.13625 8.64761 5.13625 8.83914 5.31305L15 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path>
-                                                    </svg>
+                                                <svg className="hs-accordion-active:hidden ml-auto block w-3 h-3" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path>
+                                                </svg>
+                                            </p>
 
-                                                    <svg className="hs-accordion-active:hidden ml-auto block w-3 h-3 text-blue-100 group-hover:text-gray-500 dark:text-gray-400" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path>
-                                                    </svg>
-                                                </p>
-
-                                                <div id="account-accordion-sub" className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
-                                                    <ul className="pt-2 pl-7">
-                                                        {
-                                                            menu.selectableChildPath.map((childMenu: ISelectableChildPath, iChild: number) => (
-                                                                <li
-                                                                    key={iChild}
+                                            <div id="account-accordion-sub" className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
+                                                <ul className="pt-2 pl-7" role='tablist'>
+                                                    {
+                                                        menu.selectableChildPath.map((childMenu: ISelectableChildPath, iChild: number) => (
+                                                            <li
+                                                                role="tab"
+                                                                key={iChild}
+                                                            >
+                                                                <Link
+                                                                    to={childMenu.path}
+                                                                    className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-md hover:text-blue-500 ${iChild === 0 ? '' : 'mt-1'} ${handleActiveLink([childMenu.path]) ? 'text-blue-600 dark:text-blue-600 dark:text-white' : 'dark:hover:text-blue-500 dark:text-slate-400'}`}
                                                                 >
-                                                                    <Link
-                                                                        to={childMenu.path}
-                                                                        className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-blue-100 rounded-md hover:bg-blue-500 ${iChild === 0 ? '' : 'mt-1'} ${handleActiveLink([childMenu.path]) ? 'bg-blue-600 dark:bg-gray-900 dark:text-white' : 'dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300'}`}
-                                                                    >
-                                                                        {childMenu.name}
-                                                                    </Link>
-                                                                </li>
-                                                            ))
-                                                        }
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        )
-                                    }
-                                </div>
-                            ))
-                        }
-
-                    </ul>
+                                                                    {childMenu.name}
+                                                                </Link>
+                                                            </li>
+                                                        ))
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    )
+                                }
+                            </ul>
+                        ))
+                    }
                 </nav>
-
-                <div className="absolute bottom-0 w-full px-6 mb-6">
-                    <ImageCard
-                        className='text-xs'
-                        title='New feature available!'
-                        body='Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus harum officia eligendi velit.'
-                        image="https://images.unsplash.com/photo-1658953229664-e8d5ebd039ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8"
-                    />
-                </div>
             </div>
-
         </>
     )
 })

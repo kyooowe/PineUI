@@ -4,7 +4,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Cookies from 'js-cookie'
 import { useAccountStore } from '@zustand/account.store'
-import CenterLoader from '@components/center-loader.component'
+import CenterLoader from '@/components/loader/center-loader.component'
 
 const Sidebar = lazy(() => import('./sidebar'))
 const Navbar = lazy(() => import('./navbar'))
@@ -43,7 +43,7 @@ const Layout = memo(() => {
                 <Sidebar />
                 <Navbar />
 
-                <div className="w-full h-auto py-10 px-4 lg:pl-80">
+                <div className="w-full h-auto py-10 px-4 lg:pl-[268px]">
                     <motion.div
                         key={location.pathname}
                         initial={{ opacity: 0 }}

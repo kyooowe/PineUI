@@ -1,8 +1,8 @@
 //#region Import
+import { memo } from 'react'
 import { IStatsDisplay } from '@interface/stats.interface'
 import { IDashboardStudents } from '@interface/modules/dashboard/dashboard.interface'
 import StatCard from '@components/cards/stat-cards.component'
-
 //#endregion
 
 //#region Constant
@@ -69,7 +69,7 @@ const students: IDashboardStudents[] = [
 ]
 //#endregion
 
-const Analytics = () => {
+const Analytics = memo(() => {
 
     return (
         <div className='w-full'>
@@ -95,6 +95,6 @@ const Analytics = () => {
             </div>
         </div>
     )
-}
+})
 
 export default Analytics
