@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import { IPaginationProps } from "../interface/components/pagination.interface"
+import { IPaginationProps } from "../../interface/components/pagination.interface"
 
 
 const Pagination = ({ currentPage, totalPages, onPageChange }: IPaginationProps) => {

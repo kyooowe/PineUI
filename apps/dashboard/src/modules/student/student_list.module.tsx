@@ -1,6 +1,6 @@
 //#region Import
 import { Suspense, lazy, memo, useState } from 'react'
-import Loader from '@components/loader.component'
+import Loader from '@/components/loader/loader.component'
 import { useNavigate } from 'react-router-dom'
 import IconedButton from '@/components/buttons/icon-button.component'
 const Table = lazy(() => import('./student.table'))

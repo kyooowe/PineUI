@@ -1,6 +1,6 @@
 //#region Import
 import { useEffect } from 'react'
-import { IToastProps } from '../interface/components/toast.interface'
+import { IToastProps } from '../../interface/components/toast.interface'
 import { motion } from 'framer-motion'
 //#endregion
 

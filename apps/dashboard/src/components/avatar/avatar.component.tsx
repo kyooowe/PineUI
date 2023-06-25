@@ -61,6 +61,8 @@ const Avatar = React.forwardRef<HTMLImageElement, IAvatarProps>(({ alt, src, siz
             src={src}
             alt={alt}
             loading='eager'
+            width="600"
+            height="400"
         />
     )
 })

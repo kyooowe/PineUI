@@ -1,5 +1,5 @@
 //#region Import
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDarkModeConfigStore } from '@zustand/config.store'
 import { useFormik } from 'formik'
@@ -13,8 +13,8 @@ import Cookies from 'js-cookie'
 import useApi from '@hooks/api.hooks'
 import useCrypto from '@hooks/crypto.hooks'
 import { useAccountStore } from '@zustand/account.store'
-import CenterLoader from '@components/center-loader.component'
-import Toast from '@components/toast.component'
+import CenterLoader from '@/components/loader/center-loader.component'
+import Toast from '@/components/toast/toast.component'
 import Button from '@components/buttons/button.component'
 import GoogleButton from '@components/buttons/google-button.component'
 import IconTextInput from '@components/text-input/icon-text-input.component'
@@ -33,7 +33,7 @@ const validationSchema = yup.object({
 })
 //#endregion
 
-const Login = () => {
+const Login = memo(() => {
 
     //#region State Helper
     const navigate = useNavigate()
@@ -287,6 +287,6 @@ const Login = () => {
             </section>
         </>
     )
-}
+})
 
 export default Login

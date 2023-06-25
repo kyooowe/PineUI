@@ -83,6 +83,8 @@ const ProfileAvatar = React.forwardRef<HTMLImageElement, IAvatarProps>(({ alt, s
                 src={src}
                 alt={alt}
                 loading='lazy'
+                width="600"
+                height="400"
             />
 
             <div>

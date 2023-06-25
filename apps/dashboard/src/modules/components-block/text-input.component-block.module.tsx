@@ -1,5 +1,5 @@
 //#region Import
-import React, { useState } from 'react'
+import { useState, memo } from 'react'
 import TextInput from '@components/text-input/text-input.component'
 import IconTextInput from '@components/text-input/icon-text-input.component'
 import PreviewCardsHightligher from '@components/cards/preview-card.component'
@@ -8,7 +8,7 @@ import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/sty
 import { useDarkModeConfigStore } from '@/zustand/config.store'
 //#endregion
 
-const TextInputComponentBlock = () => {
+const TextInputComponentBlock = memo(() => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
@@ -176,6 +176,6 @@ const TextInputComponentBlock = () => {
             </div>
         </div>
     )
-}
+})
 
 export default TextInputComponentBlock

@@ -1,4 +1,5 @@
 //#region Import
+import { memo } from 'react'
 import Card from '@/components/cards/cards.component'
 import MainCard from '@/components/cards/main-card.component'
 import PreviewCardsHightligher from '@/components/cards/preview-card.component'
@@ -8,7 +9,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter'
 import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 //#endregion
 
-const CardComponentBlock = () => {
+const CardComponentBlock = memo(() => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
@@ -36,7 +37,7 @@ const CardComponentBlock = () => {
                             <a className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-blue-500 hover:text-blue-700" href="https://home-two-ebon.vercel.app/">
                                 Check Pine UI
                                 <svg className="w-2.5 h-auto" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 1L10.6869 7.16086C10.8637 7.35239 10.8637 7.64761 10.6869 7.83914L5 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M5 1L10.6869 7.16086C10.8637 7.35239 10.8637 7.64761 10.6869 7.83914L5 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                 </svg>
                             </a>
                         </div>
@@ -169,6 +170,6 @@ const CardComponentBlock = () => {
             </div>
         </div>
     )
-}
+})
 
 export default CardComponentBlock

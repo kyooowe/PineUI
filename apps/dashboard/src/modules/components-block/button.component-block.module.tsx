@@ -1,4 +1,5 @@
 //#region Import
+import { memo } from 'react'
 import IconedButton from '@components/buttons/icon-button.component'
 import Button from '@components/buttons/button.component'
 import GoogleButton from '@components/buttons/google-button.component'
@@ -12,7 +13,7 @@ import { darcula, atelierCaveLight } from 'react-syntax-highlighter/dist/esm/sty
 import BorderedButton from '@/components/buttons/bordered-button.component'
 //#endregion
 
-const ButtonComponentBlock = () => {
+const ButtonComponentBlock = memo(() => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
@@ -335,6 +336,6 @@ const ButtonComponentBlock = () => {
             </div>
         </div>
     )
-}
+})
 
 export default ButtonComponentBlock

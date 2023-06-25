@@ -1,5 +1,5 @@
 //#region Import
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import Alert from '@components/alert/alert.component'
 import PreviewCardsHightligher from '@components/cards/preview-card.component'
 import Button from '@components/buttons/button.component'
@@ -8,7 +8,7 @@ import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/sty
 import { useDarkModeConfigStore } from '@zustand/config.store'
 //#endregion
 
-const AlertComponentBlock = () => {
+const AlertComponentBlock = memo(() => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
@@ -306,6 +306,6 @@ const AlertComponentBlock = () => {
             </div>
         </div>
     )
-}
+})
 
 export default AlertComponentBlock

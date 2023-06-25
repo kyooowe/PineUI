@@ -1,7 +1,7 @@
 //#region Import
 import { memo, useEffect } from 'react'
 import { useDarkModeConfigStore } from '@zustand/config.store'
-import Breadcrumbs from '@components/breadcrumbs.component'
+import Breadcrumbs from '@/components/breadcrumbs/breadcrumbs.component'
 import { useAccountStore } from '@/zustand/account.store'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
@@ -53,7 +53,7 @@ const Navbar = memo(() => {
                 <div className="w-full flex items-center justify-end ml-auto sm:justify-between sm:gap-x-3 sm:order-3">
 
                     <div>
-                        <div className='hidden md:hidden sm:hidden lg:block'>
+                        <div className='hidden -ml-4 md:hidden sm:hidden lg:block'>
                             <Breadcrumbs />
                         </div>
                         <div className='block md:hidden sm:hidden'>
@@ -62,14 +62,9 @@ const Navbar = memo(() => {
                     </div>
 
                     <div className="flex flex-row items-center justify-end gap-2">
-                        <button type="button" className="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-full font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-xs dark:bg-gray-800 dark:hover:bg-slate-800 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-offcanvas="#hs-offcanvas-right">
-                            <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z" />
-                                <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                            </svg>
-                        </button>
                         <button
                             type="button"
+                            aria-label="btnModeChanger"
                             className="inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-full font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-xs dark:bg-gray-800 dark:hover:bg-slate-800 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
                             onClick={() => handleDarkMode()}
                         >
@@ -90,9 +85,14 @@ const Navbar = memo(() => {
                         </button>
 
                         <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
-                            <button id="hs-dropdown-with-header" type="button" className="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-full font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-xs dark:bg-gray-800 dark:hover:bg-slate-800 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800">
+                            <button
+                                id="hs-dropdown-with-header"
+                                aria-label='btnAvatar'
+                                type="button"
+                                className="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-full font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-xs dark:bg-gray-800 dark:hover:bg-slate-800 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
+                            >
                                 <img
-                                    className="inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+                                    className="inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" src="/avatar.webp"
                                     alt="Image Description"
                                     loading='lazy'
                                 />
@@ -131,7 +131,7 @@ const Navbar = memo(() => {
                                         Team Account
                                     </a>
 
-                                    <hr className='my-3' />
+                                    <hr className='my-3 border-1 border-gray-500' />
                                     <a
                                         onClick={() => handleLogOut()}
                                         className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-red-500 hover:bg-gray-100 focus:ring-2 focus:ring-red-200 dark:text-red-500 dark:hover:bg-gray-700" href="#"

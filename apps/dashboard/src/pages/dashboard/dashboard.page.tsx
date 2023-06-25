@@ -1,6 +1,6 @@
 //#region Import
 import { Suspense, lazy } from "react"
-import CenterLoader from "@components/center-loader.component"
+import CenterLoader from "@/components/loader/center-loader.component"
 
 const Analytics = lazy(() => import('@modules/dashboard/dashboard.module'))
 //#endregion

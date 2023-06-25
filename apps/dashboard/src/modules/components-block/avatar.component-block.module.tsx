@@ -1,4 +1,5 @@
 //#region Import
+import { memo } from 'react'
 import Avatar from '@components/avatar/avatar.component'
 import PreviewCardsHightligher from '@components/cards/preview-card.component'
 import OnlineAvatar from '@components/avatar/online-avatar.component'
@@ -9,7 +10,7 @@ import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/sty
 import { useDarkModeConfigStore } from '@zustand/config.store'
 //#endregion
 
-const AvatarComponentBlock = () => {
+const AvatarComponentBlock = memo(() => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
@@ -268,6 +269,6 @@ const AvatarComponentBlock = () => {
             </div>
         </div>
     )
-}
+})
 
 export default AvatarComponentBlock

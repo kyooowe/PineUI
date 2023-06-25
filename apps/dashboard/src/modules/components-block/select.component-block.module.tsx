@@ -1,10 +1,13 @@
+//#region Import
+import { memo } from 'react'
 import PreviewCardsHightligher from '@/components/cards/preview-card.component'
 import Select from '@/components/select/select.component'
 import { useDarkModeConfigStore } from '@/zustand/config.store'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { atelierCaveLight, darcula } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+//#endregion
 
-const SelectComponentBlock = () => {
+const SelectComponentBlock = memo(() => {
 
     //#region State Helper
     const columns: string[] = ['Props', 'Type', 'Description']
@@ -100,6 +103,6 @@ const SelectComponentBlock = () => {
             </div>
         </div>
     )
-}
+})
 
 export default SelectComponentBlock

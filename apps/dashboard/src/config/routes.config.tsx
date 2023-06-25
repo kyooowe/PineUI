@@ -4,8 +4,8 @@ import { createBrowserRouter } from 'react-router-dom'
 
 // Components
 import Layout from '@layout/layout'
-import Loader from '@components/loader.component'
-import CenterLoader from '@components/center-loader.component'
+import Loader from '@/components/loader/loader.component'
+import CenterLoader from '@/components/loader/center-loader.component'
 import StudentUpdate from '@modules/student/student_update.module'
 
 // Page

@@ -45,7 +45,7 @@ const ImageCard = React.forwardRef<HTMLDivElement, IImageCardProps>(({ title, bo
 		>
 			{
 				!imageBottom ? (
-					<img loading='lazy' className="w-full h-auto rounded-t-xl" src={image} alt="Image Description" />
+					<img loading='lazy' className="w-16 md:w-32 lg:w-60 rounded-t-xl" src={image} alt="Image Description" />
 				) : ""
 			}
 			<div className="p-4 md:p-5">

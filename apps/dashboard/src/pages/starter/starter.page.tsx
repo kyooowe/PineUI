@@ -1,6 +1,6 @@
 //#region Import
 import { Suspense, lazy } from "react"
-import CenterLoader from "@components/center-loader.component"
+import CenterLoader from "@/components/loader/center-loader.component"
 
 const Main = lazy(() => import('@modules/starter/starter.module'))
 //#endregion

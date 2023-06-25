@@ -26,7 +26,7 @@ interface IMainCard {
 
 const MainCard = React.forwardRef<HTMLDivElement, IMainCard>(({ header, footer, body, className, ...rest }: IMainCard, ref) => {
 
-    const cardClass = twMerge('flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-900 dark:border-gray-800', className)
+    const cardClass = twMerge('flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-900 dark:border-gray-700', className)
 
     return (
         <div
@@ -34,7 +34,7 @@ const MainCard = React.forwardRef<HTMLDivElement, IMainCard>(({ header, footer, 
             className={cardClass}
             {...rest}
         >
-            <div className="bg-gray-100 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-900 dark:border-gray-800">
+            <div className="bg-gray-100 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-900 dark:border-gray-700">
                 {header}
             </div>
             <div className="p-4 md:p-5">
@@ -44,7 +44,7 @@ const MainCard = React.forwardRef<HTMLDivElement, IMainCard>(({ header, footer, 
                 footer === undefined ? (
                     ""
                 ) : (
-                    <div className="bg-gray-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-900 dark:border-gray-800">
+                    <div className="bg-gray-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-900 dark:border-gray-700">
                         {footer}
                     </div>
                 )

@@ -88,6 +88,8 @@ const OnlineAvatar = React.forwardRef<HTMLImageElement, IAvatarProps>(({ alt, sr
                 src={src}
                 alt={alt}
                 loading='lazy'
+                width="600"
+                height="400"
             />
             <span className={greenDotClass}></span>
         </div>
