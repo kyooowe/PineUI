@@ -14,7 +14,7 @@ A **comprehensive** and **user-friendly boilerplate**, designed to expedite the 
 
 # Getting Started
 ```
-npx pineui --vite
+npx pineuix --vite
 ```
 or just clone the project by running
 ```
