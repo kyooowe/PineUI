@@ -18,7 +18,8 @@ const StudentList = memo(() => {
 
     return (
         <section>
-            <div className='sm:flex sm:items-center sm:justify-between'>
+            <span className='bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-violet-600 text-4xl font-bold'>CRUD Page</span>
+            <div className='sm:flex sm:items-center sm:justify-between mt-5'>
                 <div>
                     <div className='flex items-center gap-x-3'>
                         <h2 className='text-lg font-medium text-gray-800 dark:text-white'>

@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { ICreateStudent, IStudentFormProps, IUpdateStudent } from '@interface/modules/student/student.interface'
 import TextInput from '@/components/text-input/text-input.component'
+import Select from '@/components/select/select.component'
 //#endregion
 
 //#region Validation Schema
@@ -21,6 +22,23 @@ const validationSchema = yup.object({
         .min(3, "Please provide a value that is at least 4 characters long.")
         .required('Class is required!')
 })
+//#endregion
+
+//#region Constant Value
+const levelArr = [
+    { value: 'Grade 1', name: 'Grade 1' },
+    { value: 'Grade 2', name: 'Grade 2' },
+    { value: 'Grade 3', name: 'Grade 3' },
+    { value: 'Grade 4', name: 'Grade 4' },
+    { value: 'Grade 5', name: 'Grade 5' },
+    { value: 'Grade 6', name: 'Grade 6' },
+    { value: 'Grade 7', name: 'Grade 7' },
+    { value: 'Grade 8', name: 'Grade 8' },
+    { value: 'Grade 9', name: 'Grade 9' },
+    { value: 'Grade 10', name: 'Grade 10' },
+    { value: 'Grade 11', name: 'Grade 11' },
+    { value: 'Grade 12', name: 'Grade 12' }
+]
 //#endregion
 
 type FormikType<T> = T extends true ? IUpdateStudent : ICreateStudent;
@@ -127,25 +145,14 @@ const StudentForm = memo(({ onSubmit, studentData, formRef }: IStudentFormProps)
                             <label className='block mb-2 font-medium text-gray-900 dark:text-white'>
                                 Level
                             </label>
-                            <select
+                            <Select
                                 name="level"
-                                className='custom-select block w-full py-2 pl-5 text-gray-700 placeholder-gray-400/70 bg-gray-50 border rounded-lg focus:outline-none focus:ring-1 focus:ring-opacity-5 border-gray-400 focus:border-gray-900 focus:ring-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-300'
+                                ariaLabel='slctLevel'
+                                className='block w-full'
                                 onChange={studentFormik.handleChange}
-                                defaultValue={studentFormik.values.level}
-                            >
-                                <option value='Grade 1'>Grade 1</option>
-                                <option value='Grade 2'>Grade 2</option>
-                                <option value='Grade 3'>Grade 3</option>
-                                <option value='Grade 4'>Grade 4</option>
-                                <option value='Grade 5'>Grade 5</option>
-                                <option value='Grade 6'>Grade 6</option>
-                                <option value='Grade 7'>Grade 7</option>
-                                <option value='Grade 8'>Grade 8</option>
-                                <option value='Grade 9'>Grade 9</option>
-                                <option value='Grade 10'>Grade 10</option>
-                                <option value='Grade 11'>Grade 11</option>
-                                <option value='Grade 12'>Grade 12</option>
-                            </select>
+                                value={studentFormik.values.level}
+                                items={levelArr}
+                            />
                         </div>
                         <div className='w-full'>
                             <label className='block mb-2 font-medium text-gray-900 dark:text-white'>
