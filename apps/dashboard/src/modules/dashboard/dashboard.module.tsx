@@ -3,6 +3,9 @@ import { memo } from 'react'
 import { IStatsDisplay } from '@interface/stats.interface'
 import { IDashboardStudents } from '@interface/modules/dashboard/dashboard.interface'
 import StatCard from '@components/cards/stat-cards.component'
+import Card from '@/components/cards/cards.component'
+import InitialAvatar from '@/components/avatar/initial-avatar.component'
+import MockTimeLine from '@/components/timeline/mock-timeline.component'
 //#endregion
 
 //#region Constant
@@ -92,6 +95,109 @@ const Analytics = memo(() => {
                         />
                     ))
                 }
+            </div>
+            <div className='grid grid-cols-3 gap-4 mt-5'>
+                <div className='col-span-4 lg:col-span-2'>
+                    <Card className='dark:bg-slate-900' body={
+                        <ul className="space-y-5">
+
+                            <li className="w-xl flex gap-x-2 sm:gap-x-4 me-11">
+                                <span className="flex-shrink-0 inline-flex items-center justify-center h-[2.375rem] w-[2.375rem] rounded-full bg-gray-600">
+                                    <InitialAvatar initial="PX" alt="demo alt text" size="md" />
+                                </span>
+
+                                <div className="inline-block bg-blue-600 rounded-2xl p-4 shadow-sm">
+                                    <p className="text-sm text-white">
+                                        What's Pine UI?
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li className="w-xl flex gap-x-2 sm:gap-x-4 me-11">
+                                <span className="flex-shrink-0 inline-flex items-center justify-center h-[2.375rem] w-[2.375rem] rounded-full bg-gray-600">
+                                    <InitialAvatar initial="PX" alt="demo alt text" size="md" />
+                                </span>
+                                <div className="bg-white border border-gray-200 rounded-2xl p-4 space-y-3 dark:bg-slate-900 dark:border-gray-700">
+                                    <p className="text-sm text-gray-800 dark:text-white">
+                                        A comprehensive and user-friendly boilerplate, providing developers with an extensive range of components and features.
+                                    </p>
+                                    <div className="space-y-1.5">
+                                        <ul>
+                                            <li>
+                                                <a className="text-sm text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://github.com/kyooowe/PineUI">
+                                                    Installation and Framework Guide
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li className="w-xl flex gap-x-2 sm:gap-x-4 me-11">
+                                <span className="flex-shrink-0 inline-flex items-center justify-center h-[2.375rem] w-[2.375rem] rounded-full bg-gray-600">
+                                    <InitialAvatar initial="PX" alt="demo alt text" size="md" />
+                                </span>
+
+                                <div className="inline-block bg-blue-600 rounded-2xl p-4 shadow-sm">
+                                    <p className="text-sm text-white">
+                                        How about the features?
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li className="w-xl flex gap-x-2 sm:gap-x-4 me-11">
+                                <span className="flex-shrink-0 inline-flex items-center justify-center h-[2.375rem] w-[2.375rem] rounded-full bg-gray-600">
+                                    <InitialAvatar initial="PX" alt="demo alt text" size="md" />
+                                </span>
+
+                                <div className="bg-white border border-gray-200 rounded-2xl p-4 space-y-3 dark:bg-slate-900 dark:border-gray-700">
+                                    <p className="text-sm text-gray-800 dark:text-white">
+                                        This innovative project showcases a comprehensive range of powerful and cutting-edge features, seamlessly integrating the following capabilities:
+                                    </p>
+                                    <div className="space-y-1.5">
+                                        <ul className="list-disc list-outside space-y-1.5 ps-3.5">
+                                            <li className="text-sm text-gray-800 dark:text-white">
+                                                Responsive Layout.
+                                            </li>
+                                            <li className="text-sm text-gray-800 dark:text-white">
+                                                Student Management (CRUD).
+                                            </li>
+                                            <li className="text-sm text-gray-800 dark:text-white">
+                                                Custom Components based on TailwindCSS.
+                                            </li>
+                                            <li className="text-sm text-gray-800 dark:text-white">
+                                                Developer experience improved with ESLint, Prettier, and Husky.
+                                            </li>
+                                            <li className="text-sm text-gray-800 dark:text-white">
+                                                Effortlessly create and generate services with utmost convenience and efficiency using Pine UI X.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li className="w-xl flex gap-x-2 sm:gap-x-4 me-11">
+                                <span className="flex-shrink-0 inline-flex items-center justify-center h-[2.375rem] w-[2.375rem] rounded-full bg-gray-600">
+                                    <InitialAvatar initial="PX" alt="demo alt text" size="md" />
+                                </span>
+
+                                <div className="bg-white border border-gray-200 rounded-2xl p-4 space-y-3 dark:bg-slate-900 dark:border-gray-700">
+                                    <p className="text-sm text-gray-800 dark:text-white">
+                                        Stay tuned! We've got a lot in store with ongoing developments, new components, templates, and exciting improvements on the horizon. There's much more to come!
+                                    </p>
+                                </div>
+                            </li>
+
+                        </ul>
+                    } />
+                </div>
+                <div className='col-span-4 lg:col-span-1'>
+                    <Card className='dark:bg-slate-900'
+                        body={
+                            <MockTimeLine />
+                        }
+                    />
+                </div>
             </div>
         </div>
     )
