@@ -1,0 +1,14 @@
+/* Components */
+@import '/src/styles/toast.css';
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html, body {
+        font-family: 'Karla', sans-serif;
+        height: 100vh;
+    }
+}

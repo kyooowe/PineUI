@@ -3,7 +3,7 @@ import { memo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { CSideBarMenu } from '../utils/constant/sidebar.constant'
 import { ISelectableChildPath, ISidebarMenu } from '@interface/components/sidebar.interface'
-import Breadcrumbs from '@/components/breadcrumbs/breadcrumbs.component'
+import Breadcrumbs from '@/components/breadcrumbs-underconstruction/breadcrumbs.component'
 //#endregion
 
 const SideBar = memo(() => {
@@ -93,7 +93,7 @@ const SideBar = memo(() => {
                                         <li role='tab'>
                                             <Link
                                                 to={menu.path}
-                                                className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-md hover:text-blue-500 ${handleActiveLink(menu.childPath) ? 'text-blue-500 dark:text-blue-600' : 'dark:hover:text-blue-600 dark:text-gray-400'}`}
+                                                className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-md hover:text-blue-500 ${handleActiveLink(menu.childPath) ? 'text-blue-500 dark:text-blue-600' : 'dark:hover:text-blue-600 dark:text-white'}`}
                                             >
                                                 <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                                     {handleSVG(menu.name)}
@@ -107,7 +107,7 @@ const SideBar = memo(() => {
                                             id="account-accordion"
                                             role="tab"
                                         >
-                                            <p className="hs-accordion-toggle cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-500 hs-accordion-active:hover:bg-transparent text-sm text-gray-700 rounded-md hover:text-blue-500 dark:bg-gray-800 dark:hover:text-blue-500 dark:text-slate-400 dark:hs-accordion-active:text-white">
+                                            <p className="hs-accordion-toggle cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:hover:bg-transparent text-sm text-gray-700 rounded-md hover:text-blue-500 dark:bg-gray-800 dark:hover:text-blue-500 dark:text-white dark:hs-accordion-active:text-white">
                                                 <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                                     {handleSVG(menu.name)}
                                                 </svg>
@@ -132,7 +132,7 @@ const SideBar = memo(() => {
                                                             >
                                                                 <Link
                                                                     to={childMenu.path}
-                                                                    className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-md hover:text-blue-500 ${iChild === 0 ? '' : 'mt-1'} ${handleActiveLink([childMenu.path]) ? 'text-blue-600 dark:text-blue-600 dark:text-white' : 'dark:hover:text-blue-500 dark:text-slate-400'}`}
+                                                                    className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-md hover:text-blue-500 ${iChild === 0 ? '' : 'mt-1'} ${handleActiveLink([childMenu.path]) ? 'text-blue-600' : 'dark:hover:text-blue-500 dark:text-white'}`}
                                                                 >
                                                                     {childMenu.name}
                                                                 </Link>

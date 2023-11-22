@@ -13,7 +13,7 @@ const Breadcrumbs = () => {
             {
                 pathnames.length > 0 && (
                     <ul>
-                        <li className='flex items-center text-sm text-gray-800 dark:text-gray-400'>
+                        <li className='flex items-center text-sm text-gray-800 dark:text-white'>
                             {
                                 pathnames.map((name, index) => {
 

@@ -42,7 +42,7 @@ interface IStatCardProps {
 
 const StatCard = React.forwardRef<HTMLDivElement, IStatCardProps>(({ title, body, icon, percentage, isIncreased, toolTip, className }: IStatCardProps, ref) => {
     
-    const statCardClass = twMerge('flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800', className)
+    const statCardClass = twMerge('flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700', className)
     
     return (
         <div 

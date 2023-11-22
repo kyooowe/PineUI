@@ -4,7 +4,7 @@ import StudentForm from './student.form'
 import { ICreateStudent, IStudent } from '@interface/modules/student/student.interface'
 import useApi from '@hooks/api.hooks'
 import { useMutation } from '@tanstack/react-query'
-import Toast from '@/components/toast/toast.component'
+import Toast from '@/components/toast-underconstruction/toast.component'
 import IconedButton from '@/components/buttons/icon-button.component'
 
 const StudentCreate = memo(() => {

@@ -9,7 +9,7 @@ const StarterPage = () => {
 
     return (
         <Suspense fallback={<CenterLoader />}>
-            <div className="py-2 px-7">
+            <div className="px-4">
                 <Main />
             </div>
         </Suspense>

@@ -1,7 +1,7 @@
 //#region Import
 import { memo, useEffect } from 'react'
 import { useDarkModeConfigStore } from '@zustand/config.store'
-import Breadcrumbs from '@/components/breadcrumbs/breadcrumbs.component'
+import Breadcrumbs from '@/components/breadcrumbs-underconstruction/breadcrumbs.component'
 import { useAccountStore } from '@/zustand/account.store'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'

@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 
 const StudentPage = () => {
     return (
-        <div className='px-9'>
+        <div className='px-4'>
             <div className='w-full min-w-[310px]'>
                 <Outlet />
             </div>
