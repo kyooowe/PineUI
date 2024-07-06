@@ -16,6 +16,8 @@ A **comprehensive** and **user-friendly boilerplate**, designed to expedite the 
 ```
 npx pineuix --vite
 ```
+<img style="border-radius: 15px;" src="https://github.com/kyooowe/PineUI/blob/master/public/demo-npx.gif" />
+
 or just clone the project by running
 ```
 git clone https://github.com/kyooowe/PineUI.git
