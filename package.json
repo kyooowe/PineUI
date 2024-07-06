@@ -11,7 +11,7 @@
 		"eslint": "^7.32.0",
 		"eslint-config-custom": "*",
 		"prettier": "^2.5.1",
-		"turbo": "latest",
+		"turbo": "^2.0.6",
 		"vite": "^4.3.9"
 	},
 	"name": "vite-express",
