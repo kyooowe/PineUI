@@ -100,7 +100,7 @@ An overview of our development plans and upcoming features.
    - [X] Select
    - [X] Text Input   
  - [X] Landing Page
- - [ ] NextJS Version
+ - [ ] NextJS Version [Ongoing](https://github.com/kyooowe/PineUI-Next)
  - [ ] CLI (Create a dashboard, services, and CRUD pages)
  - [ ] Auth with Google, Github, Twitter, and Facebook
 
